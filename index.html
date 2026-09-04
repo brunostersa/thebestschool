@@ -782,6 +782,19 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   /* Métricas: 2 colunas em vez de 4 */
   .metrics__pair{flex:1 1 100%;}
 
+  /* Ordem no mobile: o formulário sobe para logo depois da chamada, antes
+     da nota e da colagem de fases. O display:contents dissolve o bloco de
+     texto e faz seus filhos virarem itens do mesmo grid do formulário,
+     que então podem ser reordenados entre si. */
+  .diagnostico__grid{grid-template-columns:1fr;row-gap:16px;}
+  .diagnostico__copy{display:contents;}
+  .diagnostico__copy > .eyebrow{order:1;}
+  .diagnostico__copy > h2{order:2;}
+  .diagnostico__intro{order:3;}
+  #form-diagnostico{order:4;}
+  .diagnostico .note{order:5;margin-top:8px;}
+  .diagnostico .phases{order:6;}
+
   /* Colagem de fases: proporção maior para não virar tarja.
      Sem recuo nos rótulos — em 375px o texto invadia o card seguinte. */
   .phases{margin-top:8px;}
