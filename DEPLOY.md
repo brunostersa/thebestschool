@@ -134,6 +134,57 @@ Os links de redes sociais e a política de privacidade já apontam para os
 endereços reais da PSA, copiados do rodapé de profissionaissa.com.br:
 Instagram (`psa.talk`), LinkedIn, YouTube e Facebook.
 
+## Rastreamento
+
+A LP usa o **mesmo container do site**: `GTM-W8F8SBJ6`. Só o Google Tag
+Manager está no código — Google Ads, GA4 e Meta Pixel entram por ele, e
+foram conferidos carregando na LP:
+
+| Ferramenta | ID | Como entra |
+|---|---|---|
+| Google Tag Manager | `GTM-W8F8SBJ6` | no `index.html` |
+| Google Ads | `AW-975989134`, `AW-17872724780`, `AW-18025244214` | pelo GTM |
+| Meta Pixel | `320276513230755` | pelo GTM |
+| GA4 / gtag | — | pelo GTM |
+| HubSpot | `49656171` | no `index.html` |
+
+Nada disso deve ser copiado tag por tag para cá: quem controla é o painel
+do GTM, e duplicar geraria conversão contada duas vezes.
+
+### Conversão do formulário
+
+No envio bem-sucedido a página faz um push no `dataLayer`:
+
+```js
+{
+  event: 'lead_diagnostico',
+  diagnostico_ja_atua:     '...',
+  diagnostico_atuacao:     '...',
+  diagnostico_objetivo:    '...',
+  diagnostico_urgencia:    '...',
+  diagnostico_rede_social: 'sim' | 'nao'
+}
+```
+
+No GTM, crie um acionador de **evento personalizado** com o nome
+`lead_diagnostico` e ligue nele as conversões de Ads e Meta. As respostas
+seguem no evento para permitir segmentar campanha por qualidade de lead —
+**nome, e-mail e telefone não vão**, de propósito.
+
+### Atenção ao publicar
+
+No teste em `localhost` o **JivoChat** e o **Microsoft Clarity** não
+carregaram, embora estejam no mesmo container. Se as tags deles tivessem
+acionador "todas as páginas", teriam disparado — o mais provável é que
+estejam condicionadas ao domínio `profissionaissa.com.br`.
+
+Como a LP fica **nesse mesmo domínio**, é provável que passem a disparar
+depois de publicada. O JivoChat é um chat, e a LP já tem o do HubSpot:
+seriam dois widgets disputando o canto inferior direito, onde também está
+o CTA fixo. Depois de subir, abra a página e confirme. Se o Jivo aparecer,
+a correção é no GTM — adicione ao acionador dele uma exceção para
+`/thebestschool/`, em vez de mexer no código da LP.
+
 ## Navegação
 
 O header muda de comportamento conforme a largura da tela:
