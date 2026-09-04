@@ -465,6 +465,10 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   /* referência para o @container das linhas de dois campos */
   container-type:inline-size;
 }
+.form-card__titulo{
+  font-weight:700;font-size:15.5px;line-height:1.35;color:var(--ink);
+  padding-bottom:12px;border-bottom:1px solid var(--line-light);
+}
 .field{display:flex;flex-direction:column;gap:7px;min-width:0;}
 /* Dois campos curtos na mesma linha, para o formulário não ficar tão alto.
    Abaixo de 420px de espaço útil eles voltam a empilhar. */
@@ -949,7 +953,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero__grid">
     <div class="hero__copy">
       <span class="hero__tag">Curadoria de carreira para palestrantes</span>
-      <h1 id="hero-title">Todo palestrante começa em um lugar <em>diferente</em></h1>
+      <h1 id="hero-title">Todo <em>palestrante</em> começa em um lugar diferente</h1>
       <p class="hero__sub">A gente mostra qual caminho leva você ao palco. Responda ao diagnóstico e converse com um especialista da PSA: ele indica a trilha que faz sentido para a sua fase, com preparo, prazo e investimento na mesa.</p>
       <a href="#diagnostico" class="btn btn--cream" data-cta="hero">
         <span>Quero saber qual é o meu caminho</span>
@@ -1059,7 +1063,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <form id="form-diagnostico" class="form-card" novalidate>
+    <form id="form-diagnostico" class="form-card" aria-labelledby="form-titulo" novalidate>
       <!-- Mensagem de sucesso (exibida via classe .is-sent no form) -->
       <div class="form-success" role="status" aria-live="polite">
         <span class="eyebrow eyebrow--plain">Recebido</span>
@@ -1068,6 +1072,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="form-fields stack" style="gap:14px">
+        <h3 class="form-card__titulo" id="form-titulo">Preencha o formulário abaixo:</h3>
+
         <!-- Nome e sobrenome são campos separados e obrigatórios no HubSpot -->
         <div class="field-row">
           <div class="field">
