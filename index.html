@@ -3,35 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PSA · Curadoria de carreira para palestrantes</title>
+<title>The Best School | Curadoria de carreira para palestrantes</title>
 <meta name="description" content="Descubra qual caminho leva você ao palco. Responda ao diagnóstico gratuito e converse com um especialista da PSA: 14 anos como a maior curadoria de palestras do país.">
 <link rel="canonical" href="https://profissionaissa.com.br/thebestschool/">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#1A0800">
+<meta name="author" content="PSA">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="PSA · The Best School">
+<meta property="og:site_name" content="The Best School · PSA">
 <meta property="og:title" content="Todo palestrante começa em um lugar diferente">
 <meta property="og:description" content="Responda ao diagnóstico gratuito e descubra a trilha que faz sentido para a sua fase, com preparo, prazo e investimento na mesa.">
 <meta property="og:url" content="https://profissionaissa.com.br/thebestschool/">
 <meta property="og:image" content="https://profissionaissa.com.br/thebestschool/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Palestrante no palco, em silhueta, sob a luz do público">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<!-- Fontes -->
-<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Imagem do hero: é o LCP da página, então tem prioridade máxima -->
 <link rel="preload" as="image" href="assets/img/hero-bg.webp" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/hero-bg-mobile.webp" media="(max-width:767px)" fetchpriority="high">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Fontes: apenas os pesos usados (400, 500, 700, 800), carregadas sem
+     bloquear o primeiro render. O preconnect abre as conexões antes. -->
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap" onload="this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+</noscript>
+
+<!-- O formulário e o tracking do HubSpot são chamados depois do carregamento -->
+<link rel="preconnect" href="https://api.hsforms.com" crossorigin>
+
+<!-- Dados estruturados: ajudam o Google a entender de quem é a página -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "The Best School",
+  "url": "https://profissionaissa.com.br/thebestschool/",
+  "description": "Curadoria de carreira para palestrantes. Diagnóstico gratuito e trilhas de formação da PSA, que há 14 anos cura o mercado de palestras no Brasil.",
+  "inLanguage": "pt-BR",
+  "areaServed": "BR",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "PSA",
+    "url": "https://profissionaissa.com.br/"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Márcio Spagnolo"
+  },
+  "sameAs": [
+    "https://www.instagram.com/psa.talk/",
+    "https://br.linkedin.com/company/profissionais-sa",
+    "https://www.youtube.com/profissionaissa",
+    "https://www.facebook.com/PSA.profissionaissa"
+  ]
+}
+</script>
 
 <style>
 /* ==========================================================================
@@ -175,7 +216,20 @@ select{appearance:none;-webkit-appearance:none;}
   max-width:var(--maxw);margin:0 auto;padding-block:clamp(14px,2vw,26px);
   display:flex;align-items:center;justify-content:space-between;gap:14px;
 }
+.site-header__brand{display:flex;align-items:center;gap:clamp(10px,1.1vw,16px);min-width:0;}
 .site-header__logo{display:flex;align-items:center;padding-block:12px;}
+/* Assinatura "Powered by PSA": o PSA é a própria marca, recortada do lockup */
+.powered-by{
+  display:flex;align-items:center;gap:6px;
+  padding-left:clamp(10px,1.1vw,16px);
+  border-left:1px solid rgba(254,248,232,.22);
+  white-space:nowrap;
+}
+.powered-by__text{
+  font-size:clamp(9.5px,0.72vw,10.5px);font-weight:500;letter-spacing:.02em;
+  color:rgba(254,248,232,.62);
+}
+.powered-by img{height:clamp(11px,0.95vw,13px);width:auto;opacity:.9;}
 .site-header__logo img{height:clamp(14px,1.4vw,18px);width:auto;}
 .nav{
   position:relative;
@@ -267,7 +321,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 }
 .hero__grid{
   position:relative;max-width:var(--maxw);margin:0 auto;width:100%;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
   gap:clamp(20px,3vw,40px);align-items:start;
 }
 .hero__copy{display:flex;flex-direction:column;gap:14px;color:var(--cream);min-width:0;max-width:46ch;}
@@ -323,7 +377,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
    ========================================================================== */
 .diagnostico{padding-block:var(--section-y);}
 .diagnostico__grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
   gap:clamp(24px,4vw,56px);align-items:start;
 }
 .diagnostico__copy{display:flex;flex-direction:column;gap:16px;min-width:0;}
@@ -344,6 +398,8 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:9.5px;text-align:center;line-height:1.6;padding:8px;
 }
+.phase__box:has(img){padding:0;}
+.phase__box img{width:100%;height:100%;object-fit:cover;}
 .phase__meta{display:flex;flex-direction:column;gap:2px;}
 .phase__num{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);}
 .phase__name{font-weight:700;font-size:13px;}
@@ -423,8 +479,8 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .step--photo{
   position:relative;overflow:hidden;color:var(--cream);
   background-color:var(--orange-deep);
-  background-image:linear-gradient(0deg,rgba(26,8,0,.82) 0%,rgba(26,8,0,.28) 45%,rgba(26,8,0,.1) 100%),var(--hatch-dark),linear-gradient(150deg,#AC2102 0%,#E23401 55%,#FD6501 100%);
-  background-size:cover;background-position:center;
+  background-image:linear-gradient(0deg,rgba(26,8,0,.88) 0%,rgba(26,8,0,.45) 45%,rgba(26,8,0,.15) 100%),url('assets/img/etapa-diagnostico.webp');
+  background-size:cover;background-position:center 30%;
 }
 .step__top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
 .step__icon{
@@ -455,7 +511,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 }
 .section-head__main{display:flex;flex-direction:column;gap:14px;min-width:0;}
 .section-head__aside{font-size:14.5px;line-height:1.6;color:var(--muted);max-width:40ch;}
-.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;}
 .pillar{
   position:relative;overflow:hidden;border-radius:24px;padding:26px;
   display:flex;flex-direction:column;justify-content:space-between;gap:22px;
@@ -495,7 +551,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 /* ==========================================================================
    PERFIS
    ========================================================================== */
-.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;}
 .profile{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;}
 .profile--dark{background:var(--ink);color:var(--cream);}
 .profile--grad{background:linear-gradient(160deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:var(--cream);}
@@ -503,7 +559,10 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .profile__media{
   aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:10.5px;text-align:center;padding:12px;
+  overflow:hidden;
 }
+.profile__media:has(img){padding:0;}
+.profile__media img{width:100%;height:100%;object-fit:cover;}
 .profile--dark .profile__media{background-image:var(--hatch-dark);color:var(--on-dark-72);}
 .profile--grad .profile__media{background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.16) 0 10px,rgba(26,8,0,.04) 10px 20px);color:rgba(254,248,232,.9);}
 .profile--light .profile__media{background-image:var(--hatch-light);color:var(--gray);}
@@ -541,7 +600,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .transparency{width:100%;background:var(--ink);color:var(--cream);}
 .transparency__grid{
   padding-block:clamp(56px,8vw,110px);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
   gap:clamp(20px,3vw,48px);align-items:start;
 }
 .transparency h2{max-width:16ch;}
@@ -583,6 +642,8 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   display:flex;align-items:flex-end;justify-content:center;padding:8px;
   font-family:var(--mono);font-size:9px;color:var(--on-dark-60);text-align:center;line-height:1.5;
 }
+.fan__box:has(img){padding:0;}
+.fan__box img{width:100%;height:100%;object-fit:cover;}
 .fan__item:nth-child(1) .fan__box,.fan__item:nth-child(7) .fan__box{height:clamp(64px,7vw,96px);background-color:var(--ink);}
 .fan__item:nth-child(2) .fan__box,.fan__item:nth-child(6) .fan__box{height:clamp(84px,9.5vw,132px);background-color:var(--orange-deep);}
 .fan__item:nth-child(3) .fan__box,.fan__item:nth-child(5) .fan__box{height:clamp(104px,12vw,166px);background-color:var(--ink);}
@@ -593,22 +654,20 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
    ========================================================================== */
 .avatars{display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap;}
 .avatars__stack{display:flex;align-items:center;padding-left:12px;}
+.avatars__stack img,
 .avatars__stack span{
   width:38px;height:38px;border-radius:50%;border:2px solid var(--cream);
   margin-left:-12px;flex-shrink:0;
-  background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);
 }
-.avatars__stack span:nth-child(1){background-color:var(--ink);}
-.avatars__stack span:nth-child(2){background-color:var(--orange-deep);}
-.avatars__stack span:nth-child(3){background-color:var(--orange-dark);}
-.avatars__stack span:nth-child(4){background-color:var(--orange-mid);}
-.avatars__stack span:nth-child(5){
-  background-color:var(--orange);background-image:none;
+/* Enquadra pelo alto: os originais são retratos e o centro cortaria o rosto. */
+.avatars__stack img{object-fit:cover;object-position:center 18%;background:var(--ink);}
+.avatars__stack span{
+  background:var(--orange);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:10.5px;color:var(--cream);
 }
 .avatars__text{font-size:12.5px;line-height:1.4;color:var(--muted);max-width:22ch;}
-.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px;}
 .proof__card{background:var(--white);border:1px solid var(--line-light);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;}
 .proof__media{
   aspect-ratio:4/3;background-image:var(--hatch-light);
@@ -632,7 +691,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .cta-final{background:var(--ink);color:var(--cream);}
 .cta-final__grid{
   padding-block:var(--section-y);
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));
   gap:clamp(24px,4vw,56px);align-items:end;
 }
 .cta-final h2{font-size:clamp(25px,3.4vw,45px);line-height:1.04;max-width:20ch;}
@@ -763,9 +822,15 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
      ========================================================================== -->
 <header class="site-header">
   <div class="site-header__inner">
-    <a href="#diagnostico" class="site-header__logo" aria-label="PSA · The Best School — ir para o diagnóstico">
-      <img src="assets/logo-school-white.svg" alt="The Best School" width="198" height="16">
-    </a>
+    <div class="site-header__brand">
+      <a href="#diagnostico" class="site-header__logo" aria-label="The Best School — ir para o diagnóstico">
+        <img src="assets/logo-school-white.svg" alt="The Best School" width="198" height="16">
+      </a>
+      <span class="powered-by">
+        <span class="powered-by__text">Powered by</span>
+        <img src="assets/logo-psa-only-white.svg" alt="PSA" width="27" height="14">
+      </span>
+    </div>
     <nav class="nav" aria-label="Navegação principal">
       <span class="nav__pill" aria-hidden="true"></span>
       <a href="#diagnostico" class="is-active">Diagnóstico</a>
@@ -897,21 +962,21 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
       <div class="phases" aria-hidden="true">
         <div class="phase phase--1">
-          <div class="phase__box">[ FOTO ]<br>1º palco</div>
+          <div class="phase__box"><img src="assets/img/fase-1.webp" alt="" width="600" height="400" loading="lazy" decoding="async"></div>
           <div class="phase__meta">
             <span class="phase__num">Fase 01</span>
             <span class="phase__name">Iniciante</span>
           </div>
         </div>
         <div class="phase phase--2">
-          <div class="phase__box">[ FOTO ]<br>imersão</div>
+          <div class="phase__box"><img src="assets/img/fase-2.webp" alt="" width="600" height="400" loading="lazy" decoding="async"></div>
           <div class="phase__meta">
             <span class="phase__num">Fase 02</span>
             <span class="phase__name">Profissionalize-se</span>
           </div>
         </div>
         <div class="phase phase--3">
-          <div class="phase__box">[ FOTO ]<br>palco grande</div>
+          <div class="phase__box"><img src="assets/img/fase-3.webp" alt="" width="600" height="400" loading="lazy" decoding="async"></div>
           <div class="phase__meta">
             <span class="phase__num">Fase 03</span>
             <span class="phase__name">Escala</span>
@@ -1088,7 +1153,6 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
       <div class="step step--photo" data-reveal="5">
         <div class="step__top">
-          <span class="step__placeholder">[ FOTO · CONVERSA<br>DE DIAGNÓSTICO ]</span>
           <span class="step__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13l4 4L14 8"></path><path d="M10 15l2 2 8-9"></path></svg>
           </span>
@@ -1181,7 +1245,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
   <div class="profiles">
     <article class="profile profile--dark">
-      <div class="profile__media">[ FOTO · INICIANTE ]<br>800×500</div>
+      <div class="profile__media"><img src="assets/img/perfil-iniciante.webp" alt="Duas pessoas diante de um palco, antes da primeira apresentação" width="800" height="500" loading="lazy" decoding="async"></div>
       <div class="profile__body">
         <span class="profile__kicker">Iniciante</span>
         <h3>Você pensa<br>em palestrar</h3>
@@ -1196,7 +1260,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
     </article>
 
     <article class="profile profile--grad">
-      <div class="profile__media">[ FOTO · IMERSÃO PRESENCIAL ]<br>800×500</div>
+      <div class="profile__media"><img src="assets/img/perfil-imersao.webp" alt="Participantes trabalhando durante a imersão presencial da PSA" width="800" height="500" loading="lazy" decoding="async"></div>
       <div class="profile__body">
         <span class="profile__kicker">Profissionalize-se</span>
         <h3>Você já palestra, mas ainda não monetiza</h3>
@@ -1211,7 +1275,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
     </article>
 
     <article class="profile profile--light">
-      <div class="profile__media">[ FOTO · PALCO GRANDE ]<br>800×500</div>
+      <div class="profile__media"><img src="assets/img/perfil-palco.webp" alt="Palestrante em ação no palco, diante de plateia cheia" width="800" height="500" loading="lazy" decoding="async"></div>
       <div class="profile__body">
         <span class="profile__kicker">Escala</span>
         <h3>Você já<br>vive disso</h3>
@@ -1259,13 +1323,13 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
     </a>
 
     <div class="fan" aria-hidden="true">
-      <div class="fan__item" data-fan="0"><span class="fan__label">Palco</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="1"><span class="fan__label">Imersão</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="2"><span class="fan__label">Mentoria</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="3"><span class="fan__label">Diagnóstico</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="4"><span class="fan__label">Bastidor</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="5"><span class="fan__label">Plateia</span><div class="fan__box">[ FOTO ]</div></div>
-      <div class="fan__item" data-fan="6"><span class="fan__label">Rede PSA</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="0"><span class="fan__label">Palco</span><div class="fan__box"><img src="assets/img/leque-1-palco.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="1"><span class="fan__label">Imersão</span><div class="fan__box"><img src="assets/img/leque-2-imersao.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="2"><span class="fan__label">Mentoria</span><div class="fan__box"><img src="assets/img/leque-3-mentoria.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="3"><span class="fan__label">Diagnóstico</span><div class="fan__box"><img src="assets/img/leque-4-diagnostico.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="4"><span class="fan__label">Bastidor</span><div class="fan__box"><img src="assets/img/leque-5-bastidor.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="5"><span class="fan__label">Plateia</span><div class="fan__box"><img src="assets/img/leque-6-plateia.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
+      <div class="fan__item" data-fan="6"><span class="fan__label">Rede PSA</span><div class="fan__box"><img src="assets/img/leque-7-rede.webp" alt="" width="400" height="300" loading="lazy" decoding="async"></div></div>
     </div>
   </div>
 </section>
@@ -1279,8 +1343,12 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
       <span class="eyebrow">Prova social</span>
       <h2 class="h2" style="max-width:20ch">Quem já passou por aqui, <em>conta</em></h2>
       <div class="avatars">
-        <div class="avatars__stack" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span>+300</span>
+        <div class="avatars__stack">
+          <img src="assets/img/avatar-marcio-spagnolo.webp" alt="Márcio Spagnolo" width="200" height="298" loading="lazy" decoding="async">
+          <img src="assets/img/avatar-rachel-maia.webp" alt="Rachel Maia" width="200" height="273" loading="lazy" decoding="async">
+          <img src="assets/img/avatar-walter-longo.webp" alt="Walter Longo" width="200" height="273" loading="lazy" decoding="async">
+          <img src="assets/img/avatar-nelson-freitas.webp" alt="Nelson Freitas" width="200" height="273" loading="lazy" decoding="async">
+          <span aria-hidden="true">+300</span>
         </div>
         <span class="avatars__text">palestrantes formados pela curadoria PSA</span>
       </div>
