@@ -81,9 +81,25 @@ e cache.
    | Qual a sua atuação hoje? | `qual_a_sua_atuacao_hoje___new_campaign_` |
    | O que você está buscando? | `temos_programas_…_o_que_voce_esta_buscando_new` |
    | Qual sua urgência…? | `voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_` |
+   | Redes sociais (opcional) | `linkedin` |
 
-   As quatro são **obrigatórias** no formulário: faltando uma, o HubSpot recusa
-   o envio inteiro. Não mexa nesses nomes sem conferir no HubSpot.
+   As quatro primeiras são **obrigatórias** no formulário, assim como
+   `firstname` e `lastname`: faltando qualquer uma, o HubSpot recusa o envio
+   inteiro. Por isso o formulário pede nome e sobrenome em campos separados, em
+   vez de dividir um "nome completo" no JavaScript — quem digitasse um único
+   nome teria o envio rejeitado. O campo de rede social é opcional e só é
+   enviado quando preenchido. Não mexa nesses nomes sem conferir no HubSpot.
+
+   Para redescobrir os nomes internos caso o formulário mude, carregue o embed
+   oficial numa página em branco e leia os `name` dos campos renderizados — eles
+   vêm no formato `0-1/<nome_interno>`:
+
+   ```html
+   <script src="https://js.hsforms.net/forms/embed/developer/49656171.js" defer></script>
+   <div class="hs-form-html" data-region="na1"
+        data-form-id="634374b1-5a70-470e-a975-4a1e2d433b87"
+        data-portal-id="49656171"></div>
+   ```
 
 4. **Dois pontos de atenção neste formulário:**
 

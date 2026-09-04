@@ -373,8 +373,20 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   background:var(--white);border:1px solid var(--line-light);border-radius:24px;
   padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:14px;
   box-shadow:0 24px 60px -30px rgba(26,8,0,.35);min-width:0;
+  /* referência para o @container das linhas de dois campos */
+  container-type:inline-size;
 }
-.field{display:flex;flex-direction:column;gap:7px;}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0;}
+/* Dois campos curtos na mesma linha, para o formulário não ficar tão alto.
+   Abaixo de 420px de espaço útil eles voltam a empilhar. */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@container (max-width:420px){.field-row{grid-template-columns:1fr;}}
+.field__opcional{
+  font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--gray);
+  border:1px solid rgba(26,8,0,.18);border-radius:20px;padding:2px 7px;margin-left:6px;
+  white-space:nowrap;
+}
 .field > label{font-weight:700;font-size:13px;}
 .form-card input,.form-card select{
   border:1px solid rgba(26,8,0,.16);border-radius:12px;
@@ -917,15 +929,27 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
       </div>
 
       <div class="form-fields stack" style="gap:14px">
-        <div class="stack" style="gap:10px">
-          <label class="sr-only" for="f-nome">Nome completo</label>
-          <input id="f-nome" name="fullname" type="text" placeholder="Nome completo" autocomplete="name" required>
+        <!-- Nome e sobrenome são campos separados e obrigatórios no HubSpot -->
+        <div class="field-row">
+          <div class="field">
+            <label class="sr-only" for="f-nome">Nome</label>
+            <input id="f-nome" name="firstname" type="text" placeholder="Nome" autocomplete="given-name" required>
+          </div>
+          <div class="field">
+            <label class="sr-only" for="f-sobrenome">Sobrenome</label>
+            <input id="f-sobrenome" name="lastname" type="text" placeholder="Sobrenome" autocomplete="family-name" required>
+          </div>
+        </div>
 
-          <label class="sr-only" for="f-fone">WhatsApp</label>
-          <input id="f-fone" name="phone" type="tel" placeholder="WhatsApp" autocomplete="tel" inputmode="tel" required>
-
-          <label class="sr-only" for="f-email">E-mail</label>
-          <input id="f-email" name="email" type="email" placeholder="E-mail" autocomplete="email" inputmode="email" required>
+        <div class="field-row">
+          <div class="field">
+            <label class="sr-only" for="f-email">E-mail</label>
+            <input id="f-email" name="email" type="email" placeholder="E-mail" autocomplete="email" inputmode="email" required>
+          </div>
+          <div class="field">
+            <label class="sr-only" for="f-fone">WhatsApp</label>
+            <input id="f-fone" name="phone" type="tel" placeholder="WhatsApp" autocomplete="tel" inputmode="tel" required>
+          </div>
         </div>
 
         <div class="field">
@@ -991,6 +1015,11 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
             </span>
           </div>
+        </div>
+
+        <div class="field">
+          <label for="f-social">Para um diagnóstico mais completo, consegue compartilhar uma de suas redes sociais? <span class="field__opcional">opcional</span></label>
+          <input id="f-social" name="linkedin" type="text" placeholder="Instagram ou LinkedIn" autocomplete="url">
         </div>
 
         <!-- Honeypot anti-spam: invisível para humanos, preenchido por bots -->
@@ -1732,13 +1761,12 @@ var CONFIG = {
       }
 
       var data = new FormData(form);
-      var nome = (data.get('fullname') || '').trim();
-      var partes = nome.split(/\s+/);
 
-      // Campos padrão do HubSpot — sempre existem numa conta.
+      // Campos padrão do HubSpot. Nome e sobrenome são obrigatórios lá, por isso
+      // são dois campos no formulário em vez de um "nome completo" dividido aqui.
       var baseFields = [
-        { name: 'firstname', value: partes.shift() || '' },
-        { name: 'lastname',  value: partes.join(' ') },
+        { name: 'firstname', value: (data.get('firstname') || '').trim() },
+        { name: 'lastname',  value: (data.get('lastname') || '').trim() },
         { name: 'email',     value: data.get('email') || '' },
         { name: 'phone',     value: data.get('phone') || '' }
       ];
@@ -1747,6 +1775,10 @@ var CONFIG = {
       var customFields = Object.keys(CONFIG.fieldMap).map(function (k) {
         return { name: CONFIG.fieldMap[k], value: data.get(k) || '' };
       });
+
+      // Rede social: opcional, só vai se a pessoa preencher.
+      var social = (data.get('linkedin') || '').trim();
+      if (social) customFields.push({ name: 'linkedin', value: social });
 
       var fields = baseFields.concat(customFields);
 
