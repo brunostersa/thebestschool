@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe da LP The Best School</title>
+<style>
+  :root{
+    --ink:#16181c;
+    --ink-soft:#4b4f57;
+    --line:#c7cad0;
+    --line-soft:#e2e4e8;
+    --paper:#ffffff;
+    --panel:#f3f4f6;
+    --panel-deep:#e7e9ec;
+    --note:#ff6a1a;
+    --note-bg:#fff4ec;
+    --note-line:#ffceac;
+    --mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    --sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:#eceef1;
+    line-height:1.5;
+  }
+  .top-strip{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);color:#fff;
+    font-family:var(--mono);
+    font-size:12px;
+    padding:9px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .top-strip b{color:var(--note);font-weight:600;}
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    background:var(--paper);
+    box-shadow:0 0 0 1px var(--line-soft);
+  }
+
+  /* ---- generic wireframe primitives ---- */
+  .block{
+    border:1.5px dashed var(--line);
+    background:repeating-linear-gradient(135deg, var(--panel), var(--panel) 10px, var(--panel-deep) 10px, var(--panel-deep) 11px);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:12px;
+    text-align:center;
+    letter-spacing:.02em;
+  }
+  .section{
+    position:relative;
+    padding:56px 48px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .section-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:#96999f;
+    letter-spacing:.06em;
+    margin-bottom:18px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .section-tag .n{
+    background:var(--ink);color:#fff;
+    border-radius:3px;
+    padding:2px 6px;
+  }
+  .note{
+    font-family:var(--mono);
+    font-size:11.5px;
+    line-height:1.5;
+    background:var(--note-bg);
+    border:1px solid var(--note-line);
+    color:#8a3d10;
+    padding:10px 12px;
+    border-radius:6px;
+    margin-top:14px;
+    max-width:640px;
+  }
+  .note b{color:var(--note);}
+  .note::before{
+    content:"NOTA: ";
+    color:var(--note);
+    font-weight:700;
+  }
+  .note.suggestion::before{
+    content:"SUGESTÃO NOVA: ";
+  }
+  h1,h2,h3,h4{
+    font-family:var(--sans);
+    margin:0 0 12px 0;
+    letter-spacing:-.01em;
+  }
+  .copy-h1{font-size:42px;font-weight:800;line-height:1.08;max-width:680px;}
+  .copy-h2{font-size:30px;font-weight:800;line-height:1.14;}
+  .copy-sub{font-size:17px;color:var(--ink-soft);max-width:560px;font-weight:400;}
+  .copy-body{font-size:15px;color:var(--ink-soft);max-width:520px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--note);
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:14px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:#fff;
+    font-weight:600;font-size:14.5px;
+    padding:13px 22px;border-radius:7px;
+    border:none;cursor:pointer;
+    font-family:var(--sans);
+  }
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn.small{padding:9px 16px;font-size:13px;}
+  .pill{
+    font-family:var(--mono);font-size:10.5px;
+    border:1px solid var(--line);border-radius:20px;
+    padding:3px 10px;color:var(--ink-soft);
+  }
+
+  /* ---- HERO ---- */
+  .hero{
+    padding:0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hero-top{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 48px;border-bottom:1px dashed var(--line);
+  }
+  .logo-mark{
+    font-family:var(--mono);font-weight:700;font-size:14px;
+    border:1.5px solid var(--ink);padding:6px 12px;border-radius:5px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;
+    min-height:560px;
+  }
+  .hero-left{padding:48px;display:flex;flex-direction:column;justify-content:center;gap:18px;}
+  .stat-row{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px dashed var(--line);
+  }
+  .stat{
+    padding:18px 20px;border-right:1px dashed var(--line);
+    font-family:var(--mono);
+  }
+  .stat:last-child{border-right:none;}
+  .stat b{display:block;font-size:20px;font-family:var(--sans);color:var(--ink);}
+  .stat span{font-size:11px;color:var(--ink-soft);}
+  .authority-line{
+    padding:12px 48px;border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);
+  }
+  .hero-visual{
+    border-left:1px dashed var(--line);
+    display:flex;align-items:stretch;
+  }
+  .form-card{
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    border-radius:10px;
+    padding:22px;
+    max-width:420px;
+    box-shadow:5px 5px 0 var(--panel-deep);
+  }
+  .form-card h4{font-size:15px;margin-bottom:4px;}
+  .form-card p{font-size:12.5px;color:var(--ink-soft);margin:0 0 14px 0;}
+  .fld{
+    border:1px solid var(--line);border-radius:6px;
+    padding:10px 12px;font-family:var(--mono);font-size:11.5px;
+    color:#9a9da3;margin-bottom:8px;
+  }
+  .fld.radio-group{display:flex;flex-direction:column;gap:6px;}
+  .fld.radio-group .opt{display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-family:var(--sans);font-size:12.5px;}
+  .fld.radio-group .opt i{width:12px;height:12px;border:1.5px solid var(--line);border-radius:50%;display:inline-block;}
+  .q-block{margin-bottom:12px;}
+  .q-label{font-family:var(--sans);font-weight:600;color:var(--ink);font-size:12.5px;margin-bottom:6px;display:block;}
+  .q-select{
+    border:1px solid var(--line);border-radius:6px;
+    padding:10px 12px;font-family:var(--sans);font-size:12px;
+    color:#9a9da3;margin-bottom:6px;
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--paper);
+  }
+  .q-select .chevron{color:var(--line);font-family:var(--mono);}
+  .q-options{
+    font-family:var(--mono);font-size:10.5px;color:#9a9da3;line-height:1.7;
+    padding-left:2px;
+  }
+
+  /* ---- como funciona ---- */
+  .steps-wrap{display:flex;gap:0;margin-top:26px;border-top:1px solid var(--line-soft);border-left:1px solid var(--line-soft);}
+  .step{
+    flex:1;padding:20px 22px;border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  }
+  .step .idx{font-family:var(--mono);font-size:11px;color:var(--note);margin-bottom:8px;}
+  .step h4{font-size:15px;margin-bottom:6px;}
+  .step p{font-size:13px;color:var(--ink-soft);margin:0;}
+
+  /* ---- pillars ---- */
+  .pillars-wrap{display:flex;gap:22px;margin-top:28px;flex-wrap:wrap;}
+  .pillar{
+    flex:1;min-width:220px;
+    border:1.5px solid var(--line);border-radius:10px;
+    padding:22px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+    background:var(--paper);
+  }
+  .pillar:hover{border-color:var(--ink);box-shadow:4px 4px 0 var(--panel-deep);}
+  .pillar .idx{font-family:var(--mono);font-size:11px;color:var(--note);margin-bottom:10px;}
+  .pillar h3{font-size:18px;margin-bottom:8px;}
+  .pillar p{font-size:13.5px;color:var(--ink-soft);margin:0 0 12px 0;}
+  .pillar ul{margin:0;padding-left:16px;font-size:12.5px;color:var(--ink-soft);}
+  .pillar ul li{margin-bottom:4px;}
+  .pillar-reveal{
+    font-family:var(--mono);font-size:10px;color:#9a9da3;
+    margin-top:10px;border-top:1px dashed var(--line-soft);padding-top:8px;
+  }
+
+  /* ---- profiles ---- */
+  .profiles-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;}
+  .profile-card{
+    border:1.5px solid var(--line);border-radius:10px;
+    padding:24px;display:flex;flex-direction:column;gap:10px;
+  }
+  .profile-card .tag{font-family:var(--mono);font-size:11px;color:var(--note);}
+  .profile-card h3{font-size:19px;}
+  .profile-card p{font-size:13.5px;color:var(--ink-soft);flex:1;}
+
+  /* ---- mid cta ---- */
+  .mid-cta{
+    text-align:center;background:var(--ink);color:#fff;
+    padding:64px 48px;border-radius:0;
+  }
+  .mid-cta .eyebrow{justify-content:center;color:#ffb27f;}
+  .mid-cta h2{font-size:32px;max-width:640px;margin:0 auto 12px;}
+  .mid-cta p{font-size:15px;color:#c9cbd1;max-width:520px;margin:0 auto 22px;}
+  .mid-cta .btn{background:var(--note);}
+
+  /* ---- social proof ---- */
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px;}
+  .proof-card{
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  }
+  .proof-img{height:140px;}
+  .proof-txt{padding:12px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);}
+  .proof-txt b{display:block;color:var(--ink);font-family:var(--sans);font-size:12px;margin-bottom:2px;}
+
+  /* ---- footer ---- */
+  .footer{
+    padding:40px 48px;display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:20px;
+  }
+  .footer .logos{display:flex;gap:14px;align-items:center;}
+  .footer .fine{font-family:var(--mono);font-size:10.5px;color:#9a9da3;max-width:380px;}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stat-row{grid-template-columns:repeat(2,1fr);}
+    .steps-wrap{flex-direction:column;}
+    .profiles-wrap{grid-template-columns:1fr;}
+    .proof-grid{grid-template-columns:repeat(2,1fr);}
+    .section{padding:40px 22px;}
+    .hero-left,.hero-top{padding:22px;}
+    .copy-h1{font-size:30px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <span>WIREFRAME <b>The Best School</b> · LP de captação e diagnóstico · rev. 03/09</span>
+  <span>Estrutura, copy e análise de fluxo para validação com a Aline</span>
+</div>
+
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-top">
+      <div class="logo-mark">PSA.</div>
+      <div class="pill">The Best School</div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="eyebrow">★★★★★ UMA EXPERIÊNCIA PSA</div>
+        <div class="pill" style="width:fit-content;">CURADORIA DE CARREIRA PARA PALESTRANTES</div>
+        <h1 class="copy-h1">Todo palestrante começa em um lugar diferente. A gente mostra qual caminho leva você ao palco.</h1>
+        <p class="copy-sub">Responda ao diagnóstico e converse com um especialista da PSA. Ele indica qual trilha faz sentido para a sua fase, com o preparo, o prazo e o investimento que ela pede.</p>
+        <div>
+          <button class="btn">Quero saber qual é o meu caminho</button>
+        </div>
+        <div class="note">Logo <b>PSA em destaque</b> no topo (pedido explícito da Aline: quem chega via campanha B2C precisa reconhecer a PSA de cara). "The Best School" aparece como selo secundário, não como marca principal.</div>
+      </div>
+
+      <div class="hero-visual block">
+        [ IMG/VÍDEO DE FUNDO, mesma linguagem do deck Escala: azul profundo, cinemático, cadeiras/palco ]
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><b>14 anos</b><span>de pioneirismo no mercado de palestras</span></div>
+      <div class="stat"><b>+R$5 bi</b><span>movimentados por ano no mercado</span></div>
+      <div class="stat"><b>+8.000</b><span>eventos com chancela PSA</span></div>
+      <div class="stat"><b>+100 mi</b><span>em palestras vendidas por ano</span></div>
+    </div>
+    <div class="authority-line">Uma curadoria liderada por Márcio Spagnolo, com mais de 20 anos dedicados ao mercado de palestras.</div>
+  </section>
+
+  <!-- form card overlapping, described separately for clarity -->
+  <section class="section" style="padding-top:32px;padding-bottom:32px;">
+    <div class="section-tag"><span class="n">01</span> FORMULÁRIO DE DIAGNÓSTICO, ancorado no topo, âncora #diagnostico</div>
+    <div class="form-card" style="max-width:480px;">
+      <h4>Em que ponto da sua carreira você está?</h4>
+      <p>Responda em menos de 1 minuto. Se houver encaixe com o que a PSA faz, um especialista entra em contato para a conversa de diagnóstico.</p>
+      <div class="fld">Nome</div>
+      <div class="fld">WhatsApp</div>
+      <div class="fld">E-mail</div>
+
+      <div class="q-block">
+        <span class="q-label">Você já atua como palestrante?</span>
+        <div class="q-select"><span>Selecione uma opção</span><span class="chevron">▾</span></div>
+        <div class="q-options">Sim, já realizo palestras remuneradas · Sim, mas apenas de forma gratuita · Não, ainda não atuo como palestrante</div>
+      </div>
+
+      <div class="q-block">
+        <span class="q-label">Qual a sua atuação hoje?</span>
+        <div class="q-select"><span>Selecione uma opção</span><span class="chevron">▾</span></div>
+        <div class="q-options">Palestrante profissional · Executivo (VP/Diretor/C-level) · Acadêmico (Mestre/Doutor) · Empreendedor (Founder/Cofounder) · Coach/Psicólogo/RH · Outra</div>
+      </div>
+
+      <div class="q-block">
+        <span class="q-label">Temos programas para diversos estágios da carreira de palestrante. O que você está buscando?</span>
+        <div class="q-select"><span>Selecione uma opção</span><span class="chevron">▾</span></div>
+        <div class="q-options">Apenas conhecer o mercado de palestras de forma gratuita · Ingressar profissionalmente no mercado (investimento de até 1k) · Consolidar minha carreira de palestrante (investimento de até 5k) · Gerar mais receita com as minhas palestras (investimento de até 15k) · Consolidar como palestrante de alto impacto (investimento de +20k)</div>
+      </div>
+
+      <div class="q-block">
+        <span class="q-label">Qual sua urgência em se desenvolver como palestrante?</span>
+        <div class="q-select"><span>Selecione uma opção</span><span class="chevron">▾</span></div>
+        <div class="q-options">Tenho urgência, quero começar o quanto antes · Quero me desenvolver ainda esse ano, mas sem pressa · Não é uma prioridade no momento</div>
+      </div>
+
+      <button class="btn small" style="width:100%;justify-content:center;margin-top:8px;">Quero minha recomendação</button>
+      <p style="font-family:var(--sans);font-size:11px;color:var(--ink-soft);margin:10px 0 0;line-height:1.5;">O diagnóstico e a conversa com o especialista são sem custo. As soluções da PSA, não, elas vão da formação online a programas desenhados sob medida. O diagnóstico existe justamente para dizer qual delas cabe no seu momento, sem empurrar nada.</p>
+    </div>
+    <div class="note">Este formulário é o <b>único destino de todos os CTAs da página</b>. As 4 perguntas (além de nome, WhatsApp e e-mail) já pré-qualificam o lead antes de chegar no time de curadoria.</div>
+    <div class="note suggestion">A primeira opção da Pergunta 3 ("Apenas conhecer o mercado de forma gratuita") é o filtro. Quem marcar ela vai para nutrição por conteúdo, não para a fila do SDR. As demais combinações de faixa de investimento e urgência (Pergunta 4) definem a prioridade de contato. Valores aparecem só aqui dentro, nunca no corpo da página.</div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA (novo) ============ -->
+  <section class="section" style="padding-top:36px;padding-bottom:36px;">
+    <div class="section-tag"><span class="n">02</span> COMO FUNCIONA</div>
+    <h2 class="copy-h2" style="font-size:24px;">O que acontece depois que você responde.</h2>
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="idx">1</div>
+        <h4>Diagnóstico</h4>
+        <p>Você responde quatro perguntas rápidas sobre onde está hoje, o que busca e com que urgência quer evoluir.</p>
+      </div>
+      <div class="step">
+        <div class="idx">2</div>
+        <h4>Reunião com o especialista PSA</h4>
+        <p>Um especialista entra em contato para entender sua história e seu objetivo. É uma conversa de orientação, não uma ligação de venda.</p>
+      </div>
+      <div class="step">
+        <div class="idx">3</div>
+        <h4>Recomendação da sua trilha</h4>
+        <p>Você recebe a indicação de qual caminho seguir para evoluir no mercado de palestras, com formato, duração e investimento apresentados com clareza.</p>
+      </div>
+    </div>
+    <div class="note suggestion">Bloco novo, não estava na pauta da reunião. Sugestão pra reduzir a ansiedade de quem hesita em deixar contato: mostrar o que acontece depois de preencher aumenta a taxa de conclusão do formulário. Fácil de remover se a Aline preferir ir direto pros pilares.</div>
+  </section>
+
+  <!-- ============ PILARES ============ -->
+  <section class="section">
+    <div class="section-tag"><span class="n">03</span> OS 3 PILARES DO PALESTRANTE PSA</div>
+    <h2 class="copy-h2">Um caminho, três frentes que sustentam a carreira.</h2>
+    <p class="copy-body">Em 14 anos curando o mercado de palestras, a PSA construiu uma estrutura que funciona nas três frentes ao mesmo tempo, nunca isoladas.</p>
+
+    <div class="pillars-wrap">
+      <div class="pillar">
+        <div class="idx">CONHECIMENTO</div>
+        <h3>Conhecimento</h3>
+        <p>Cursos online, mentorias com referências do mercado de palestras, imersões presenciais e feedback individual sobre a sua apresentação. São 14 anos de bagagem da PSA condensados em aprendizado prático, do primeiro palco à carreira madura.</p>
+        <div class="pillar-reveal">HOVER revela: imersão presencial de 3 dias · formação contínua · mentoria em grupo e feedback individual</div>
+      </div>
+      <div class="pillar">
+        <div class="idx">COMUNICAÇÃO</div>
+        <h3>Comunicação</h3>
+        <p>A extensão do seu palco físico. Conteúdo estratégico que dá escala à sua mensagem, expande sua autoridade e abre novos mercados.</p>
+        <div class="pillar-reveal">HOVER revela: vídeo de apresentação · material de autoridade · conteúdo para redes sociais</div>
+      </div>
+      <div class="pillar">
+        <div class="idx">TECNOLOGIA</div>
+        <h3>Tecnologia</h3>
+        <p>Um ecossistema inteiro em um único lugar, pra você gerir sua carreira de palestrante com método, sem improviso.</p>
+        <div class="pillar-reveal">HOVER revela: gestão de oportunidades · relacionamento com contratantes · ferramentas de posicionamento</div>
+      </div>
+    </div>
+    <div class="note">Na reunião, Aline pediu <b>"os três pilares do palestrante PSA"</b>, sem citar "The Best School" nesse bloco, pra não confundir a marca. Ideal animado (hover no desktop, tap no mobile), espelhando o triângulo do deck Escala.</div>
+  </section>
+
+  <!-- ============ BLOCO NOVO · TRANSPARÊNCIA SOBRE INVESTIMENTO ============ -->
+  <section class="section" style="padding-top:44px;padding-bottom:44px;">
+    <div class="section-tag"><span class="n">04</span> PARA SER DIRETO COM VOCÊ</div>
+    <h2 class="copy-h2" style="font-size:26px;">Para ser direto com você.</h2>
+    <p class="copy-body" style="max-width:640px;">A PSA não vende atalho. Nossas soluções vão da formação online a imersões presenciais e projetos desenhados caso a caso, e todas envolvem investimento, é isso que sustenta o nível de curadoria que a gente entrega há 14 anos.</p>
+    <p class="copy-body" style="max-width:640px;">O diagnóstico é o passo que define qual delas é a sua. Se você ainda não está em um momento de investir na carreira de palestrante, tudo bem: continue acompanhando nosso conteúdo e volte quando fizer sentido. Se está, a conversa começa aqui.</p>
+    <div class="note suggestion">Bloco novo pedido pelo feedback da diretoria. Texto corrido, sem cards, de propósito, funciona como uma pausa de honestidade antes dos perfis, preparando quem vai ler os cards de perfil logo abaixo, que agora também mencionam investimento.</div>
+  </section>
+
+  <!-- ============ PERFIS ============ -->
+  <section class="section">
+    <div class="section-tag"><span class="n">05</span> PARA QUEM É</div>
+    <h2 class="copy-h2">Cada palestrante começa de um jeito.</h2>
+    <p class="copy-body">Não existe um caminho único. Existe o caminho certo pra fase em que você está agora.</p>
+
+    <div class="profiles-wrap">
+      <div class="profile-card">
+        <div class="tag">INICIANTE</div>
+        <h3>Iniciante</h3>
+        <p>Você pensa em palestrar. Já tem uma história pra contar, já teve boas conversas sobre isso, mas ainda não subiu no palco. Aqui está o ponto de partida pra entender o mercado e dar o primeiro passo com segurança. É a porta de entrada do ecossistema PSA, no formato mais acessível que a gente oferece.</p>
+        <button class="btn ghost small">Isso é você? Quero minha recomendação</button>
+      </div>
+      <div class="profile-card">
+        <div class="tag">PROFISSIONALIZE-SE</div>
+        <h3>Profissionalize-se</h3>
+        <p>Você já palestra de graça e quer transformar isso em profissão. Falta entender o mercado, precificar seu valor e comunicar sua autoridade do jeito certo. É a fase que costuma pedir imersão presencial: o programa onde a virada acontece mais rápido e o principal investimento que a PSA recomenda nesse momento.</p>
+        <button class="btn ghost small">Isso é você? Quero minha recomendação</button>
+      </div>
+      <div class="profile-card">
+        <div class="tag">ESCALA</div>
+        <h3>Escala</h3>
+        <p>Você já vive disso, ou está perto disso. Quer mais resultado, mais palco, mais reconhecimento. E uma estrutura à altura da carreira que está construindo. Aqui as soluções são desenhadas caso a caso, com escopo, acompanhamento e investimento definidos junto com você.</p>
+        <button class="btn ghost small">Isso é você? Quero minha recomendação</button>
+      </div>
+    </div>
+    <div class="note">Copy segue a lógica que a Aline descreveu (Iniciante, Profissionalize-se, Escala), <b>sem citar nomes de produto</b> (nada de "TBW", "TBF"). Cada card devolve pro formulário do topo, nunca leva pra fora da página.</div>
+    <div class="note suggestion">Ponto pra validar com a Aline: hoje esse bloco vem depois dos pilares, como ela pediu na reunião. Do ponto de vista de conversão, um visitante costuma converter mais rápido quando se reconhece logo no início ("isso é você?") antes de entender a estrutura completa da PSA. Vale considerar testar os Perfis logo após o formulário, com os Pilares vindo em seguida como aprofundamento. Mantive a ordem original aqui, mas acho a inversão um teste válido.</div>
+  </section>
+
+  <!-- ============ CTA REPETIDO ============ -->
+  <section class="mid-cta">
+    <div class="eyebrow">PRÓXIMO PASSO</div>
+    <h2>Descubra qual solução da PSA é a certa para a sua fase.</h2>
+    <p>Preencha o formulário e converse com um especialista. Você sai da conversa sabendo o caminho, o formato e o investimento que o seu momento pede.</p>
+    <button class="btn">Quero minha recomendação</button>
+    <div class="note" style="background:#2a2c31;border-color:#3d3f45;color:#ffb27f;max-width:560px;margin:20px auto 0;text-align:left;">Aline foi explícita: esse botão <b>sempre volta pro formulário do topo</b>, nunca linka pra acesso direto, WhatsApp ou outra página. Objetivo aqui é capturar o lead, não vender o produto ainda.</div>
+  </section>
+
+  <!-- ============ PROVA SOCIAL ============ -->
+  <section class="section">
+    <div class="section-tag"><span class="n">06</span> PROVA SOCIAL</div>
+    <h2 class="copy-h2">Quem já passou por aqui, conta.</h2>
+    <p class="copy-body">Depoimentos reais de palestrantes que já foram atendidos pela curadoria PSA.</p>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-img block">[FOTO]</div>
+        <div class="proof-txt"><b>Depoimento existente #1</b>reaproveitar material já gravado</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-img block">[FOTO]</div>
+        <div class="proof-txt"><b>Depoimento existente #2</b>reaproveitar material já gravado</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-img block">[FOTO]</div>
+        <div class="proof-txt"><b>Depoimento existente #3</b>reaproveitar material já gravado</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-img block">[FOTO]</div>
+        <div class="proof-txt"><b>Depoimento existente #4</b>reaproveitar material já gravado</div>
+      </div>
+    </div>
+    <div class="note">Aline foi clara: <b>usar apenas depoimentos que já existem</b>, sem gravar aftermovie novo (evita acionar o jurídico de novo). Sem rótulo "Legacy" ou "Weekend" visível, só o resultado, tratado como prova social genérica da curadoria PSA.</div>
+  </section>
+
+  <!-- ============ FOOTER / CTA FINAL ============ -->
+  <section class="section" style="padding-bottom:60px;">
+    <div class="section-tag"><span class="n">07</span> CTA FINAL</div>
+    <h2 class="copy-h2">Seu próximo passo no palco começa com uma decisão.</h2>
+    <p class="copy-body" style="margin-top:-4px;">Se você está pronto para investir na sua carreira de palestrante, o diagnóstico é onde ela começa a ganhar método.</p>
+    <button class="btn" style="margin-top:8px;">Quero minha recomendação</button>
+  </section>
+
+  <div class="footer">
+    <div class="logos">
+      <div class="logo-mark">PSA.</div>
+      <span class="pill">The Best School</span>
+    </div>
+    <div class="fine">Uma experiência PSA. 14 anos curando o mercado de palestras no Brasil.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSA · Curadoria de carreira para palestrantes</title>
+<meta name="description" content="Descubra qual caminho leva você ao palco. Responda ao diagnóstico gratuito e converse com um especialista da PSA: 14 anos curando o mercado de palestras no Brasil.">
+<link rel="canonical" href="https://profissionaissa.com.br/thebestschool/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1A0800">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="PSA · The Best School">
+<meta property="og:title" content="Todo palestrante começa em um lugar diferente">
+<meta property="og:description" content="Responda ao diagnóstico gratuito e descubra a trilha que faz sentido para a sua fase, com preparo, prazo e investimento na mesa.">
+<meta property="og:url" content="https://profissionaissa.com.br/thebestschool/">
+<meta property="og:image" content="https://profissionaissa.com.br/thebestschool/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- Fontes -->
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-bg.webp" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/hero-bg-mobile.webp" media="(max-width:767px)" fetchpriority="high">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+:root{
+  /* Cores */
+  --ink:#1A0800;
+  --cream:#FEF8E8;
+  --white:#fff;
+  --orange:#FF640F;
+  --orange-deep:#AC2102;
+  --orange-dark:#E23401;
+  --orange-mid:#FD6501;
+  --orange-light:#FC8902;
+  --peach:#FFD4C1;
+  --peach-ink:#8a3d10;
+  --muted:#5b4c42;
+  --muted-2:#4a3a30;
+  --gray:#808080;
+
+  /* Superfícies sobre fundo escuro */
+  --on-dark-90:rgba(254,248,232,.9);
+  --on-dark-75:rgba(254,248,232,.75);
+  --on-dark-72:rgba(254,248,232,.72);
+  --on-dark-60:rgba(254,248,232,.6);
+  --line-dark:rgba(254,248,232,.28);
+  --line-light:rgba(26,8,0,.10);
+
+  /* Gradientes */
+  --grad:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);
+  --grad-150:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);
+  --grad-140:linear-gradient(140deg,#E23401 0%,#FD6501 60%,#FC8902 100%);
+  --hatch-light:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);
+  --hatch-dark:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);
+
+  /* Layout */
+  --maxw:1160px;
+  --maxw-wide:1240px;
+  --pad-x:clamp(16px,4vw,40px);
+  --section-y:clamp(48px,7vw,96px);
+
+  /* Tipografia */
+  --font:'Satoshi',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* Movimento */
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--font);-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%;}
+a{color:var(--orange);text-decoration:none;}
+a:hover{color:var(--orange-dark);}
+h1,h2,h3,p{margin:0;}
+input,select,button,textarea{font-family:inherit;}
+select{appearance:none;-webkit-appearance:none;}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px;}
+
+/* Utilitários */
+.wrap{max-width:var(--maxw);margin:0 auto;width:100%;padding-inline:var(--pad-x);}
+.wrap-wide{max-width:var(--maxw-wide);margin:0 auto;width:100%;padding-inline:var(--pad-x);}
+.stack{display:flex;flex-direction:column;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+.eyebrow{
+  font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--orange);display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.eyebrow--plain::before{display:none;}
+.mono{font-family:var(--mono);}
+
+.h2{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(24px,3.05vw,40px);line-height:1.04;text-wrap:balance;
+}
+.h2 em{font-style:normal;color:var(--orange);}
+.lead{font-size:15px;line-height:1.6;color:var(--muted);text-wrap:pretty;}
+
+/* Botões
+   -------------------------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  font-weight:700;font-size:13.5px;
+  padding:6px 6px 6px 20px;border-radius:40px;border:none;cursor:pointer;
+  width:fit-content;max-width:100%;
+  transition:background-color .25s var(--ease),transform .25s var(--ease);
+}
+.btn__icon{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.btn--cream{background:var(--cream);color:var(--ink);}
+.btn--cream:hover{background:var(--peach);color:var(--ink);}
+.btn--cream .btn__icon{background:var(--ink);color:var(--cream);}
+.btn--grad{background-image:var(--grad);color:var(--cream);}
+.btn--grad:hover{color:var(--cream);transform:translateY(-2px);}
+.btn--grad .btn__icon{background:var(--cream);color:var(--ink);}
+.btn--lg{font-size:15px;padding:7px 7px 7px 24px;}
+.btn--lg .btn__icon{width:34px;height:34px;}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.site-header{
+  position:absolute;top:0;left:0;right:0;z-index:60;padding-inline:var(--pad-x);
+  transition:transform .38s var(--ease),background-color .3s ease,box-shadow .3s ease;
+}
+/* Destacado: acompanha a rolagem com fundo próprio */
+.site-header.is-stuck{
+  position:fixed;
+  background:rgba(26,8,0,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(254,248,232,.10),0 18px 40px -30px rgba(0,0,0,.9);
+}
+/* Recolhido: sai de cena enquanto o visitante desce a página (só no mobile) */
+.site-header.is-hidden{transform:translateY(-100%);}
+
+/* Desktop: o header acompanha a rolagem o tempo todo e nunca se recolhe.
+   No topo fica transparente sobre o hero; ganha fundo ao descer. */
+@media (min-width:768px){
+  .site-header{position:fixed;}
+  .site-header.is-hidden{transform:none;}
+}
+/* Compacta um pouco quando destacado, para ocupar menos tela */
+.site-header.is-stuck .site-header__inner{padding-block:clamp(10px,1.4vw,16px);}
+
+/* Âncoras não podem parar atrás do header fixo */
+#diagnostico,#pilares,#perfis,#prova{scroll-margin-top:88px;}
+.site-header__inner{
+  max-width:var(--maxw);margin:0 auto;padding-block:clamp(14px,2vw,26px);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+.site-header__logo{display:flex;align-items:center;padding-block:12px;}
+.site-header__logo img{height:clamp(14px,1.4vw,18px);width:auto;}
+.nav{
+  position:relative;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(26,8,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line-dark);border-radius:40px;padding:5px;
+}
+/* Indicador que desliza entre os itens conforme a seção muda */
+.nav__pill{
+  position:absolute;top:5px;bottom:5px;left:0;width:0;
+  background:var(--cream);border-radius:30px;pointer-events:none;
+  opacity:0;
+  transition:transform .45s var(--ease),width .45s var(--ease),opacity .3s ease;
+}
+.nav__pill.is-ready{opacity:1;}
+.nav a{
+  position:relative;z-index:1;
+  color:var(--cream);font-weight:500;font-size:13px;
+  padding:9px 16px;border-radius:30px;white-space:nowrap;
+  transition:color .3s var(--ease),font-weight .3s var(--ease);
+}
+.nav a:hover{color:var(--peach);}
+.nav a.is-active{color:var(--ink);font-weight:700;}
+.nav a.is-active:hover{color:var(--ink);}
+
+/* Botão hambúrguer (só no mobile) ------------------------------------- */
+.nav-toggle{
+  display:none;
+  width:44px;height:44px;flex-shrink:0;
+  align-items:center;justify-content:center;
+  background:rgba(26,8,0,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line-dark);border-radius:50%;
+  cursor:pointer;padding:0;
+}
+.nav-toggle__bars{position:relative;width:17px;height:11px;display:block;}
+.nav-toggle__bars span{
+  position:absolute;left:0;width:100%;height:1.6px;border-radius:2px;
+  background:var(--cream);
+  transition:transform .3s var(--ease),opacity .2s ease;
+}
+.nav-toggle__bars span:nth-child(1){top:0;}
+.nav-toggle__bars span:nth-child(2){bottom:0;}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1){transform:translateY(4.7px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2){transform:translateY(-4.7px) rotate(-45deg);}
+
+/* Painel do menu mobile ------------------------------------------------ */
+.menu-mobile{
+  position:fixed;inset:0;z-index:55;
+  background:rgba(26,8,0,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  display:flex;flex-direction:column;justify-content:center;gap:28px;
+  padding:96px var(--pad-x);
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .3s ease,transform .35s var(--ease),visibility .3s;
+}
+.menu-mobile.is-open{opacity:1;visibility:visible;transform:none;}
+.menu-mobile nav{display:flex;flex-direction:column;gap:2px;}
+.menu-mobile nav a{
+  color:var(--cream);font-size:26px;font-weight:500;text-transform:uppercase;
+  line-height:1.1;padding:14px 0;
+  border-bottom:1px solid rgba(254,248,232,.12);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.menu-mobile nav a::after{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--orange);opacity:0;transition:opacity .25s ease;
+}
+.menu-mobile nav a.is-active{color:var(--orange-mid);}
+.menu-mobile nav a.is-active::after{opacity:1;}
+.menu-mobile__cta{align-self:flex-start;}
+.menu-mobile__legal{
+  font-family:var(--mono);font-size:11px;line-height:1.6;color:rgba(254,248,232,.5);
+}
+body.menu-aberto{overflow:hidden;}
+/* O chat do HubSpot flutua acima de tudo — sai de cena com o menu aberto. */
+body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero{
+  position:relative;overflow:hidden;background-color:var(--ink);
+  padding:clamp(96px,8.5vw,112px) var(--pad-x) clamp(20px,2.4vw,30px);
+  min-height:min(72vh,660px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:clamp(28px,5vw,64px);
+}
+.hero__bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:25% center;z-index:0;pointer-events:none;
+}
+.hero__grid{
+  position:relative;max-width:var(--maxw);margin:0 auto;width:100%;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(20px,3vw,40px);align-items:start;
+}
+.hero__copy{display:flex;flex-direction:column;gap:14px;color:var(--cream);min-width:0;max-width:46ch;}
+.hero__tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid rgba(254,248,232,.5);border-radius:20px;padding:5px 12px;width:fit-content;
+}
+.hero h1{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(27px,3.05vw,41px);line-height:1.05;letter-spacing:-.01em;
+  text-wrap:balance;
+}
+.hero h1 em{font-style:normal;color:var(--orange-mid);}
+.hero__sub{font-size:clamp(14px,1.05vw,15px);line-height:1.55;color:var(--on-dark-90);max-width:38ch;text-wrap:pretty;}
+
+.hero__aside{display:flex;flex-direction:column;gap:14px;min-width:0;align-items:flex-end;}
+.card-expert{
+  background:var(--cream);border-radius:18px;padding:16px;
+  display:flex;flex-direction:column;gap:12px;width:min(272px,100%);
+}
+.card-expert__label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--orange);display:flex;align-items:center;gap:7px;
+}
+.card-expert__label::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+.card-expert__photo{border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--ink);}
+.card-expert__photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.card-expert__name{font-weight:700;font-size:14px;}
+.card-expert__role{font-size:12px;line-height:1.45;color:var(--muted);}
+
+/* Faixa de métricas */
+.metrics{
+  position:relative;max-width:var(--maxw);margin:0 auto;width:100%;
+  display:flex;flex-wrap:wrap;gap:12px;
+}
+.metrics__pair{flex:1 1 460px;min-width:0;display:flex;gap:12px;}
+.metric{
+  flex:1 1 0;min-width:0;border-radius:14px;padding:18px;min-height:150px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+}
+.metric--light{background:var(--cream);color:var(--ink);}
+.metric--grad{background-image:var(--grad-150);color:var(--cream);}
+.metric__icon{
+  width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto;
+}
+.metric__value{font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;}
+.metric__label{font-size:14px;line-height:1.45;color:var(--muted);min-height:2.9em;}
+.metric--grad .metric__label{color:rgba(254,248,232,.92);}
+
+/* ==========================================================================
+   DIAGNÓSTICO
+   ========================================================================== */
+.diagnostico{padding-block:var(--section-y);}
+.diagnostico__grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:clamp(24px,4vw,56px);align-items:start;
+}
+.diagnostico__copy{display:flex;flex-direction:column;gap:16px;min-width:0;}
+.diagnostico h2{max-width:18ch;}
+.diagnostico__intro{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:46ch;text-wrap:pretty;}
+.note{
+  border-left:3px solid var(--orange);background:rgba(255,100,15,.07);
+  border-radius:0 12px 12px 0;padding:16px 20px;max-width:46ch;
+  font-size:13.5px;line-height:1.6;color:var(--muted-2);
+}
+.note b{color:var(--ink);}
+
+/* Colagem de fases */
+.phases{display:flex;align-items:flex-start;margin-top:clamp(12px,2vw,24px);width:100%;}
+.phase{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0;}
+.phase__box{
+  border-radius:14px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9.5px;text-align:center;line-height:1.6;padding:8px;
+}
+.phase__meta{display:flex;flex-direction:column;gap:2px;}
+.phase__num{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);}
+.phase__name{font-weight:700;font-size:13px;}
+.phase--1{width:32%;z-index:1;margin-top:clamp(56px,7vw,96px);}
+.phase--1 .phase__box{
+  height:clamp(120px,15vw,200px);background-color:var(--peach);
+  background-image:var(--hatch-light);color:var(--peach-ink);
+}
+.phase--2{width:36%;z-index:2;margin-left:-6%;margin-top:clamp(28px,3.5vw,48px);}
+.phase--2 .phase__box{
+  height:clamp(160px,20vw,265px);box-shadow:-14px 0 30px -18px rgba(26,8,0,.45);
+  background-color:var(--orange-dark);
+  background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.14) 0 10px,rgba(26,8,0,.03) 10px 20px),var(--grad-150);
+  color:rgba(254,248,232,.95);
+}
+.phase--2 .phase__meta{padding-left:17%;}
+.phase--3{width:44%;z-index:3;margin-left:-6%;}
+.phase--3 .phase__box{
+  height:clamp(200px,26vw,340px);box-shadow:-16px 0 34px -18px rgba(26,8,0,.5);
+  background-color:var(--ink);background-image:var(--hatch-dark);color:var(--on-dark-75);
+}
+.phase--3 .phase__meta{padding-left:14%;}
+.phase{position:relative;}
+
+/* Formulário */
+.form-card{
+  background:var(--white);border:1px solid var(--line-light);border-radius:24px;
+  padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:14px;
+  box-shadow:0 24px 60px -30px rgba(26,8,0,.35);min-width:0;
+}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field > label{font-weight:700;font-size:13px;}
+.form-card input,.form-card select{
+  border:1px solid rgba(26,8,0,.16);border-radius:12px;
+  padding:14px 16px;font-size:16px;color:var(--ink);background:var(--cream);
+  outline:none;width:100%;
+  transition:border-color .2s var(--ease),background-color .2s var(--ease);
+}
+.form-card select{padding-right:42px;}
+.form-card input:focus,.form-card select:focus{border-color:var(--orange);background:var(--white);}
+.select{position:relative;display:flex;align-items:center;}
+.select__chevron{position:absolute;right:16px;pointer-events:none;color:var(--gray);display:flex;}
+.form-card__legal{font-size:11.5px;line-height:1.55;color:var(--gray);}
+.form-success{display:none;flex-direction:column;gap:10px;padding:20px 0;}
+.form-success h3{font-weight:500;text-transform:uppercase;font-size:22px;line-height:1.12;}
+.form-success p{font-size:14px;line-height:1.6;color:var(--muted-2);}
+.is-sent .form-success{display:flex;}
+.is-sent .form-fields{display:none;}
+
+/* ==========================================================================
+   COMO FUNCIONA
+   ========================================================================== */
+.steps-panel{background:var(--ink);color:var(--cream);border-radius:28px;padding:clamp(24px,4vw,52px);}
+.steps-panel__head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(24px,3vw,40px);}
+.steps-panel h2{max-width:22ch;}
+.steps-panel__sub{font-size:14.5px;line-height:1.6;color:var(--on-dark-72);text-wrap:pretty;}
+.steps{display:flex;align-items:stretch;gap:clamp(10px,1.2vw,16px);flex-wrap:wrap;}
+.step{
+  flex:1 1 190px;min-width:0;border-radius:22px;padding:24px;
+  min-height:clamp(280px,26vw,340px);
+  display:flex;flex-direction:column;justify-content:space-between;gap:24px;
+}
+.step--light{background:var(--cream);color:var(--ink);}
+.step--grad{background-color:var(--orange);background-image:var(--grad-150);color:var(--cream);}
+.step--photo{
+  position:relative;overflow:hidden;color:var(--cream);
+  background-color:var(--orange-deep);
+  background-image:linear-gradient(0deg,rgba(26,8,0,.82) 0%,rgba(26,8,0,.28) 45%,rgba(26,8,0,.1) 100%),var(--hatch-dark),linear-gradient(150deg,#AC2102 0%,#E23401 55%,#FD6501 100%);
+  background-size:cover;background-position:center;
+}
+.step__top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.step__icon{
+  width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto;
+}
+.step--photo .step__icon{background:var(--cream);color:var(--ink);}
+.step__num{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--orange);}
+.step--grad .step__num{color:rgba(26,8,0,.7);}
+.step--photo .step__num{color:var(--orange-light);}
+.step h3{font-weight:500;font-size:clamp(20px,2vw,25px);line-height:1.06;min-height:2.1em;}
+.step p{font-size:13.5px;line-height:1.55;color:var(--muted-2);min-height:4.65em;}
+.step--grad p{color:rgba(254,248,232,.94);}
+.step--photo p{color:rgba(254,248,232,.85);}
+.step__body{display:flex;flex-direction:column;gap:8px;}
+.step__placeholder{font-family:var(--mono);font-size:10px;color:var(--on-dark-60);line-height:1.6;}
+.steps__arrow{
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(254,248,232,.45);flex:0 0 auto;padding:4px;
+}
+
+/* ==========================================================================
+   PILARES
+   ========================================================================== */
+.section-head{
+  display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;
+  gap:20px;margin-bottom:clamp(22px,3vw,36px);
+}
+.section-head__main{display:flex;flex-direction:column;gap:14px;min-width:0;}
+.section-head__aside{font-size:14.5px;line-height:1.6;color:var(--muted);max-width:40ch;}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.pillar{
+  position:relative;overflow:hidden;border-radius:24px;padding:26px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:22px;
+  min-height:clamp(340px,30vw,420px);
+  transition:transform .35s var(--ease),box-shadow .35s ease;
+}
+.pillar--light{background:var(--white);border:1px solid var(--line-light);}
+.pillar--light:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(26,8,0,.45);}
+.pillar--grad{background-color:var(--orange);background-image:var(--grad-140);color:var(--cream);}
+.pillar--grad:hover{transform:translateY(-8px);box-shadow:0 30px 60px -28px rgba(226,52,1,.7);}
+.pillar--dark{background:var(--ink);color:var(--cream);}
+.pillar--dark:hover{transform:translateY(-8px);box-shadow:0 30px 60px -28px rgba(26,8,0,.75);}
+.pillar__top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;}
+.pillar h3{font-weight:500;text-transform:uppercase;font-size:clamp(21px,2.15vw,28px);line-height:1.04;max-width:9ch;min-width:0;}
+.pillar__icon{
+  width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .35s var(--ease);
+}
+.pillar--dark .pillar__icon{background:var(--cream);color:var(--ink);}
+.pillar:hover .pillar__icon{transform:rotate(-8deg) scale(1.06);}
+.pillar__body{display:flex;flex-direction:column;gap:16px;}
+.pillar p{font-size:14px;line-height:1.6;color:var(--muted-2);min-height:6.4em;}
+.pillar--grad p{color:rgba(254,248,232,.94);}
+.pillar--dark p{color:var(--on-dark-72);}
+.tags{display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid var(--line-light);padding-top:14px;}
+.pillar--grad .tags{border-top-color:rgba(254,248,232,.32);}
+.pillar--dark .tags{border-top-color:rgba(254,248,232,.20);}
+.tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.03em;text-transform:uppercase;
+  border-radius:20px;padding:6px 11px;
+  background:var(--peach);color:var(--peach-ink);
+}
+.pillar--grad .tag{background:rgba(26,8,0,.32);color:var(--cream);}
+.pillar--dark .tag{background:rgba(254,248,232,.10);color:var(--peach);border:1px solid rgba(254,248,232,.18);}
+
+/* ==========================================================================
+   PERFIS
+   ========================================================================== */
+.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.profile{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;}
+.profile--dark{background:var(--ink);color:var(--cream);}
+.profile--grad{background:linear-gradient(160deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:var(--cream);}
+.profile--light{background:var(--white);border:1px solid var(--line-light);}
+.profile__media{
+  aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10.5px;text-align:center;padding:12px;
+}
+.profile--dark .profile__media{background-image:var(--hatch-dark);color:var(--on-dark-72);}
+.profile--grad .profile__media{background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.16) 0 10px,rgba(26,8,0,.04) 10px 20px);color:rgba(254,248,232,.9);}
+.profile--light .profile__media{background-image:var(--hatch-light);color:var(--gray);}
+.profile__body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.profile__kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;}
+.profile--dark .profile__kicker{color:var(--orange-light);}
+.profile--grad .profile__kicker{color:rgba(26,8,0,.72);}
+.profile--light .profile__kicker{color:var(--orange);}
+.profile h3{font-weight:500;text-transform:uppercase;font-size:22px;line-height:1.06;text-wrap:balance;}
+.profile p{font-size:13.5px;line-height:1.6;flex:1;}
+.profile--dark p{color:var(--on-dark-72);}
+.profile--grad p{color:rgba(254,248,232,.94);}
+.profile--light p{color:var(--muted-2);}
+.profile__cta{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-weight:400;font-size:11.5px;padding:6px 6px 6px 16px;border-radius:40px;
+  min-height:44px;margin-top:10px;transition:background-color .25s var(--ease);
+}
+.profile__cta span:first-child{min-width:0;line-height:1.35;}
+.profile__cta b{font-weight:700;}
+.profile__cta .btn__icon{width:32px;height:32px;}
+.profile--dark .profile__cta{border:1px solid rgba(254,248,232,.35);color:var(--cream);}
+.profile--dark .profile__cta:hover{background:rgba(254,248,232,.1);color:var(--cream);}
+.profile--dark .profile__cta .btn__icon{background:var(--cream);color:var(--ink);}
+.profile--grad .profile__cta{background:var(--ink);color:var(--cream);}
+.profile--grad .profile__cta:hover{background:#000;color:var(--cream);}
+.profile--grad .profile__cta .btn__icon{background:var(--cream);color:var(--ink);}
+.profile--light .profile__cta{border:1px solid rgba(26,8,0,.2);color:var(--ink);}
+.profile--light .profile__cta:hover{background:var(--cream);color:var(--ink);}
+.profile--light .profile__cta .btn__icon{background:var(--ink);color:var(--cream);}
+
+/* ==========================================================================
+   TRANSPARÊNCIA
+   ========================================================================== */
+.transparency{width:100%;background:var(--ink);color:var(--cream);}
+.transparency__grid{
+  padding-block:clamp(56px,8vw,110px);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(20px,3vw,48px);align-items:start;
+}
+.transparency h2{max-width:16ch;}
+.transparency p{font-size:clamp(15px,1.3vw,17px);line-height:1.65;color:rgba(254,248,232,.78);text-wrap:pretty;}
+
+/* ==========================================================================
+   CTA INTERMEDIÁRIO
+   ========================================================================== */
+.cta-mid{
+  width:100%;margin-bottom:var(--section-y);
+  background-color:var(--orange-mid);
+  background-image:linear-gradient(rgba(26,8,0,.35),rgba(26,8,0,.35)),url('assets/img/cta-bg.webp');
+  background-size:cover;background-position:center;
+}
+.cta-mid__inner{
+  padding-block:clamp(48px,6vw,84px);
+  display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;color:var(--cream);
+}
+.cta-mid h2{font-size:clamp(25px,3.6vw,47px);line-height:1.04;max-width:22ch;}
+.cta-mid p{font-size:clamp(15px,1.3vw,17px);line-height:1.6;max-width:50ch;}
+.cta-mid .eyebrow{color:var(--cream);}
+.cta-mid .btn{margin-top:6px;}
+.cta-mid .btn--cream .btn__icon{background-color:var(--orange-mid);background-image:linear-gradient(140deg,#AC2102 0%,#E23401 45%,#FD6501 100%);color:var(--cream);}
+
+.fan{
+  display:flex;align-items:flex-end;gap:clamp(8px,1.1vw,16px);
+  width:100%;max-width:var(--maxw-wide);margin:clamp(22px,3vw,38px) auto 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,rgba(0,0,0,.7) 20%,#000 42%,#000 58%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.35) 92%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,rgba(0,0,0,.7) 20%,#000 42%,#000 58%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.35) 92%,transparent 100%);
+}
+.fan__item{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;}
+.fan__label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;
+}
+.fan__label::before{content:"";width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);flex-shrink:0;}
+.fan__box{
+  border-radius:10px;overflow:hidden;background-image:var(--hatch-dark);
+  display:flex;align-items:flex-end;justify-content:center;padding:8px;
+  font-family:var(--mono);font-size:9px;color:var(--on-dark-60);text-align:center;line-height:1.5;
+}
+.fan__item:nth-child(1) .fan__box,.fan__item:nth-child(7) .fan__box{height:clamp(64px,7vw,96px);background-color:var(--ink);}
+.fan__item:nth-child(2) .fan__box,.fan__item:nth-child(6) .fan__box{height:clamp(84px,9.5vw,132px);background-color:var(--orange-deep);}
+.fan__item:nth-child(3) .fan__box,.fan__item:nth-child(5) .fan__box{height:clamp(104px,12vw,166px);background-color:var(--ink);}
+.fan__item:nth-child(4) .fan__box{height:clamp(122px,14.5vw,200px);background-color:var(--orange-dark);}
+
+/* ==========================================================================
+   PROVA SOCIAL
+   ========================================================================== */
+.avatars{display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap;}
+.avatars__stack{display:flex;align-items:center;padding-left:12px;}
+.avatars__stack span{
+  width:38px;height:38px;border-radius:50%;border:2px solid var(--cream);
+  margin-left:-12px;flex-shrink:0;
+  background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);
+}
+.avatars__stack span:nth-child(1){background-color:var(--ink);}
+.avatars__stack span:nth-child(2){background-color:var(--orange-deep);}
+.avatars__stack span:nth-child(3){background-color:var(--orange-dark);}
+.avatars__stack span:nth-child(4){background-color:var(--orange-mid);}
+.avatars__stack span:nth-child(5){
+  background-color:var(--orange);background-image:none;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10.5px;color:var(--cream);
+}
+.avatars__text{font-size:12.5px;line-height:1.4;color:var(--muted);max-width:22ch;}
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.proof__card{background:var(--white);border:1px solid var(--line-light);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;}
+.proof__media{
+  aspect-ratio:4/3;background-image:var(--hatch-light);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10.5px;color:var(--gray);text-align:center;
+}
+.proof__body{padding:18px;display:flex;flex-direction:column;gap:8px;}
+.proof__body p{font-size:13.5px;line-height:1.55;color:var(--muted-2);}
+.proof__author{font-family:var(--mono);font-size:10.5px;color:var(--gray);}
+.proof__stat{
+  background:var(--ink);color:var(--cream);border-radius:20px;padding:22px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:200px;
+}
+.proof__stat-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-light);}
+.proof__stat-value{font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1;}
+.proof__stat-label{font-size:13px;line-height:1.5;color:var(--on-dark-72);}
+
+/* ==========================================================================
+   CTA FINAL / RODAPÉ
+   ========================================================================== */
+.cta-final{background:var(--ink);color:var(--cream);}
+.cta-final__grid{
+  padding-block:var(--section-y);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(24px,4vw,56px);align-items:end;
+}
+.cta-final h2{font-size:clamp(25px,3.4vw,45px);line-height:1.04;max-width:20ch;}
+.cta-final p{font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:var(--on-dark-75);max-width:48ch;}
+.cta-final__brand{display:flex;flex-direction:column;gap:18px;min-width:0;align-items:flex-end;text-align:right;}
+.cta-final__brand img{width:min(280px,100%);height:auto;}
+.cta-final__legal{font-family:var(--mono);font-size:11px;line-height:1.7;color:rgba(254,248,232,.55);max-width:44ch;}
+.social{display:flex;align-items:center;gap:10px;}
+.social a{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line-dark);
+  color:var(--cream);display:flex;align-items:center;justify-content:center;
+  transition:background-color .2s var(--ease);
+}
+.social a:hover{background:rgba(254,248,232,.12);color:var(--cream);}
+.cta-final__policy{
+  font-family:var(--mono);font-size:11px;color:rgba(254,248,232,.55);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.cta-final__policy:hover{color:var(--cream);}
+
+/* ==========================================================================
+   RESPONSIVO — correções sobre o design de canvas
+   ========================================================================== */
+
+/* Tablet ------------------------------------------------------------------ */
+@media (max-width:900px){
+  /* Nav vira scroll horizontal em vez de quebrar linha */
+  .site-header__inner{gap:10px;}
+  .nav{overflow-x:auto;scrollbar-width:none;max-width:100%;}
+  .nav::-webkit-scrollbar{display:none;}
+
+  /* Setas entre etapas apontam para baixo quando os cards empilham.
+     Gira o SVG, não o container: o JS de reveal escreve transform inline nele. */
+  .steps__arrow{width:100%;padding-block:8px;}
+  .steps__arrow svg{transform:rotate(90deg);}
+}
+
+/* Mobile ------------------------------------------------------------------ */
+@media (max-width:767px){
+  :root{--section-y:clamp(40px,10vw,64px);}
+
+  /* Header: a navegação vira hambúrguer */
+  .nav{display:none;}
+  .site-header__inner{justify-content:space-between;}
+  .nav-toggle{display:inline-flex;}
+
+  /* Hero: copy ocupa a largura toda, título respira */
+  .hero{min-height:auto;padding-top:88px;}
+  .hero__copy{max-width:100%;}
+  .hero__sub{max-width:100%;}
+  .hero__aside{align-items:stretch;}
+  .card-expert{width:100%;}
+  .card-expert__photo{aspect-ratio:16/9;}
+
+  /* Métricas: 2 colunas em vez de 4 */
+  .metrics__pair{flex:1 1 100%;}
+
+  /* Colagem de fases: proporção maior para não virar tarja.
+     Sem recuo nos rótulos — em 375px o texto invadia o card seguinte. */
+  .phases{margin-top:8px;}
+  .phase--2 .phase__meta,
+  .phase--3 .phase__meta{padding-left:0;}
+  .phase__meta{padding-right:6px;}
+  .phase__num{font-size:9px;}
+  .phase__name{font-size:11px;line-height:1.25;}
+  .phase--1 .phase__box{height:clamp(96px,26vw,140px);}
+  .phase--2 .phase__box{height:clamp(120px,32vw,180px);}
+  .phase--3 .phase__box{height:clamp(146px,40vw,220px);}
+
+  /* Etapas: uma embaixo da outra, altura livre */
+  .step{min-height:0;flex:1 1 100%;}
+  .step h3{min-height:0;}
+  .step p{min-height:0;}
+
+  /* Pilares e perfis: altura livre, sem buracos */
+  .pillar{min-height:0;}
+  .pillar p{min-height:0;}
+  .pillar h3{max-width:none;}
+  .profile__body{padding:20px;}
+
+  /* CTA final: alinha tudo à esquerda no mobile */
+  .cta-final__brand{align-items:flex-start;text-align:left;}
+
+  /* Fundo do CTA em versão leve (6 KB em vez de 44 KB) */
+  .cta-mid{background-image:linear-gradient(rgba(26,8,0,.35),rgba(26,8,0,.35)),url('assets/img/cta-bg-mobile.webp');}
+
+  /* Leque de 7 fotos vira 3 — 7 colunas em 360px é ilegível */
+  .fan{gap:8px;-webkit-mask-image:none;mask-image:none;}
+  .fan__item:nth-child(1),
+  .fan__item:nth-child(2),
+  .fan__item:nth-child(6),
+  .fan__item:nth-child(7){display:none;}
+  .fan__item:nth-child(3) .fan__box,
+  .fan__item:nth-child(5) .fan__box{height:96px;}
+  .fan__item:nth-child(4) .fan__box{height:124px;}
+
+  /* Métricas de card com altura mínima folgada */
+  .metric{min-height:0;}
+  .metric__label{min-height:0;}
+}
+
+/* Telas muito estreitas ---------------------------------------------------- */
+@media (max-width:380px){
+  .hero h1{font-size:24px;}
+  .profile__cta{font-size:11px;padding-left:14px;}
+}
+
+/* Acessibilidade ----------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;
+  }
+}
+
+/* Impressão ---------------------------------------------------------------- */
+@media print{
+  .site-header,.fan,.cta-mid{display:none;}
+  body{background:#fff;}
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     HEADER
+     ========================================================================== -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="#diagnostico" class="site-header__logo" aria-label="PSA · The Best School — ir para o diagnóstico">
+      <img src="assets/logo-school-white.svg" alt="The Best School" width="198" height="16">
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <span class="nav__pill" aria-hidden="true"></span>
+      <a href="#diagnostico" class="is-active">Diagnóstico</a>
+      <a href="#pilares">Pilares</a>
+      <a href="#perfis">Para quem é</a>
+      <a href="#prova">Depoimentos</a>
+    </nav>
+    <button type="button" class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Menu mobile -->
+<div class="menu-mobile" id="menu-mobile">
+  <nav aria-label="Navegação mobile">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#pilares">Pilares</a>
+    <a href="#perfis">Para quem é</a>
+    <a href="#prova">Depoimentos</a>
+  </nav>
+  <a href="#diagnostico" class="btn btn--grad btn--lg menu-mobile__cta" data-cta="menu-mobile">
+    <span>Quero minha recomendação</span>
+    <span class="btn__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+    </span>
+  </a>
+  <p class="menu-mobile__legal">Uma experiência PSA · 14 anos curando o mercado de palestras no Brasil.</p>
+</div>
+
+<main>
+
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="hero" aria-labelledby="hero-title">
+  <picture>
+    <source srcset="assets/img/hero-bg-mobile.webp" media="(max-width:767px)">
+    <img src="assets/img/hero-bg.webp" alt="" class="hero__bg" width="1920" height="1280" fetchpriority="high" decoding="async">
+  </picture>
+
+  <div class="hero__grid">
+    <div class="hero__copy">
+      <span class="hero__tag">Curadoria de carreira para palestrantes</span>
+      <h1 id="hero-title">Todo palestrante começa em um lugar <em>diferente</em></h1>
+      <p class="hero__sub">A gente mostra qual caminho leva você ao palco. Responda ao diagnóstico e converse com um especialista da PSA: ele indica a trilha que faz sentido para a sua fase, com preparo, prazo e investimento na mesa.</p>
+      <a href="#diagnostico" class="btn btn--cream" data-cta="hero">
+        <span>Quero saber qual é o meu caminho</span>
+        <span class="btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="hero__aside">
+      <div class="card-expert">
+        <span class="card-expert__label">Diagnóstico gratuito · 1 min</span>
+        <div class="card-expert__photo">
+          <img src="assets/img/marcio-spagnolo.webp" alt="Márcio Spagnolo" width="640" height="637" loading="eager" decoding="async">
+        </div>
+        <div class="stack" style="gap:4px">
+          <span class="card-expert__name">Márcio Spagnolo</span>
+          <span class="card-expert__role">Curadoria liderada por quem construiu 14 anos do mercado de palestras no Brasil.</span>
+        </div>
+        <a href="#diagnostico" class="btn btn--grad" data-cta="hero-card">
+          <span>Começar agora</span>
+          <span class="btn__icon" aria-hidden="true" style="width:26px;height:26px">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="metrics__pair">
+      <div class="metric metric--light">
+        <span class="metric__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><circle cx="12" cy="14" r="8"></circle><path d="M12 11v3l2 1"></path></svg>
+        </span>
+        <div class="stack" style="gap:6px">
+          <div class="metric__value">14 anos</div>
+          <div class="metric__label">de pioneirismo no mercado de palestras</div>
+        </div>
+      </div>
+      <div class="metric metric--grad">
+        <span class="metric__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H7"></path><path d="M12 3v18"></path></svg>
+        </span>
+        <div class="stack" style="gap:6px">
+          <div class="metric__value">+R$5 bi</div>
+          <div class="metric__label">movimentados por ano no mercado de palestras</div>
+        </div>
+      </div>
+    </div>
+    <div class="metrics__pair">
+      <div class="metric metric--light">
+        <span class="metric__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"></path><rect x="9" y="12" width="6" height="9" rx="3"></rect><path d="M4 10a8 8 0 0 1 16 0"></path></svg>
+        </span>
+        <div class="stack" style="gap:6px">
+          <div class="metric__value">+8.000</div>
+          <div class="metric__label">eventos realizados com chancela PSA</div>
+        </div>
+      </div>
+      <div class="metric metric--grad">
+        <span class="metric__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"></path><path d="M14 8h6v6"></path></svg>
+        </span>
+        <div class="stack" style="gap:6px">
+          <div class="metric__value">+100 mi</div>
+          <div class="metric__label">em palestras vendidas por ano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     DIAGNÓSTICO + FORMULÁRIO
+     ========================================================================== -->
+<section id="diagnostico" class="wrap diagnostico">
+  <div class="diagnostico__grid">
+    <div class="diagnostico__copy">
+      <span class="eyebrow">Diagnóstico</span>
+      <h2 class="h2">Em que ponto da sua <em>carreira</em> você está?</h2>
+      <p class="diagnostico__intro">Responda em menos de 1 minuto. Vamos entrar em contato para entender melhor o seu momento e indicar as soluções que mais fazem sentido para você.</p>
+      <p class="note">O diagnóstico e a conversa com o especialista são <b>sem custo</b>. As soluções da PSA, não: elas vão de formação online a programas sob medida. O diagnóstico existe para dizer qual é a solução mais adequada para o seu momento.</p>
+
+      <div class="phases" aria-hidden="true">
+        <div class="phase phase--1">
+          <div class="phase__box">[ FOTO ]<br>1º palco</div>
+          <div class="phase__meta">
+            <span class="phase__num">Fase 01</span>
+            <span class="phase__name">Iniciante</span>
+          </div>
+        </div>
+        <div class="phase phase--2">
+          <div class="phase__box">[ FOTO ]<br>imersão</div>
+          <div class="phase__meta">
+            <span class="phase__num">Fase 02</span>
+            <span class="phase__name">Profissionalize-se</span>
+          </div>
+        </div>
+        <div class="phase phase--3">
+          <div class="phase__box">[ FOTO ]<br>palco grande</div>
+          <div class="phase__meta">
+            <span class="phase__num">Fase 03</span>
+            <span class="phase__name">Escala</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="form-diagnostico" class="form-card" novalidate>
+      <!-- Mensagem de sucesso (exibida via classe .is-sent no form) -->
+      <div class="form-success" role="status" aria-live="polite">
+        <span class="eyebrow eyebrow--plain">Recebido</span>
+        <h3>Obrigado! Seu diagnóstico chegou à curadoria.</h3>
+        <p>Um especialista da PSA entra em contato pelo WhatsApp informado para a conversa de orientação.</p>
+      </div>
+
+      <div class="form-fields stack" style="gap:14px">
+        <div class="stack" style="gap:10px">
+          <label class="sr-only" for="f-nome">Nome completo</label>
+          <input id="f-nome" name="fullname" type="text" placeholder="Nome completo" autocomplete="name" required>
+
+          <label class="sr-only" for="f-fone">WhatsApp</label>
+          <input id="f-fone" name="phone" type="tel" placeholder="WhatsApp" autocomplete="tel" inputmode="tel" required>
+
+          <label class="sr-only" for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" placeholder="E-mail" autocomplete="email" inputmode="email" required>
+        </div>
+
+        <div class="field">
+          <label for="f-atua">Você já atua como palestrante?</label>
+          <div class="select">
+            <select id="f-atua" name="ja_atua_como_palestrante" required>
+              <option value="">Selecione uma opção</option>
+              <option>Sim, já realizo palestras remuneradas</option>
+              <option>Sim, mas apenas de forma gratuita</option>
+              <option>Não, ainda não atuo como palestrante</option>
+            </select>
+            <span class="select__chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-atuacao">Qual a sua atuação hoje?</label>
+          <div class="select">
+            <select id="f-atuacao" name="atuacao_atual" required>
+              <option value="">Selecione uma opção</option>
+              <option>Palestrante profissional</option>
+              <option>Executivo (VP / Diretor / C-level)</option>
+              <option>Acadêmico (Mestre / Doutor)</option>
+              <option>Empreendedor (Founder / Cofounder)</option>
+              <option>Coach / Psicólogo / RH</option>
+              <option>Outra</option>
+            </select>
+            <span class="select__chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-busca">Temos programas para diversos estágios da carreira. O que você está buscando?</label>
+          <div class="select">
+            <select id="f-busca" name="objetivo_de_carreira" required>
+              <option value="">Selecione uma opção</option>
+              <option>Apenas conhecer o mercado de palestras de forma gratuita</option>
+              <option>Ingressar profissionalmente no mercado (até 1k)</option>
+              <option>Consolidar minha carreira de palestrante (até 5k)</option>
+              <option>Gerar mais receita com as minhas palestras (até 15k)</option>
+              <option>Consolidar como palestrante de alto impacto (+20k)</option>
+            </select>
+            <span class="select__chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-urgencia">Qual sua urgência em se desenvolver como palestrante?</label>
+          <div class="select">
+            <select id="f-urgencia" name="urgencia" required>
+              <option value="">Selecione uma opção</option>
+              <option>Tenho urgência, quero começar o quanto antes</option>
+              <option>Quero me desenvolver ainda esse ano, mas sem pressa</option>
+              <option>Não é uma prioridade no momento</option>
+            </select>
+            <span class="select__chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Honeypot anti-spam: invisível para humanos, preenchido por bots -->
+        <input type="text" name="empresa_website" tabindex="-1" autocomplete="off" aria-hidden="true"
+               style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+        <p class="form-error mono" role="alert" hidden
+           style="font-size:12px;color:#E23401;line-height:1.5"></p>
+
+        <button type="submit" class="btn btn--grad" style="font-size:14.5px;min-height:46px;margin-top:4px">
+          <span class="btn__label">Quero minha recomendação</span>
+          <span class="btn__icon" aria-hidden="true" style="width:32px;height:32px">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </button>
+        <p class="form-card__legal">Seus dados são usados apenas para o contato da curadoria PSA. Veja a <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer">política de privacidade</a>.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     COMO FUNCIONA
+     ========================================================================== -->
+<section class="wrap" style="padding-bottom:var(--section-y)" aria-labelledby="como-title">
+  <div class="steps-panel">
+    <div class="steps-panel__head">
+      <span class="eyebrow eyebrow--plain">Como funciona</span>
+      <h2 id="como-title" class="h2">O que acontece depois que você <em>responde</em></h2>
+      <p class="steps-panel__sub">Nenhuma surpresa: três passos, uma conversa de orientação e a recomendação da sua trilha.</p>
+    </div>
+    <div class="steps">
+      <div class="step step--light" data-reveal="1">
+        <div class="step__top">
+          <span class="step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 3h6v3H9z"></path><path d="M9 11h6"></path><path d="M9 15h6"></path></svg>
+          </span>
+        </div>
+        <div class="step__body">
+          <span class="step__num">ETAPA 01</span>
+          <h3>Diagnóstico</h3>
+          <p>Quatro perguntas rápidas sobre onde você está hoje, o que busca e com que urgência quer evoluir.</p>
+        </div>
+      </div>
+
+      <div class="steps__arrow" data-reveal="2" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </div>
+
+      <div class="step step--grad" data-reveal="3">
+        <div class="step__top">
+          <span class="step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+          </span>
+        </div>
+        <div class="step__body">
+          <span class="step__num">ETAPA 02</span>
+          <h3>Conversa com o especialista</h3>
+          <p>Um especialista PSA entende sua história e seu objetivo. É uma conversa de orientação, não uma ligação de venda.</p>
+        </div>
+      </div>
+
+      <div class="steps__arrow" data-reveal="4" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"></path><path d="m13 6 6 6-6 6"></path></svg>
+      </div>
+
+      <div class="step step--photo" data-reveal="5">
+        <div class="step__top">
+          <span class="step__placeholder">[ FOTO · CONVERSA<br>DE DIAGNÓSTICO ]</span>
+          <span class="step__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13l4 4L14 8"></path><path d="M10 15l2 2 8-9"></path></svg>
+          </span>
+        </div>
+        <div class="step__body">
+          <span class="step__num">ETAPA 03</span>
+          <h3>Recomendação da trilha</h3>
+          <p>Qual caminho seguir, com formato, duração e investimento apresentados com clareza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PILARES
+     ========================================================================== -->
+<section id="pilares" class="wrap" style="padding-bottom:var(--section-y)">
+  <div class="section-head">
+    <div class="section-head__main">
+      <span class="eyebrow">Os 3 pilares</span>
+      <h2 class="h2" style="max-width:24ch">Um caminho, <em>três frentes</em> que sustentam a carreira</h2>
+    </div>
+    <p class="section-head__aside">Em 14 anos curando o mercado de palestras, a PSA construiu uma estrutura que funciona nas três frentes ao mesmo tempo, nunca isoladas.</p>
+  </div>
+
+  <div class="pillars">
+    <article class="pillar pillar--light" data-stack="0">
+      <div class="pillar__top">
+        <h3>Conhecimento</h3>
+        <span class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"></path></svg>
+        </span>
+      </div>
+      <div class="pillar__body">
+        <p>Cursos online, mentorias com referências do mercado, imersões presenciais e feedback individual sobre a sua apresentação. 14 anos de bagagem da PSA condensados em aprendizado prático.</p>
+        <div class="tags">
+          <span class="tag">Imersão presencial de 3 dias</span>
+          <span class="tag">Formação online contínua</span>
+          <span class="tag">Mentoria em grupo e feedback individual</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="pillar pillar--grad" data-stack="1">
+      <div class="pillar__top">
+        <h3>Comunicação</h3>
+        <span class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+        </span>
+      </div>
+      <div class="pillar__body">
+        <p>A extensão do seu palco físico. Conteúdo estratégico que dá escala à sua mensagem, expande sua autoridade e abre novos mercados.</p>
+        <div class="tags">
+          <span class="tag">Vídeo de apresentação</span>
+          <span class="tag">Material de autoridade</span>
+          <span class="tag">Conteúdo para redes sociais</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="pillar pillar--dark" data-stack="2">
+      <div class="pillar__top">
+        <h3>Tecnologia</h3>
+        <span class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M12 3v4"></path><path d="M12 17v4"></path><path d="M3 12h4"></path><path d="M17 12h4"></path></svg>
+        </span>
+      </div>
+      <div class="pillar__body">
+        <p>Um ecossistema inteiro em um único lugar, para você gerir sua carreira de palestrante com método, sem improviso.</p>
+        <div class="tags">
+          <span class="tag">Gestão de oportunidades</span>
+          <span class="tag">Relacionamento com contratantes</span>
+          <span class="tag">Ferramentas de posicionamento</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PERFIS
+     ========================================================================== -->
+<section id="perfis" class="wrap" style="padding-bottom:var(--section-y)">
+  <div class="stack" style="gap:14px;margin-bottom:clamp(22px,3vw,36px)">
+    <span class="eyebrow">Para quem é</span>
+    <h2 class="h2" style="max-width:20ch">Cada palestrante <em>começa de um jeito</em></h2>
+    <p class="lead" style="max-width:52ch">Não existe um caminho único. Existe o caminho certo para a fase em que você está agora.</p>
+  </div>
+
+  <div class="profiles">
+    <article class="profile profile--dark">
+      <div class="profile__media">[ FOTO · INICIANTE ]<br>800×500</div>
+      <div class="profile__body">
+        <span class="profile__kicker">Iniciante</span>
+        <h3>Você pensa<br>em palestrar</h3>
+        <p>Já tem uma história para contar, mas ainda não subiu no palco. Aqui está o ponto de partida para entender o mercado e dar o primeiro passo com segurança: a porta de entrada do ecossistema PSA, no formato mais acessível que a gente oferece.</p>
+        <a href="#diagnostico" class="profile__cta" data-cta="perfil-iniciante">
+          <span>Isso é você? <b>Quero minha recomendação</b></span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </article>
+
+    <article class="profile profile--grad">
+      <div class="profile__media">[ FOTO · IMERSÃO PRESENCIAL ]<br>800×500</div>
+      <div class="profile__body">
+        <span class="profile__kicker">Profissionalize-se</span>
+        <h3>Você já palestra, mas ainda não monetiza</h3>
+        <p>Quer transformar isso em profissão. Falta entender o mercado, precificar seu valor e comunicar sua autoridade do jeito certo. É a fase que costuma pedir imersão presencial: onde a virada acontece mais rápido.</p>
+        <a href="#diagnostico" class="profile__cta" data-cta="perfil-profissionalize">
+          <span>Isso é você? <b>Quero minha recomendação</b></span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </article>
+
+    <article class="profile profile--light">
+      <div class="profile__media">[ FOTO · PALCO GRANDE ]<br>800×500</div>
+      <div class="profile__body">
+        <span class="profile__kicker">Escala</span>
+        <h3>Você já<br>vive disso</h3>
+        <p>Ou está perto disso. Quer mais resultado, mais palco, mais reconhecimento, e uma estrutura à altura da carreira que está construindo. Aqui as soluções são desenhadas caso a caso, com escopo e acompanhamento definidos junto com você.</p>
+        <a href="#diagnostico" class="profile__cta" data-cta="perfil-escala">
+          <span>Isso é você? <b>Quero minha recomendação</b></span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     TRANSPARÊNCIA
+     ========================================================================== -->
+<section class="transparency">
+  <div class="wrap-wide transparency__grid">
+    <div class="stack" style="gap:14px;min-width:0">
+      <span class="eyebrow eyebrow--plain">Para ser direto com você</span>
+      <h2 class="h2">A PSA não vende <em>atalho</em></h2>
+    </div>
+    <div class="stack" style="gap:16px;min-width:0">
+      <p>Nossas soluções vão de formação online a mentorias individuais, todas com métodos comprovados e dados de quem vive esse mercado.</p>
+      <p>O diagnóstico é o passo que define qual delas é a ideal para sua carreira.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CTA INTERMEDIÁRIO
+     ========================================================================== -->
+<section class="cta-mid">
+  <div class="wrap-wide cta-mid__inner">
+    <span class="eyebrow eyebrow--plain" data-rise="0">Próximo passo</span>
+    <h2 class="h2" data-rise="1">Descubra qual solução da PSA é a certa para a sua fase</h2>
+    <p data-rise="2">Preencha o formulário e converse com um especialista. Você sai da conversa sabendo o caminho, o formato e o investimento que o seu momento pede.</p>
+    <a href="#diagnostico" class="btn btn--cream btn--lg" data-rise="3" data-cta="cta-intermediario">
+      <span>Quero minha recomendação</span>
+      <span class="btn__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </span>
+    </a>
+
+    <div class="fan" aria-hidden="true">
+      <div class="fan__item" data-fan="0"><span class="fan__label">Palco</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="1"><span class="fan__label">Imersão</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="2"><span class="fan__label">Mentoria</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="3"><span class="fan__label">Diagnóstico</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="4"><span class="fan__label">Bastidor</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="5"><span class="fan__label">Plateia</span><div class="fan__box">[ FOTO ]</div></div>
+      <div class="fan__item" data-fan="6"><span class="fan__label">Rede PSA</span><div class="fan__box">[ FOTO ]</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PROVA SOCIAL
+     ========================================================================== -->
+<section id="prova" class="wrap" style="padding-bottom:var(--section-y)">
+  <div class="section-head">
+    <div class="section-head__main">
+      <span class="eyebrow">Prova social</span>
+      <h2 class="h2" style="max-width:20ch">Quem já passou por aqui, <em>conta</em></h2>
+      <div class="avatars">
+        <div class="avatars__stack" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span>+300</span>
+        </div>
+        <span class="avatars__text">palestrantes formados pela curadoria PSA</span>
+      </div>
+    </div>
+    <p class="section-head__aside">Depoimentos reais de palestrantes atendidos pela curadoria PSA.</p>
+  </div>
+
+  <div class="proof">
+    <figure class="proof__card" style="margin:0">
+      <div class="proof__media">[ VÍDEO · DEPOIMENTO 01 ]</div>
+      <figcaption class="proof__body">
+        <p>“Saí da conversa sabendo exatamente qual era o meu próximo passo.”</p>
+        <span class="proof__author">Nome · atuação</span>
+      </figcaption>
+    </figure>
+    <figure class="proof__card" style="margin:0">
+      <div class="proof__media">[ VÍDEO · DEPOIMENTO 02 ]</div>
+      <figcaption class="proof__body">
+        <p>“Em seis meses passei de palestras gratuitas para agenda paga.”</p>
+        <span class="proof__author">Nome · atuação</span>
+      </figcaption>
+    </figure>
+    <figure class="proof__card" style="margin:0">
+      <div class="proof__media">[ VÍDEO · DEPOIMENTO 03 ]</div>
+      <figcaption class="proof__body">
+        <p>“A curadoria me deu método onde eu só tinha intuição.”</p>
+        <span class="proof__author">Nome · atuação</span>
+      </figcaption>
+    </figure>
+    <div class="proof__stat">
+      <span class="proof__stat-kicker">Chancela PSA</span>
+      <div class="stack" style="gap:6px">
+        <span class="proof__stat-value">+8.000</span>
+        <span class="proof__stat-label">eventos realizados com curadoria PSA nos últimos 14 anos.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==========================================================================
+     CTA FINAL / RODAPÉ
+     ========================================================================== -->
+<footer class="cta-final">
+  <div class="wrap-wide cta-final__grid">
+    <div class="stack" style="gap:16px;min-width:0">
+      <span class="eyebrow eyebrow--plain">Próximo passo</span>
+      <h2 class="h2">Seu próximo passo no palco começa com uma <em>decisão</em></h2>
+      <p>Se você está pronto para investir na sua carreira de palestrante, o diagnóstico é onde ela começa a ganhar método.</p>
+      <a href="#diagnostico" class="btn btn--grad btn--lg" style="margin-top:6px" data-cta="cta-final">
+        <span>Quero minha recomendação</span>
+        <span class="btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </span>
+      </a>
+    </div>
+    <div class="cta-final__brand">
+      <img src="assets/logo-white.svg" alt="The Best School — uma experiência PSA" width="280" height="15" loading="lazy">
+      <p class="cta-final__legal">Uma experiência PSA. 14 anos curando o mercado de palestras no Brasil. Curadoria liderada por Márcio Spagnolo.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/psa.talk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da PSA">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
+        </a>
+        <a href="https://br.linkedin.com/company/profissionais-sa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da PSA">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 10v7"></path><path d="M8 7.2v.1"></path><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"></path></svg>
+        </a>
+        <a href="https://www.youtube.com/profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="YouTube da PSA">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.2 9.6l5 2.4-5 2.4z"></path></svg>
+        </a>
+        <a href="https://www.facebook.com/PSA.profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="Facebook da PSA">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="M14.8 8.2h-1.3a2.2 2.2 0 0 0-2.2 2.2v8.4"></path><path d="M9.2 12.6h4.6"></path></svg>
+        </a>
+      </div>
+      <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer" class="cta-final__policy">Política de privacidade e termos de uso</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   CONFIGURAÇÃO — edite só este bloco
+   ========================================================================== */
+var CONFIG = {
+  // HubSpot: pegue em Marketing > Formulários > (seu form) > Compartilhar > Embed.
+  // O portalId é o número da conta; o formGuid é o id do formulário.
+  hubspot: {
+    portalId: '49656171',
+    formGuid: '634374b1-5a70-470e-a975-4a1e2d433b87',
+    region:   'na1'   // 'na1' (EUA) ou 'eu1' (Europa)
+  },
+  // Mapa dos 4 selects → nome INTERNO da propriedade no HubSpot.
+  // Estes nomes vieram do próprio formulário (portal 49656171) e são
+  // OBRIGATÓRIOS lá: sem qualquer um deles o envio inteiro é recusado.
+  fieldMap: {
+    ja_atua_como_palestrante: 'voce_ja_atua_como_palestrante_',
+    atuacao_atual:            'qual_a_sua_atuacao_hoje___new_campaign_',
+    objetivo_de_carreira:     'temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new',
+    urgencia:                 'voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_'
+  },
+  // Para onde mandar depois do envio. Deixe vazio ('') para exibir a
+  // mensagem de sucesso na própria página, sem redirecionar.
+  redirectUrl: '',   // ex.: '/obrigado.html'
+  // Dispara evento no dataLayer (GTM) quando o lead é enviado.
+  dataLayerEvent: 'lead_diagnostico'
+};
+
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ========================================================================
+     1. REVEAL — cards das etapas aparecem ao entrar na viewport
+     ======================================================================== */
+  function initReveal() {
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if (!nodes.length || reduceMotion) return;
+
+    nodes.forEach(function (n) {
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(26px)';
+      n.style.transition = 'opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1)';
+      n.style.transitionDelay = ((parseInt(n.dataset.reveal, 10) - 1) * 0.14) + 's';
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+
+    nodes.forEach(function (n) { io.observe(n); });
+  }
+
+  /* ========================================================================
+     2. STACK — os 3 pilares se montam conforme a rolagem
+     ======================================================================== */
+  function initStack() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-stack]'));
+    if (!cards.length) return;
+
+    cards.forEach(function (c) {
+      c.style.willChange = 'transform';
+      c.style.zIndex = String(10 - Number(c.dataset.stack));
+    });
+    if (reduceMotion) return;
+
+    cards.forEach(function (c) {
+      c.style.transition = 'transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s ease-out';
+    });
+
+    function apply() {
+      var first = cards[0];
+      var sec = first.parentElement;
+      var r = sec.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      var span = Math.max(r.height * 1.15 + vh * 0.35, 620);
+      var p = Math.max(0, Math.min(1, (vh * 0.94 - r.top) / span));
+      var ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      var baseLeft = first.offsetLeft;
+      var baseTop = first.offsetTop;
+
+      cards.forEach(function (c) {
+        var i = Number(c.dataset.stack);
+        if (i === 0) { c.style.transform = 'none'; c.style.opacity = '1'; return; }
+        var dx = c.offsetLeft - baseLeft;
+        var dy = c.offsetTop - baseTop;
+        var stagger = (i - 1) * 0.16;
+        var local = Math.max(0, Math.min(1, (ease - stagger) / (1 - stagger)));
+        var rest = 1 - local;
+        c.style.transform = 'translate3d(' + (-dx * rest).toFixed(1) + 'px,' +
+          (-dy * rest * 0.85).toFixed(1) + 'px,0) scale(' +
+          (1 - 0.06 * i * rest).toFixed(3) + ') rotate(' + (-1.4 * i * rest).toFixed(2) + 'deg)';
+        c.style.opacity = String(0.5 + 0.5 * local);
+      });
+    }
+
+    onScroll(apply);
+  }
+
+  /* ========================================================================
+     3. FAN / RISE — leque de fotos e texto do CTA intermediário
+     ======================================================================== */
+  function initFan() {
+    var fans = Array.prototype.slice.call(document.querySelectorAll('[data-fan]'));
+    var rises = Array.prototype.slice.call(document.querySelectorAll('[data-rise]'));
+    if ((!fans.length && !rises.length) || reduceMotion) return;
+
+    fans.concat(rises).forEach(function (n) {
+      n.style.willChange = 'transform, opacity';
+      n.style.transition = 'transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s ease-out';
+    });
+
+    var mid = (fans.length - 1) / 2;
+
+    function apply() {
+      var sec = (fans.length ? fans[0] : rises[0]).closest('section');
+      var r = sec.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      var span = Math.max(vh * 0.55, 320);
+      var p = Math.max(0, Math.min(1, (vh * 1.02 - r.top) / span));
+      var e = 1 - Math.pow(1 - p, 2.2);
+      function local(start) { return Math.max(0, Math.min(1, (e - start) / (1 - start))); }
+
+      rises.forEach(function (n) {
+        var t = local(Number(n.dataset.rise) * 0.07);
+        n.style.opacity = String(0.12 + 0.88 * t);
+        n.style.transform = 'translateY(' + ((1 - t) * 26).toFixed(1) + 'px)';
+      });
+
+      fans.forEach(function (n) {
+        var i = Number(n.dataset.fan);
+        var dist = Math.abs(i - mid);
+        var t = local(0.1 + dist * 0.07);
+        var rest = 1 - t;
+        var dir = i < mid ? 1 : (i > mid ? -1 : 0);
+        n.style.opacity = String(0.05 + 0.95 * t);
+        n.style.transform = 'translate3d(' + (dir * dist * 26 * rest).toFixed(1) + 'px,' +
+          (rest * 40).toFixed(1) + 'px,0) scale(' + (1 - 0.14 * rest).toFixed(3) +
+          ') rotate(' + (-dir * 2.2 * rest).toFixed(2) + 'deg)';
+      });
+    }
+
+    onScroll(apply);
+  }
+
+  /* Helper: liga uma função ao scroll com requestAnimationFrame */
+  function onScroll(fn) {
+    var ticking = false;
+    function handler() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; fn(); });
+    }
+    window.addEventListener('scroll', handler, { passive: true });
+    window.addEventListener('resize', handler);
+    fn();
+  }
+
+  /* ========================================================================
+     4. HEADER — recolhe ao descer, reaparece ao subir
+     ======================================================================== */
+  function initHeader() {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+
+    var LIMITE = 220;   // ponto a partir do qual o header ganha fundo
+    var TOLERANCIA = 5; // ignora micro-oscilações de rolagem
+    var desktop = window.matchMedia('(min-width:768px)');
+    var anterior = window.scrollY;
+
+    function update() {
+      var y = window.scrollY;
+
+      // Desktop: fixo o tempo todo. Só alterna transparente ↔ com fundo.
+      if (desktop.matches) {
+        header.classList.remove('is-hidden');
+        header.classList.toggle('is-stuck', y > LIMITE);
+        anterior = y;
+        return;
+      }
+
+      // Mobile: de volta ao topo, volta a ser transparente sobre o hero.
+      if (y <= LIMITE) {
+        header.classList.remove('is-stuck', 'is-hidden');
+        anterior = y;
+        return;
+      }
+
+      // Primeira vez que gruda: entra já recolhido e sem animar,
+      // senão o header "saltaria" para dentro da tela.
+      if (!header.classList.contains('is-stuck')) {
+        header.style.transition = 'none';
+        header.classList.add('is-stuck', 'is-hidden');
+        void header.offsetHeight;
+        header.style.transition = '';
+        anterior = y;
+        return;
+      }
+
+      if (y > anterior + TOLERANCIA) {
+        header.classList.add('is-hidden');      // descendo
+        anterior = y;
+      } else if (y < anterior - TOLERANCIA) {
+        header.classList.remove('is-hidden');   // subindo
+        anterior = y;
+      }
+    }
+
+    onScroll(update);
+
+    // Trocar entre mobile e desktop reavalia o estado do zero.
+    var onChange = function () { header.classList.remove('is-stuck', 'is-hidden'); update(); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onChange);
+
+    // Clique no menu: mostra o header para não esconder o alvo da âncora.
+    header.addEventListener('click', function (e) {
+      if (e.target.closest('a[href^="#"]')) header.classList.remove('is-hidden');
+    });
+  }
+
+  /* ========================================================================
+     5. MENU MOBILE — hambúrguer
+     ======================================================================== */
+  function initMenuMobile() {
+    var botao = document.querySelector('.nav-toggle');
+    var painel = document.getElementById('menu-mobile');
+    if (!botao || !painel) return;
+
+    var links = Array.prototype.slice.call(painel.querySelectorAll('a[href^="#"]'));
+
+    function abrir() {
+      painel.classList.add('is-open');
+      botao.setAttribute('aria-expanded', 'true');
+      botao.setAttribute('aria-label', 'Fechar menu');
+      document.body.classList.add('menu-aberto');
+      links[0] && links[0].focus({ preventScroll: true });
+    }
+
+    function fechar(devolveFoco) {
+      painel.classList.remove('is-open');
+      botao.setAttribute('aria-expanded', 'false');
+      botao.setAttribute('aria-label', 'Abrir menu');
+      document.body.classList.remove('menu-aberto');
+      if (devolveFoco) botao.focus({ preventScroll: true });
+    }
+
+    botao.addEventListener('click', function () {
+      painel.classList.contains('is-open') ? fechar(true) : abrir();
+    });
+
+    // Um link levou a outra seção: fecha para revelar a página.
+    links.forEach(function (a) {
+      a.addEventListener('click', function () { fechar(false); });
+    });
+
+    // Clique no fundo do painel (fora dos links) também fecha.
+    painel.addEventListener('click', function (e) {
+      if (e.target === painel) fechar(true);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && painel.classList.contains('is-open')) fechar(true);
+    });
+
+    // Virou para desktop com o menu aberto: fecha e libera a rolagem.
+    var desktop = window.matchMedia('(min-width:768px)');
+    if (desktop.addEventListener) {
+      desktop.addEventListener('change', function (e) { if (e.matches) fechar(false); });
+    }
+
+    // Espelha a seção ativa também nos links do menu mobile.
+    window.__marcarMenuMobile = function (href) {
+      links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === href); });
+    };
+  }
+
+  /* ========================================================================
+     6. NAVEGAÇÃO — marca a seção visível
+     ======================================================================== */
+  function initNav() {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+    var pill = nav.querySelector('.nav__pill');
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    if (!links.length) return;
+
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    var atual = links[0];
+
+    // Move o indicador para debaixo do link ativo.
+    function movePill(link) {
+      if (!pill || !link) return;
+      // Menu escondido (mobile) não tem medidas válidas.
+      if (!link.offsetWidth) { pill.classList.remove('is-ready'); return; }
+      pill.style.width = link.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + link.offsetLeft + 'px)';
+      pill.classList.add('is-ready');
+    }
+
+    function setActive(link) {
+      if (!link || link === atual) return;
+      links.forEach(function (a) { a.classList.toggle('is-active', a === link); });
+      atual = link;
+      movePill(link);
+      if (window.__marcarMenuMobile) window.__marcarMenuMobile(link.getAttribute('href'));
+    }
+
+    // A seção ativa é a que estiver mais próxima da faixa central da tela.
+    function pick() {
+      var alvo = window.innerHeight * 0.4;
+      var melhor = null;
+      var menorDist = Infinity;
+      sections.forEach(function (sec, i) {
+        var r = sec.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var dist = Math.abs(r.top - alvo);
+        if (dist < menorDist) { menorDist = dist; melhor = links[i]; }
+      });
+      if (melhor) setActive(melhor);
+    }
+
+    onScroll(pick);
+
+    // Posição inicial e recálculo quando a largura muda.
+    function reposition() { movePill(atual); }
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(reposition);   // fontes alteram a largura dos links
+    }
+    window.addEventListener('resize', reposition);
+    setTimeout(reposition, 120);
+
+    // Clique: ativa na hora, sem esperar a rolagem.
+    links.forEach(function (a) {
+      a.addEventListener('click', function () { setActive(a); });
+    });
+  }
+
+  /* ========================================================================
+     7. TELEFONE — máscara BR simples
+     ======================================================================== */
+  function initPhoneMask() {
+    var input = document.getElementById('f-fone');
+    if (!input) return;
+    input.addEventListener('input', function () {
+      var d = input.value.replace(/\D/g, '').slice(0, 11);
+      var out = d;
+      if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+      if (d.length > 6) {
+        var split = d.length > 10 ? 7 : 6;
+        out = '(' + d.slice(0, 2) + ') ' + d.slice(2, split) + '-' + d.slice(split);
+      }
+      input.value = out;
+    });
+  }
+
+  /* ========================================================================
+     8. FORMULÁRIO → HubSpot Forms API
+     ======================================================================== */
+  function initForm() {
+    var form = document.getElementById('form-diagnostico');
+    if (!form) return;
+
+    var errorBox = form.querySelector('.form-error');
+    var button = form.querySelector('button[type="submit"]');
+    var buttonLabel = button ? button.querySelector('.btn__label') : null;
+    var honeypot = form.querySelector('[name="empresa_website"]');
+
+    function showError(msg) {
+      if (!errorBox) return;
+      errorBox.textContent = msg;
+      errorBox.hidden = false;
+    }
+
+    function getCookie(name) {
+      var m = document.cookie.match(new RegExp('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)'));
+      return m ? m.pop() : '';
+    }
+
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      if (errorBox) errorBox.hidden = true;
+
+      // Bot preencheu o campo escondido: aborta silenciosamente.
+      if (honeypot && honeypot.value) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var data = new FormData(form);
+      var nome = (data.get('fullname') || '').trim();
+      var partes = nome.split(/\s+/);
+
+      // Campos padrão do HubSpot — sempre existem numa conta.
+      var baseFields = [
+        { name: 'firstname', value: partes.shift() || '' },
+        { name: 'lastname',  value: partes.join(' ') },
+        { name: 'email',     value: data.get('email') || '' },
+        { name: 'phone',     value: data.get('phone') || '' }
+      ];
+
+      // Campos do diagnóstico — dependem das propriedades da conta (ver CONFIG.fieldMap).
+      var customFields = Object.keys(CONFIG.fieldMap).map(function (k) {
+        return { name: CONFIG.fieldMap[k], value: data.get(k) || '' };
+      });
+
+      var fields = baseFields.concat(customFields);
+
+      // Repassa parâmetros de campanha, se existirem na URL.
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        if (params.get(k)) fields.push({ name: k, value: params.get(k) });
+      });
+
+      var extraFields = fields.slice(baseFields.length);
+
+      if (!CONFIG.hubspot.portalId || !CONFIG.hubspot.formGuid) {
+        showError('Formulário ainda não conectado ao HubSpot. Preencha portalId e formGuid em CONFIG.');
+        console.warn('[LP] HubSpot não configurado — preencha CONFIG.hubspot no topo do <script>.', fields);
+        return;
+      }
+
+      if (button) {
+        button.disabled = true;
+        button.style.opacity = '.65';
+        if (buttonLabel) buttonLabel.textContent = 'Enviando…';
+      }
+
+      var host = CONFIG.hubspot.region === 'eu1'
+        ? 'https://api-eu1.hsforms.com'
+        : 'https://api.hsforms.com';
+      var endpoint = host + '/submissions/v3/integration/submit/' +
+        CONFIG.hubspot.portalId + '/' + CONFIG.hubspot.formGuid;
+
+      function restoreButton() {
+        if (!button) return;
+        button.disabled = false;
+        button.style.opacity = '';
+        if (buttonLabel) buttonLabel.textContent = 'Quero minha recomendação';
+      }
+
+      function success() {
+        if (window.dataLayer && CONFIG.dataLayerEvent) {
+          window.dataLayer.push({ event: CONFIG.dataLayerEvent });
+        }
+        if (CONFIG.redirectUrl) {
+          window.location.href = CONFIG.redirectUrl;
+          return;
+        }
+        form.classList.add('is-sent');
+        form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      }
+
+      function send(payloadFields) {
+        return fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: payloadFields,
+            context: {
+              hutk: getCookie('hubspotutk') || undefined,
+              pageUri: window.location.href,
+              pageName: document.title
+            }
+          })
+        }).then(function (res) {
+          if (res.ok) return res.json();
+          return res.json().then(function (b) {
+            var e = new Error(b.message || String(res.status));
+            e.body = b;
+            throw e;
+          });
+        });
+      }
+
+      function falhou(err) {
+        var body = (err && err.body) || {};
+        console.error('[LP] Falha no envio:', err && err.message, body.errors || body);
+        showError('Não foi possível enviar agora. Tente novamente em instantes.');
+        restoreButton();
+      }
+
+      send(fields)
+        .then(success)
+        .catch(function (err) {
+          var body = err.body || {};
+          var nomeErrado = (body.errors || []).some(function (e) {
+            return /PROPERTY|FIELD/i.test(e.errorType || '');
+          });
+
+          // Algum nome de CONFIG.fieldMap não bate com o formulário no HubSpot.
+          // Se os campos forem opcionais lá, o reenvio salva pelo menos o contato;
+          // se forem obrigatórios, este reenvio também falha e cai no falhou().
+          if (nomeErrado && extraFields.length) {
+            console.error(
+              '[LP] O HubSpot recusou campos do diagnóstico. Confira CONFIG.fieldMap ' +
+              'com o "Nome interno" de cada propriedade. Detalhes:', body.errors
+            );
+            console.warn('[LP] Respostas em risco de não serem gravadas:', extraFields);
+            return send(baseFields).then(success).catch(falhou);
+          }
+
+          falhou(err);
+        });
+    });
+  }
+
+  /* ========================================================================
+     BOOT
+     ======================================================================== */
+  function boot() {
+    initReveal();
+    initStack();
+    initFan();
+    initHeader();
+    initMenuMobile();
+    initNav();
+    initPhoneMask();
+    initForm();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
+<!-- HubSpot tracking: gera o cookie hubspotutk, que liga o lead à origem
+     da visita (anúncio, busca, e-mail). Remova se não quiser o cookie. -->
+<script id="hs-script-loader" async defer src="https://js.hs-scripts.com/49656171.js"></script>
+
+</body>
+</html>

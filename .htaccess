@@ -1,0 +1,62 @@
+# ==========================================================================
+# LP The Best School — configuração de servidor (Apache)
+# Publicada em: https://profissionaissa.com.br/thebestschool/
+#
+# Este arquivo fica DENTRO da pasta /thebestschool e vale só para ela.
+# Não mexe no resto do site profissionaissa.com.br.
+# ==========================================================================
+
+# --- Compressão --------------------------------------------------------
+# Reduz o HTML de ~80 KB para ~15 KB na transferência.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Cache de navegador ------------------------------------------------
+# Imagens e fontes ficam 1 ano em cache; o HTML nunca, para que uma
+# alteração de texto apareça na hora.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 year"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html         "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|jpe?g|svg|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  # Segurança básica
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# --- MIME ---------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# --- Barra final (importante) -------------------------------------------
+# A página usa caminhos relativos (assets/img/...). Sem a barra final, o
+# navegador procuraria as imagens em /assets/ em vez de /thebestschool/assets/
+# e tudo daria 404. Isto garante /thebestschool → /thebestschool/.
+<IfModule mod_dir.c>
+  DirectorySlash On
+</IfModule>
+
+# HTTPS e www são tratados pelo .htaccess da raiz do domínio — não repita
+# aqui, para não criar redirecionamento duplo.
+
+# --- Diretório ----------------------------------------------------------
+DirectoryIndex index.html
+Options -Indexes

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSA · Curadoria de carreira para palestrantes</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#FEF8E8;color:#1A0800;font-family:'Satoshi',-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:#FF640F;text-decoration:none;}
+  a:hover{color:#E23401;}
+  input,select,button,textarea{font-family:inherit;}
+  select{appearance:none;-webkit-appearance:none;}
+  @keyframes tbsFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;background:#FEF8E8;position:relative;">
+
+<header style="position:absolute;top:0;left:0;right:0;z-index:60;padding:0 clamp(16px,4vw,40px);">
+  <div style="max-width:1160px;margin:0 auto;padding:clamp(14px,2vw,26px) 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+    <a href="#diagnostico" style="display:flex;align-items:center;">
+      <img src="assets/logo-white.svg" alt="PSA · The Best School" style="height:clamp(11px,1.1vw,15px);width:auto;display:block;"></img>
+    </a>
+    <nav style="display:flex;align-items:center;gap:4px;background:rgba(26,8,0,.28);backdrop-filter:blur(10px);border:1px solid rgba(254,248,232,.28);border-radius:40px;padding:5px;">
+      <a href="#diagnostico" style="color:#1A0800;background:#FEF8E8;font-weight:700;font-size:13px;padding:9px 18px;border-radius:30px;">Diagnóstico</a>
+      <a href="#pilares" style="color:#FEF8E8;font-weight:500;font-size:13px;padding:9px 16px;border-radius:30px;" style-hover="background:rgba(254,248,232,.14);color:#FEF8E8;">Pilares</a>
+      <a href="#perfis" style="color:#FEF8E8;font-weight:500;font-size:13px;padding:9px 16px;border-radius:30px;" style-hover="background:rgba(254,248,232,.14);color:#FEF8E8;">Para quem é</a>
+      <a href="#prova" style="color:#FEF8E8;font-weight:500;font-size:13px;padding:9px 16px;border-radius:30px;" style-hover="background:rgba(254,248,232,.14);color:#FEF8E8;">Depoimentos</a>
+    </nav>
+  </div>
+</header>
+
+<section data-screen-label="Hero" style="width:100%;">
+  <div style="position:relative;overflow:hidden;background-color:#1A0800;padding:clamp(80px,8.5vw,112px) clamp(16px,4vw,40px) clamp(20px,2.4vw,30px);min-height:min(72vh,660px);display:flex;flex-direction:column;justify-content:space-between;gap:clamp(28px,5vw,64px);">
+    <img src="assets/hero-bg.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:25% center;z-index:0;pointer-events:none;"></img>
+    <div style="position:relative;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,40px);align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;color:#FEF8E8;min-width:0;max-width:min(46ch,58%);">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(254,248,232,.5);border-radius:20px;padding:5px 12px;width:fit-content;">Curadoria de carreira para palestrantes</span>
+        <h1 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(24px,3.4vw,46px);line-height:1.04;letter-spacing:-.01em;max-width:none;white-space:nowrap;">Todo palestrante<br>começa em um<br>lugar <span style="color:#FD6501;">diferente</span></h1>
+        <p style="margin:0;font-size:clamp(13.5px,1.05vw,15px);line-height:1.55;color:rgba(254,248,232,.9);max-width:34ch;text-wrap:pretty;">A gente mostra qual caminho leva você ao palco. Responda ao diagnóstico e converse com um especialista da PSA: ele indica a trilha que faz sentido para a sua fase, com preparo, prazo e investimento na mesa.</p>
+        <a href="#diagnostico" style="display:flex;align-items:center;gap:14px;background:#FEF8E8;color:#1A0800;font-weight:700;font-size:13.5px;padding:6px 6px 6px 20px;border-radius:40px;width:fit-content;" style-hover="background:#FFD4C1;">
+          <span>Quero saber qual é o meu caminho</span>
+          <span style="width:30px;height:30px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+          </span>
+        </a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0;align-items:flex-end;">
+        <div style="background:#FEF8E8;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;width:min(272px,100%);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#FF640F;display:flex;align-items:center;gap:7px;"><span style="width:6px;height:6px;border-radius:50%;background:#FF640F;"></span>Diagnóstico gratuito · 1 min</span>
+          <div style="border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:#1A0800;">
+            <img src="assets/marcio-spagnolo.png" alt="Márcio Spagnolo" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></img>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-weight:700;font-size:14px;">Márcio Spagnolo</span>
+            <span style="font-size:12px;line-height:1.45;color:#5b4c42;">Curadoria liderada por quem construiu 14 anos do mercado de palestras no Brasil.</span>
+          </div>
+          <a href="#diagnostico" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:#FEF8E8;font-weight:700;font-size:13.5px;padding:5px 5px 5px 16px;border-radius:40px;width:fit-content;">
+            <span>Começar agora</span>
+            <span style="width:26px;height:26px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;max-width:1160px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;gap:12px;">
+      <div style="flex:1 1 460px;min-width:0;display:flex;gap:12px;">
+      <div style="flex:1 1 0;min-width:0;background:#FEF8E8;color:#1A0800;border-radius:14px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:10px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><circle cx="12" cy="14" r="8"></circle><path d="M12 11v3l2 1"></path></svg>
+          </span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;">14 anos</div>
+          <div style="font-size:14px;line-height:1.45;color:#5b4c42;min-height:2.9em;">de pioneirismo no mercado de palestras</div>
+        </div>
+      </div>
+      <div style="flex:1 1 0;min-width:0;background:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);color:#FEF8E8;border-radius:14px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:10px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H7"></path><path d="M12 3v18"></path></svg>
+          </span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;">+R$5 bi</div>
+          <div style="font-size:14px;line-height:1.45;color:rgba(254,248,232,.92);min-height:2.9em;">movimentados por ano no mercado de palestras</div>
+        </div>
+      </div>
+      </div>
+      <div style="flex:1 1 460px;min-width:0;display:flex;gap:12px;">
+      <div style="flex:1 1 0;min-width:0;background:#FEF8E8;color:#1A0800;border-radius:14px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:10px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"></path><rect x="9" y="12" width="6" height="9" rx="3"></rect><path d="M4 10a8 8 0 0 1 16 0"></path></svg>
+          </span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;">+8.000</div>
+          <div style="font-size:14px;line-height:1.45;color:#5b4c42;min-height:2.9em;">eventos realizados com chancela PSA</div>
+        </div>
+      </div>
+      <div style="flex:1 1 0;min-width:0;background:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);color:#FEF8E8;border-radius:14px;padding:18px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;">
+        <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:10px;">
+          <span style="width:32px;height:32px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"></path><path d="M14 8h6v6"></path></svg>
+          </span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;">+100 mi</div>
+          <div style="font-size:14px;line-height:1.45;color:rgba(254,248,232,.92);min-height:2.9em;">em palestras vendidas por ano</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diagnostico" data-screen-label="Diagnóstico" style="max-width:1160px;margin:0 auto;width:100%;padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px);">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,56px);align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+      <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;display:flex;align-items:center;gap:10px;"><span style="width:7px;height:7px;border-radius:50%;background:#FF640F;"></span>Diagnóstico</span>
+      <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,44px);line-height:1.04;max-width:18ch;">Em que ponto da sua <span style="color:#FF640F;">carreira</span> você está?</h2>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4a3a30;max-width:46ch;text-wrap:pretty;">Responda em menos de 1 minuto. Se houver encaixe com o que a PSA faz, um especialista entra em contato para a conversa de diagnóstico.</p>
+      <div style="border-left:3px solid #FF640F;background:rgba(255,100,15,.07);border-radius:0 12px 12px 0;padding:16px 20px;max-width:46ch;">
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#4a3a30;">O diagnóstico e a conversa com o especialista são <b style="color:#1A0800;">sem custo</b>. As soluções da PSA, não: elas vão da formação online a programas sob medida. O diagnóstico existe para dizer qual delas cabe no seu momento, sem empurrar nada.</p>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;margin-top:clamp(12px,2vw,24px);width:100%;">
+        <div style="width:32%;flex:0 0 auto;position:relative;z-index:1;margin-top:clamp(56px,7vw,96px);display:flex;flex-direction:column;gap:10px;">
+          <div style="height:clamp(120px,15vw,200px);border-radius:14px;overflow:hidden;background-color:#FFD4C1;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#8a3d10;text-align:center;line-height:1.6;padding:8px;">[ FOTO ]<br>1º palco</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#808080;">Fase 01</span>
+            <span style="font-weight:700;font-size:13px;">Iniciante</span>
+          </div>
+        </div>
+        <div style="width:36%;flex:0 0 auto;position:relative;z-index:2;margin-left:-6%;margin-top:clamp(28px,3.5vw,48px);display:flex;flex-direction:column;gap:10px;">
+          <div style="height:clamp(160px,20vw,265px);border-radius:14px;overflow:hidden;box-shadow:-14px 0 30px -18px rgba(26,8,0,.45);background-color:#E23401;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.14) 0 10px,rgba(26,8,0,.03) 10px 20px),linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(254,248,232,.95);text-align:center;line-height:1.6;padding:8px;">[ FOTO ]<br>imersão</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:17%;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#808080;">Fase 02</span>
+            <span style="font-weight:700;font-size:13px;">Profissionalize-se</span>
+          </div>
+        </div>
+        <div style="width:44%;flex:0 0 auto;position:relative;z-index:3;margin-left:-6%;display:flex;flex-direction:column;gap:10px;">
+          <div style="height:clamp(200px,26vw,340px);border-radius:14px;overflow:hidden;box-shadow:-16px 0 34px -18px rgba(26,8,0,.5);background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:rgba(254,248,232,.75);text-align:center;line-height:1.6;padding:8px;">[ FOTO ]<br>palco grande</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:14%;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#808080;">Fase 03</span>
+            <span style="font-weight:700;font-size:13px;">Escala</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form onSubmit="{{ onSubmit }}" style="background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:24px;padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:14px;box-shadow:0 24px 60px -30px rgba(26,8,0,.35);min-width:0;">
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;padding:20px 0;">
+          <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;">Recebido</span>
+          <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:24px;line-height:1.1;">Obrigado! Seu diagnóstico chegou à curadoria.</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#4a3a30;">Um especialista da PSA entra em contato pelo WhatsApp informado para a conversa de orientação.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <input type="text" placeholder="Nome completo" required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 16px;font-size:14.5px;color:#1A0800;background:#FEF8E8;outline:none;width:100%;" style-focus="border-color:#FF640F;background:#fff;"></input>
+            <input type="tel" placeholder="WhatsApp" required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 16px;font-size:14.5px;color:#1A0800;background:#FEF8E8;outline:none;width:100%;" style-focus="border-color:#FF640F;background:#fff;"></input>
+            <input type="email" placeholder="E-mail" required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 16px;font-size:14.5px;color:#1A0800;background:#FEF8E8;outline:none;width:100%;" style-focus="border-color:#FF640F;background:#fff;"></input>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <label style="font-weight:700;font-size:13px;">Você já atua como palestrante?</label>
+            <div style="position:relative;display:flex;align-items:center;">
+              <select required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 42px 14px 16px;font-size:14px;color:#1A0800;background:#FEF8E8;width:100%;outline:none;">
+                <option value="">Selecione uma opção</option>
+                <option>Sim, já realizo palestras remuneradas</option>
+                <option>Sim, mas apenas de forma gratuita</option>
+                <option>Não, ainda não atuo como palestrante</option>
+              </select>
+              <span style="position:absolute;right:16px;pointer-events:none;color:#808080;display:flex;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <label style="font-weight:700;font-size:13px;">Qual a sua atuação hoje?</label>
+            <div style="position:relative;display:flex;align-items:center;">
+              <select required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 42px 14px 16px;font-size:14px;color:#1A0800;background:#FEF8E8;width:100%;outline:none;">
+                <option value="">Selecione uma opção</option>
+                <option>Palestrante profissional</option>
+                <option>Executivo (VP / Diretor / C-level)</option>
+                <option>Acadêmico (Mestre / Doutor)</option>
+                <option>Empreendedor (Founder / Cofounder)</option>
+                <option>Coach / Psicólogo / RH</option>
+                <option>Outra</option>
+              </select>
+              <span style="position:absolute;right:16px;pointer-events:none;color:#808080;display:flex;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <label style="font-weight:700;font-size:13px;">Temos programas para diversos estágios da carreira. O que você está buscando?</label>
+            <div style="position:relative;display:flex;align-items:center;">
+              <select required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 42px 14px 16px;font-size:14px;color:#1A0800;background:#FEF8E8;width:100%;outline:none;">
+                <option value="">Selecione uma opção</option>
+                <option>Apenas conhecer o mercado de palestras de forma gratuita</option>
+                <option>Ingressar profissionalmente no mercado (até 1k)</option>
+                <option>Consolidar minha carreira de palestrante (até 5k)</option>
+                <option>Gerar mais receita com as minhas palestras (até 15k)</option>
+                <option>Consolidar como palestrante de alto impacto (+20k)</option>
+              </select>
+              <span style="position:absolute;right:16px;pointer-events:none;color:#808080;display:flex;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <label style="font-weight:700;font-size:13px;">Qual sua urgência em se desenvolver como palestrante?</label>
+            <div style="position:relative;display:flex;align-items:center;">
+              <select required="required" style="border:1px solid rgba(26,8,0,.16);border-radius:12px;padding:14px 42px 14px 16px;font-size:14px;color:#1A0800;background:#FEF8E8;width:100%;outline:none;">
+                <option value="">Selecione uma opção</option>
+                <option>Tenho urgência, quero começar o quanto antes</option>
+                <option>Quero me desenvolver ainda esse ano, mas sem pressa</option>
+                <option>Não é uma prioridade no momento</option>
+              </select>
+              <span style="position:absolute;right:16px;pointer-events:none;color:#808080;display:flex;">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:#FEF8E8;font-weight:700;font-size:14.5px;padding:6px 6px 6px 20px;border-radius:40px;border:none;cursor:pointer;width:fit-content;min-height:46px;margin-top:4px;">
+            <span>Quero minha recomendação</span>
+            <span style="width:32px;height:32px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </span>
+          </button>
+          <p style="margin:0;font-size:11.5px;line-height:1.55;color:#808080;">Seus dados são usados apenas para o contato da curadoria PSA.</p>
+        </div>
+      </sc-if>
+    </form>
+  </div>
+</section>
+
+<section data-screen-label="Como funciona" style="max-width:1160px;margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(48px,7vw,96px);order:{{ orderComoFunciona }}">
+  <sc-if value="{{ showComoFunciona }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#1A0800;color:#FEF8E8;border-radius:28px;padding:clamp(24px,4vw,52px);">
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0;margin-bottom:clamp(24px,3vw,40px);">
+        <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;">Como funciona</span>
+        <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,44px);line-height:1.04;max-width:22ch;">O que acontece depois<br>que você <span style="color:#FF640F;">responde</span></h2>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(254,248,232,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nenhuma surpresa: três passos, uma conversa de orientação e a recomendação da sua trilha.</p>
+      </div>
+      <div style="display:flex;align-items:stretch;gap:clamp(10px,1.2vw,16px);flex-wrap:wrap;">
+        <div data-reveal="1" style="flex:1 1 190px;min-width:0;background:#FEF8E8;color:#1A0800;border-radius:22px;padding:24px;min-height:clamp(280px,26vw,340px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:12px;">
+            <span style="width:38px;height:38px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 3h6v3H9z"></path><path d="M9 11h6"></path><path d="M9 15h6"></path></svg>
+            </span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#FF640F;">ETAPA 01</span>
+            <h3 style="margin:0;font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.05;min-height:2.1em;">Diagnóstico</h3>
+            <p style="margin:0;font-size:13.5px;line-height:1.55;color:#4a3a30;min-height:4.65em;">Quatro perguntas rápidas sobre onde você está hoje, o que busca e com que urgência quer evoluir.</p>
+          </div>
+        </div>
+
+        <div data-reveal="2" style="display:flex;align-items:center;justify-content:center;color:rgba(254,248,232,.45);flex:0 0 auto;padding:4px;">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </div>
+
+        <div data-reveal="3" style="flex:1 1 190px;min-width:0;background-color:#FF640F;background-image:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);color:#FEF8E8;border-radius:22px;padding:24px;min-height:clamp(280px,26vw,340px);display:flex;flex-direction:column;justify-content:space-between;gap:24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:12px;">
+            <span style="width:38px;height:38px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+            </span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:rgba(26,8,0,.7);">ETAPA 02</span>
+            <h3 style="margin:0;font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.05;min-height:2.1em;">Conversa com<br>o especialista</h3>
+            <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(254,248,232,.94);min-height:4.65em;">Um especialista PSA entende sua história e seu objetivo. É uma conversa de orientação, não uma ligação de venda.</p>
+          </div>
+        </div>
+
+        <div data-reveal="4" style="display:flex;align-items:center;justify-content:center;color:rgba(254,248,232,.45);flex:0 0 auto;padding:4px;">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"></path><path d="m13 6 6 6-6 6"></path></svg>
+        </div>
+
+        <div data-reveal="5" style="flex:1 1 190px;min-width:0;position:relative;overflow:hidden;border-radius:22px;min-height:clamp(280px,26vw,340px);background-color:#AC2102;background-image:linear-gradient(0deg,rgba(26,8,0,.82) 0%,rgba(26,8,0,.28) 45%,rgba(26,8,0,.1) 100%),repeating-linear-gradient(135deg,rgba(254,248,232,.08) 0 10px,rgba(254,248,232,.015) 10px 20px),linear-gradient(150deg,#AC2102 0%,#E23401 55%,#FD6501 100%);background-size:cover;background-position:center;color:#FEF8E8;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(254,248,232,.6);line-height:1.6;">[ FOTO · CONVERSA<br>DE DIAGNÓSTICO ]</span>
+            <span style="width:38px;height:38px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13l4 4L14 8"></path><path d="M10 15l2 2 8-9"></path></svg>
+            </span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:#FC8902;">ETAPA 03</span>
+            <h3 style="margin:0;font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.05;min-height:2.1em;">Recomendação<br>da trilha</h3>
+            <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(254,248,232,.85);min-height:4.65em;">Qual caminho seguir, com formato, duração e investimento apresentados com clareza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</section>
+
+<section id="pilares" data-screen-label="Pilares" style="max-width:1160px;margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(48px,7vw,96px);order:{{ orderPilares }}">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(22px,3vw,36px);">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;">
+      <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;display:flex;align-items:center;gap:10px;"><span style="width:7px;height:7px;border-radius:50%;background:#FF640F;"></span>Os 3 pilares</span>
+      <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,44px);line-height:1.04;max-width:24ch;">Um caminho, <span style="color:#FF640F;">três frentes</span><br>que sustentam a carreira</h2>
+    </div>
+    <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5b4c42;max-width:40ch;">Em 14 anos curando o mercado de palestras, a PSA construiu uma estrutura que funciona nas três frentes ao mesmo tempo, nunca isoladas.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+    <div data-stack="0" style="position:relative;overflow:hidden;background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:clamp(340px,30vw,420px);transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(26,8,0,.45);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1.02;max-width:9ch;">Conhecimento</h3>
+        <span style="width:42px;height:42px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s cubic-bezier(.22,.61,.36,1);">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"></path></svg>
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#4a3a30;min-height:6.4em;">Cursos online, mentorias com referências do mercado, imersões presenciais e feedback individual sobre a sua apresentação. 14 anos de bagagem da PSA condensados em aprendizado prático.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid rgba(26,8,0,.10);padding-top:14px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:#FFD4C1;color:#8a3d10;border-radius:20px;padding:6px 11px;">Imersão presencial de 3 dias</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:#FFD4C1;color:#8a3d10;border-radius:20px;padding:6px 11px;">Formação online contínua</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:#FFD4C1;color:#8a3d10;border-radius:20px;padding:6px 11px;">Mentoria em grupo e feedback individual</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-stack="1" style="position:relative;overflow:hidden;background-color:#FF640F;background-image:linear-gradient(140deg,#E23401 0%,#FD6501 60%,#FC8902 100%);color:#FEF8E8;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:clamp(340px,30vw,420px);transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -28px rgba(226,52,1,.7);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1.02;max-width:9ch;">Comunicação</h3>
+        <span style="width:42px;height:42px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s cubic-bezier(.22,.61,.36,1);">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(254,248,232,.94);min-height:6.4em;">A extensão do seu palco físico. Conteúdo estratégico que dá escala à sua mensagem, expande sua autoridade e abre novos mercados.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid rgba(254,248,232,.32);padding-top:14px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(26,8,0,.32);color:#FEF8E8;border-radius:20px;padding:6px 11px;">Vídeo de apresentação</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(26,8,0,.32);color:#FEF8E8;border-radius:20px;padding:6px 11px;">Material de autoridade</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(26,8,0,.32);color:#FEF8E8;border-radius:20px;padding:6px 11px;">Conteúdo para redes sociais</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-stack="2" style="position:relative;overflow:hidden;background:#1A0800;color:#FEF8E8;border-radius:24px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:clamp(340px,30vw,420px);transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease;" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -28px rgba(26,8,0,.75);">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(24px,2.4vw,32px);line-height:1.02;max-width:9ch;">Tecnologia</h3>
+        <span style="width:42px;height:42px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s cubic-bezier(.22,.61,.36,1);">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M12 3v4"></path><path d="M12 17v4"></path><path d="M3 12h4"></path><path d="M17 12h4"></path></svg>
+        </span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(254,248,232,.72);min-height:6.4em;">Um ecossistema inteiro em um único lugar, para você gerir sua carreira de palestrante com método, sem improviso.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid rgba(254,248,232,.20);padding-top:14px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(254,248,232,.10);color:#FFD4C1;border:1px solid rgba(254,248,232,.18);border-radius:20px;padding:6px 11px;">Gestão de oportunidades</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(254,248,232,.10);color:#FFD4C1;border:1px solid rgba(254,248,232,.18);border-radius:20px;padding:6px 11px;">Relacionamento com contratantes</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:rgba(254,248,232,.10);color:#FFD4C1;border:1px solid rgba(254,248,232,.18);border-radius:20px;padding:6px 11px;">Ferramentas de posicionamento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Transparência" style="width:100%;background:#1A0800;color:#FEF8E8;order:5;">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,8vw,110px) clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,48px);align-items:start;">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;">
+      <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;">Para ser direto com você</span>
+      <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,42px);line-height:1.04;max-width:16ch;">A PSA não vende <span style="color:#FF640F;">atalho</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+      <p style="margin:0;font-size:clamp(15px,1.3vw,17px);line-height:1.65;color:rgba(254,248,232,.78);text-wrap:pretty;">Nossas soluções vão da formação online a imersões presenciais e projetos desenhados caso a caso, e todas envolvem investimento. É isso que sustenta o nível de curadoria que a gente entrega há 14 anos.</p>
+      <p style="margin:0;font-size:clamp(15px,1.3vw,17px);line-height:1.65;color:rgba(254,248,232,.78);text-wrap:pretty;">O diagnóstico é o passo que define qual delas é a sua. Se você ainda não está em um momento de investir na carreira de palestrante, tudo bem: continue acompanhando nosso conteúdo e volte quando fizer sentido. Se está, a conversa começa aqui.</p>
+    </div>
+  </div>
+</section>
+
+<section id="perfis" data-screen-label="Perfis" style="max-width:1160px;margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(48px,7vw,96px);order:{{ orderPerfis }}">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(22px,3vw,36px);">
+    <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;display:flex;align-items:center;gap:10px;"><span style="width:7px;height:7px;border-radius:50%;background:#FF640F;"></span>Para quem é</span>
+    <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,44px);line-height:1.04;max-width:20ch;">Cada palestrante <span style="color:#FF640F;">começa de um jeito</span></h2>
+    <p style="margin:0;font-size:15px;line-height:1.6;color:#5b4c42;max-width:52ch;">Não existe um caminho único. Existe o caminho certo para a fase em que você está agora.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+    <div style="background:#1A0800;color:#FEF8E8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:16/10;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(254,248,232,.7);text-align:center;padding:12px;">[ FOTO · INICIANTE ]<br>800×500</span>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;row-gap:12px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#FC8902;">Iniciante</span>
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:24px;line-height:1.05;">Você pensa<br>em palestrar</h3>
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:rgba(254,248,232,.72);flex:1;">Já tem uma história para contar, mas ainda não subiu no palco. Aqui está o ponto de partida para entender o mercado e dar o primeiro passo com segurança: a porta de entrada do ecossistema PSA, no formato mais acessível que a gente oferece.</p>
+        <a href="#diagnostico" style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(254,248,232,.35);color:#FEF8E8;font-weight:400;font-size:11.5px;padding:6px 6px 6px 16px;border-radius:40px;min-height:44px;margin-top:10px;" style-hover="background:rgba(254,248,232,.1);">
+          <span style="white-space:nowrap;"><span style="font-weight:400;">Isso é você? </span><b style="font-weight:700;">Quero minha recomendação</b></span>
+          <span style="width:32px;height:32px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(160deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:#FEF8E8;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:16/10;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.16) 0 10px,rgba(26,8,0,.04) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:rgba(254,248,232,.9);text-align:center;padding:12px;">[ FOTO · IMERSÃO PRESENCIAL ]<br>800×500</span>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;row-gap:12px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(26,8,0,.72);">Profissionalize-se</span>
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:24px;line-height:1.05;">Você já palestra<br>de graça</h3>
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:rgba(254,248,232,.94);flex:1;">Quer transformar isso em profissão. Falta entender o mercado, precificar seu valor e comunicar sua autoridade do jeito certo. É a fase que costuma pedir imersão presencial: onde a virada acontece mais rápido.</p>
+        <a href="#diagnostico" style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#1A0800;color:#FEF8E8;font-weight:400;font-size:11.5px;padding:6px 6px 6px 16px;border-radius:40px;min-height:44px;margin-top:10px;" style-hover="background:#000;">
+          <span style="white-space:nowrap;"><span style="font-weight:400;">Isso é você? </span><b style="font-weight:700;">Quero minha recomendação</b></span>
+          <span style="width:32px;height:32px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:16/10;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;text-align:center;padding:12px;">[ FOTO · PALCO GRANDE ]<br>800×500</span>
+      </div>
+      <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;row-gap:12px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#FF640F;">Escala</span>
+        <h3 style="margin:0;font-weight:500;text-transform:uppercase;font-size:24px;line-height:1.05;">Você já<br>vive disso</h3>
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:#4a3a30;flex:1;">Ou está perto disso. Quer mais resultado, mais palco, mais reconhecimento, e uma estrutura à altura da carreira que está construindo. Aqui as soluções são desenhadas caso a caso, com escopo e acompanhamento definidos junto com você.</p>
+        <a href="#diagnostico" style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(26,8,0,.2);color:#1A0800;font-weight:400;font-size:11.5px;padding:6px 6px 6px 16px;border-radius:40px;min-height:44px;margin-top:10px;" style-hover="background:#FEF8E8;">
+          <span style="white-space:nowrap;"><span style="font-weight:400;">Isso é você? </span><b style="font-weight:700;">Quero minha recomendação</b></span>
+          <span style="width:32px;height:32px;border-radius:50%;background:#1A0800;color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA intermediário" style="width:100%;order:6;margin-bottom:clamp(48px,7vw,96px);background-color:#FD6501;background-image:url('uploads/jon-tyson-zoG585VYsV8-unsplash.jpg');background-size:cover;background-position:center;">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,6vw,84px) clamp(16px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;color:#FEF8E8;">
+    <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FEF8E8;" data-rise="0">Próximo passo</span>
+    <h2 data-rise="1" style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(28px,4vw,52px);line-height:1.03;max-width:22ch;text-wrap:balance;">Descubra qual solução da PSA é a certa para a sua fase</h2>
+    <p style="margin:0;font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:#FEF8E8;max-width:50ch;" data-rise="2">Preencha o formulário e converse com um especialista. Você sai da conversa sabendo o caminho, o formato e o investimento que o seu momento pede.</p>
+    <a href="#diagnostico" style="display:flex;align-items:center;gap:14px;background:#FEF8E8;color:#1A0800;font-weight:700;font-size:15px;padding:7px 7px 7px 24px;border-radius:40px;margin-top:6px;" style-hover="background:#FFD4C1;" data-rise="3">
+      <span>Quero minha recomendação</span>
+      <span style="width:34px;height:34px;border-radius:50%;background-color:#FD6501;background-image:linear-gradient(140deg,#AC2102 0%,#E23401 45%,#FD6501 100%);color:#FEF8E8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </span>
+    </a>
+
+    <div style="display:flex;align-items:flex-end;gap:clamp(8px,1.1vw,16px);width:100%;max-width:1240px;margin:clamp(22px,3vw,38px) auto 0;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,rgba(0,0,0,.7) 20%,#000 42%,#000 58%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.35) 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 8%,rgba(0,0,0,.7) 20%,#000 42%,#000 58%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.35) 92%,transparent 100%);">
+      <div data-fan="0" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Palco</span>
+        <div style="height:clamp(64px,7vw,96px);border-radius:10px;overflow:hidden;background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.6);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="1" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Imersão</span>
+        <div style="height:clamp(84px,9.5vw,132px);border-radius:10px;overflow:hidden;background-color:#AC2102;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.75);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="2" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Mentoria</span>
+        <div style="height:clamp(104px,12vw,166px);border-radius:10px;overflow:hidden;background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.6);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="3" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Diagnóstico</span>
+        <div style="height:clamp(122px,14.5vw,200px);border-radius:10px;overflow:hidden;background-color:#E23401;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.85);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="4" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Bastidor</span>
+        <div style="height:clamp(104px,12vw,166px);border-radius:10px;overflow:hidden;background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.6);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="5" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Plateia</span>
+        <div style="height:clamp(84px,9.5vw,132px);border-radius:10px;overflow:hidden;background-color:#AC2102;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.75);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+      <div data-fan="6" style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:rgba(254,248,232,.85);display:flex;align-items:center;gap:6px;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;border:1px solid rgba(254,248,232,.8);"></span>Rede PSA</span>
+        <div style="height:clamp(64px,7vw,96px);border-radius:10px;overflow:hidden;background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.10) 0 10px,rgba(254,248,232,.02) 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:8px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(254,248,232,.6);text-align:center;line-height:1.5;">[ FOTO ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prova" data-screen-label="Prova social" style="max-width:1160px;margin:0 auto;width:100%;padding:0 clamp(16px,4vw,40px) clamp(48px,7vw,96px);order:7;">
+  <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(22px,3vw,36px);">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;">
+      <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;display:flex;align-items:center;gap:10px;"><span style="width:7px;height:7px;border-radius:50%;background:#FF640F;"></span>Prova social</span>
+      <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(26px,3.4vw,44px);line-height:1.04;max-width:20ch;">Quem já passou<br>por aqui, <span style="color:#FF640F;">conta</span></h2>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:4px;">
+        <div style="display:flex;align-items:center;padding-left:12px;">
+          <span style="width:38px;height:38px;border-radius:50%;background-color:#1A0800;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);border:2px solid #FEF8E8;margin-left:-12px;position:relative;z-index:5;flex-shrink:0;"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background-color:#AC2102;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);border:2px solid #FEF8E8;margin-left:-12px;position:relative;z-index:4;flex-shrink:0;"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background-color:#E23401;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);border:2px solid #FEF8E8;margin-left:-12px;position:relative;z-index:3;flex-shrink:0;"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background-color:#FD6501;background-image:repeating-linear-gradient(135deg,rgba(254,248,232,.14) 0 6px,rgba(254,248,232,.03) 6px 12px);border:2px solid #FEF8E8;margin-left:-12px;position:relative;z-index:2;flex-shrink:0;"></span>
+          <span style="width:38px;height:38px;border-radius:50%;background-color:#FF640F;border:2px solid #FEF8E8;margin-left:-12px;position:relative;z-index:1;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#FEF8E8;">+300</span>
+        </div>
+        <span style="font-size:12.5px;line-height:1.4;color:#5b4c42;max-width:22ch;">palestrantes formados pela curadoria PSA</span>
+      </div>
+    </div>
+    <p style="margin:0;font-size:14.5px;line-height:1.6;color:#5b4c42;max-width:38ch;">Depoimentos reais de palestrantes atendidos pela curadoria PSA.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;">
+    <div style="background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;text-align:center;">[ VÍDEO · DEPOIMENTO 01 ]</span>
+      </div>
+      <div style="padding:18px;display:flex;flex-direction:column;gap:8px;">
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#4a3a30;">“Saí da conversa sabendo exatamente qual era o meu próximo passo.”</p>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;">Nome · atuação</span>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;text-align:center;">[ VÍDEO · DEPOIMENTO 02 ]</span>
+      </div>
+      <div style="padding:18px;display:flex;flex-direction:column;gap:8px;">
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#4a3a30;">“Em seis meses passei de palestras gratuitas para agenda paga.”</p>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;">Nome · atuação</span>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(26,8,0,.10);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="aspect-ratio:4/3;background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.07) 0 10px,rgba(26,8,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;text-align:center;">[ VÍDEO · DEPOIMENTO 03 ]</span>
+      </div>
+      <div style="padding:18px;display:flex;flex-direction:column;gap:8px;">
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#4a3a30;">“A curadoria me deu método onde eu só tinha intuição.”</p>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#808080;">Nome · atuação</span>
+      </div>
+    </div>
+    <div style="background:#1A0800;color:#FEF8E8;border-radius:20px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:200px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#FC8902;">Chancela PSA</span>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <span style="font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1;">+8.000</span>
+        <span style="font-size:13px;line-height:1.5;color:rgba(254,248,232,.72);">eventos realizados com curadoria PSA nos últimos 14 anos.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA final" style="background:#1A0800;color:#FEF8E8;order:8;">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,56px);align-items:end;">
+    <div style="display:flex;flex-direction:column;gap:16px;min-width:0;">
+      <span style="font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#FF640F;">CTA final</span>
+      <h2 style="margin:0;font-weight:500;text-transform:uppercase;font-size:clamp(28px,3.8vw,50px);line-height:1.03;max-width:20ch;">Seu próximo passo no palco começa com uma <span style="color:#FF640F;">decisão</span></h2>
+      <p style="margin:0;font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:rgba(254,248,232,.75);max-width:48ch;">Se você está pronto para investir na sua carreira de palestrante, o diagnóstico é onde ela começa a ganhar método.</p>
+      <a href="#diagnostico" style="display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:#FEF8E8;font-weight:700;font-size:15px;padding:7px 7px 7px 24px;border-radius:40px;width:fit-content;margin-top:6px;">
+        <span>Quero minha recomendação</span>
+        <span style="width:34px;height:34px;border-radius:50%;background:#FEF8E8;color:#1A0800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </span>
+      </a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;min-width:0;align-items:flex-end;text-align:right;">
+      <img src="assets/logo-white.svg" alt="PSA · The Best School" style="height:clamp(13px,1.5vw,19px);width:auto;display:block;"></img>
+      <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.7;color:rgba(254,248,232,.55);max-width:44ch;">Uma experiência PSA. 14 anos curando o mercado de palestras no Brasil. Curadoria liderada por Márcio Spagnolo.</p>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(254,248,232,.28);color:#FEF8E8;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(254,248,232,.12);color:#FEF8E8;">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(254,248,232,.28);color:#FEF8E8;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(254,248,232,.12);color:#FEF8E8;">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 10v7"></path><path d="M8 7.2v.1"></path><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showComoFunciona&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Estrutura&quot;},&quot;profilesFirst&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Estrutura&quot;}}">
+class Component extends DCLogic {
+  state = { sent: false };
+
+  componentDidMount() {
+    this._reveal = () => {
+      const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
+      if (!nodes.length) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      nodes.forEach((n) => {
+        if (n.dataset.revealReady) return;
+        n.dataset.revealReady = '1';
+        n.style.opacity = '0';
+        n.style.transform = 'translateY(26px)';
+        n.style.transition = 'opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1)';
+        n.style.transitionDelay = ((parseInt(n.dataset.reveal, 10) - 1) * 0.14) + 's';
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+      nodes.forEach((n) => io.observe(n));
+      this._io = io;
+    };
+    this._t = setTimeout(this._reveal, 60);
+    this._t2 = setTimeout(() => this._initStack(), 80);
+    this._t3 = setTimeout(() => this._initFan(), 90);
+  }
+
+  _initFan() {
+    const fans = Array.from(document.querySelectorAll('[data-fan]'));
+    const rises = Array.from(document.querySelectorAll('[data-rise]'));
+    if (!fans.length && !rises.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const all = fans.concat(rises);
+    all.forEach((n) => {
+      n.style.willChange = 'transform, opacity';
+      n.style.transition = 'transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s ease-out';
+    });
+    const mid = (fans.length - 1) / 2;
+
+    const apply = () => {
+      const sec = fans.length ? fans[0].closest('section') : rises[0].closest('section');
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      const span = Math.max(vh * 0.55, 320);
+      let p = (vh * 1.02 - r.top) / span;
+      p = Math.max(0, Math.min(1, p));
+      const e = 1 - Math.pow(1 - p, 2.2);
+      const local = (start) => Math.max(0, Math.min(1, (e - start) / (1 - start)));
+
+      rises.forEach((n) => {
+        const t = local(Number(n.dataset.rise) * 0.07);
+        n.style.opacity = String(0.12 + 0.88 * t);
+        n.style.transform = 'translateY(' + ((1 - t) * 26).toFixed(1) + 'px)';
+      });
+
+      fans.forEach((n) => {
+        const i = Number(n.dataset.fan);
+        const dist = Math.abs(i - mid);
+        const t = local(0.1 + dist * 0.07);
+        const rest = 1 - t;
+        const dir = i < mid ? 1 : (i > mid ? -1 : 0);
+        n.style.opacity = String(0.05 + 0.95 * t);
+        n.style.transform = 'translate3d(' + (dir * dist * 26 * rest).toFixed(1) + 'px,' + (rest * 40).toFixed(1) + 'px,0) scale(' + (1 - 0.14 * rest).toFixed(3) + ') rotate(' + (-dir * 2.2 * rest).toFixed(2) + 'deg)';
+      });
+    };
+
+    this._onScroll2 = () => {
+      if (this._raf2) return;
+      this._raf2 = requestAnimationFrame(() => { this._raf2 = null; apply(); });
+    };
+    window.addEventListener('scroll', this._onScroll2, { passive: true });
+    window.addEventListener('resize', this._onScroll2);
+    apply();
+  }
+
+  _initStack() {
+    const cards = Array.from(document.querySelectorAll('[data-stack]'));
+    if (!cards.length) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    cards.forEach((c) => {
+      c.style.willChange = 'transform';
+      c.style.zIndex = String(10 - Number(c.dataset.stack));
+      if (!reduce) c.style.transition = 'transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s ease-out';
+    });
+    if (reduce) return;
+
+    const apply = () => {
+      const first = cards[0];
+      const sec = first.parentElement;
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      const span = Math.max(r.height * 1.15 + vh * 0.35, 620);
+      let p = (vh * 0.94 - r.top) / span;
+      p = Math.max(0, Math.min(1, p));
+      const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      const baseLeft = first.offsetLeft;
+      const baseTop = first.offsetTop;
+      cards.forEach((c) => {
+        const i = Number(c.dataset.stack);
+        if (i === 0) { c.style.transform = 'none'; c.style.opacity = '1'; return; }
+        const dx = c.offsetLeft - baseLeft;
+        const dy = c.offsetTop - baseTop;
+        const stagger = (i - 1) * 0.16;
+        const local = Math.max(0, Math.min(1, (ease - stagger) / (1 - stagger)));
+        const rest = 1 - local;
+        const x = -dx * rest;
+        const y = -dy * rest;
+        const scale = 1 - 0.06 * i * rest;
+        const rot = -1.4 * i * rest;
+        c.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + (y * 0.85).toFixed(1) + 'px,0) scale(' + scale.toFixed(3) + ') rotate(' + rot.toFixed(2) + 'deg)';
+        c.style.opacity = String(0.5 + 0.5 * local);
+      });
+    };
+
+    this._onScroll = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => { this._raf = null; apply(); });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll);
+    apply();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._t);
+    clearTimeout(this._t2);
+    clearTimeout(this._t3);
+    if (this._onScroll2) {
+      window.removeEventListener('scroll', this._onScroll2);
+      window.removeEventListener('resize', this._onScroll2);
+    }
+    if (this._io) this._io.disconnect();
+    if (this._onScroll) {
+      window.removeEventListener('scroll', this._onScroll);
+      window.removeEventListener('resize', this._onScroll);
+    }
+  }
+  renderVals() {
+    const profilesFirst = this.props.profilesFirst ?? false;
+    return {
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      showComoFunciona: this.props.showComoFunciona ?? true,
+      orderComoFunciona: 2,
+      orderPilares: profilesFirst ? 4 : 3,
+      orderPerfis: profilesFirst ? 3 : 4,
+      onSubmit: (e) => {
+        e.preventDefault();
+        this.setState({ sent: true });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

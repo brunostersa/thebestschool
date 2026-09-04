@@ -1,0 +1,16 @@
+# Build — regerado por ./build.sh, não precisa versionar
+dist/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Configuração local da máquina (permissões do Claude Code)
+.claude/settings.local.json
+
+# Editores
+.vscode/
+.idea/
+*.swp
