@@ -303,6 +303,28 @@ select{appearance:none;-webkit-appearance:none;}
   font-family:var(--mono);font-size:11px;line-height:1.6;color:rgba(254,248,232,.5);
 }
 body.menu-aberto{overflow:hidden;}
+
+/* CTA flutuante ---------------------------------------------------------
+   Aparece só no meio da página: no hero, no formulário e no rodapé já
+   existe um CTA, e dois botões iguais na tela competem entre si.
+   O wrapper cuida da posição; o botão dentro mantém o próprio hover. */
+.cta-flutuante{
+  position:fixed;left:50%;bottom:clamp(14px,2.2vw,24px);z-index:50;
+  transform:translate(-50%,150%);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .45s var(--ease),opacity .3s ease,visibility .3s;
+  max-width:calc(100% - 2 * var(--pad-x));
+}
+.cta-flutuante.is-visible{
+  transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;
+}
+.cta-flutuante .btn{
+  box-shadow:0 16px 36px -12px rgba(26,8,0,.75),0 0 0 1px rgba(254,248,232,.12);
+  white-space:nowrap;
+}
+.cta-flutuante__curto{display:none;}
+/* Com o menu aberto, o botão sai de cena */
+body.menu-aberto .cta-flutuante{opacity:0;visibility:hidden;pointer-events:none;}
 /* O chat do HubSpot flutua acima de tudo — sai de cena com o menu aberto. */
 body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
@@ -666,7 +688,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:10.5px;color:var(--cream);
 }
-.avatars__text{font-size:12.5px;line-height:1.4;color:var(--muted);max-width:22ch;}
+.avatars__text{font-size:12.5px;line-height:1.45;color:var(--muted);max-width:44ch;text-wrap:pretty;}
 .proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px;}
 .proof__card{background:var(--white);border:1px solid var(--line-light);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;}
 .proof__media{
@@ -697,7 +719,18 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .cta-final h2{font-size:clamp(25px,3.4vw,45px);line-height:1.04;max-width:20ch;}
 .cta-final p{font-size:clamp(15px,1.3vw,17px);line-height:1.6;color:var(--on-dark-75);max-width:48ch;}
 .cta-final__brand{display:flex;flex-direction:column;gap:18px;min-width:0;align-items:flex-end;text-align:right;}
-.cta-final__brand img{width:min(280px,100%);height:auto;}
+/* Mesma composição do header, em escala maior: aqui há espaço para respirar */
+.footer-brand{
+  display:flex;align-items:center;gap:clamp(12px,1.3vw,18px);
+  flex-wrap:wrap;justify-content:flex-end;
+}
+.footer-brand > img{height:clamp(16px,1.7vw,21px);width:auto;}
+.footer-brand .powered-by{
+  padding-left:clamp(12px,1.3vw,18px);
+  border-left-color:rgba(254,248,232,.28);
+}
+.footer-brand .powered-by__text{font-size:clamp(10px,0.8vw,11.5px);color:rgba(254,248,232,.55);}
+.footer-brand .powered-by img{height:clamp(13px,1.1vw,16px);}
 .cta-final__legal{font-family:var(--mono);font-size:11px;line-height:1.7;color:rgba(254,248,232,.55);max-width:44ch;}
 .social{display:flex;align-items:center;gap:10px;}
 .social a{
@@ -774,6 +807,18 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
   /* CTA final: alinha tudo à esquerda no mobile */
   .cta-final__brand{align-items:flex-start;text-align:left;}
+  .footer-brand{justify-content:flex-start;}
+
+  /* O chat do HubSpot flutua no canto inferior direito e encostava no
+     botão. Enquanto o CTA está na tela, o chat sobe para dar passagem. */
+  .cta-flutuante{bottom:18px;}
+  .cta-flutuante .btn{font-size:12.5px;padding-left:16px;gap:10px;}
+  .cta-flutuante .btn__icon{width:28px;height:28px;}
+  .cta-flutuante__longo{display:none;}
+  .cta-flutuante__curto{display:inline;}
+  body:has(.cta-flutuante.is-visible) #hubspot-messages-iframe-container{
+    bottom:76px !important;
+  }
 
   /* Fundo do CTA em versão leve (6 KB em vez de 44 KB) */
   .cta-mid{background-image:linear-gradient(rgba(26,8,0,.35),rgba(26,8,0,.35)),url('assets/img/cta-bg-mobile.webp');}
@@ -1350,7 +1395,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
           <img src="assets/img/avatar-nelson-freitas.webp" alt="Nelson Freitas" width="200" height="273" loading="lazy" decoding="async">
           <span aria-hidden="true">+300</span>
         </div>
-        <span class="avatars__text">palestrantes formados pela curadoria PSA</span>
+        <span class="avatars__text">Grandes mentes num ecossistema completo, onde o conhecimento circula</span>
       </div>
     </div>
     <p class="section-head__aside">Depoimentos reais de palestrantes atendidos pela curadoria PSA.</p>
@@ -1390,6 +1435,17 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 
 </main>
 
+<!-- CTA flutuante: some sozinho onde já existe outro CTA na tela -->
+<div class="cta-flutuante" id="cta-flutuante">
+  <a href="#diagnostico" class="btn btn--grad" data-cta="flutuante">
+    <span class="cta-flutuante__longo">Quero minha recomendação</span>
+    <span class="cta-flutuante__curto">Fazer o diagnóstico</span>
+    <span class="btn__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+    </span>
+  </a>
+</div>
+
 <!-- ==========================================================================
      CTA FINAL / RODAPÉ
      ========================================================================== -->
@@ -1407,7 +1463,13 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
       </a>
     </div>
     <div class="cta-final__brand">
-      <img src="assets/logo-white.svg" alt="The Best School — uma experiência PSA" width="280" height="15" loading="lazy">
+      <div class="footer-brand">
+        <img src="assets/logo-school-white.svg" alt="The Best School" width="248" height="20" loading="lazy">
+        <span class="powered-by">
+          <span class="powered-by__text">Powered by</span>
+          <img src="assets/logo-psa-only-white.svg" alt="PSA" width="34" height="18" loading="lazy">
+        </span>
+      </div>
       <p class="cta-final__legal">Uma experiência PSA. 14 anos como a maior curadoria de palestras do país. Liderada por Márcio Spagnolo.</p>
       <div class="social">
         <a href="https://www.instagram.com/psa.talk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da PSA">
@@ -1776,7 +1838,38 @@ var CONFIG = {
   }
 
   /* ========================================================================
-     7. TELEFONE — máscara BR simples
+     7. CTA FLUTUANTE — visível só onde não há outro CTA na tela
+     ======================================================================== */
+  function initCtaFlutuante() {
+    var caixa = document.getElementById('cta-flutuante');
+    if (!caixa) return;
+
+    // Trechos que já trazem o próprio CTA: enquanto um deles estiver à
+    // vista, o botão flutuante fica escondido.
+    var concorrentes = ['.hero', '#diagnostico', '.cta-mid', '.cta-final']
+      .map(function (sel) { return document.querySelector(sel); })
+      .filter(Boolean);
+    if (!concorrentes.length) return;
+
+    var visiveis = new Set();
+
+    function atualiza() {
+      caixa.classList.toggle('is-visible', visiveis.size === 0);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) visiveis.add(e.target);
+        else visiveis.delete(e.target);
+      });
+      atualiza();
+    }, { threshold: 0.08 });
+
+    concorrentes.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ========================================================================
+     8. TELEFONE — máscara BR simples
      ======================================================================== */
   function initPhoneMask() {
     var input = document.getElementById('f-fone');
@@ -1794,7 +1887,7 @@ var CONFIG = {
   }
 
   /* ========================================================================
-     8. FORMULÁRIO → HubSpot Forms API
+     9. FORMULÁRIO → HubSpot Forms API
      ======================================================================== */
   function initForm() {
     var form = document.getElementById('form-diagnostico');
@@ -1959,6 +2052,7 @@ var CONFIG = {
     initHeader();
     initMenuMobile();
     initNav();
+    initCtaFlutuante();
     initPhoneMask();
     initForm();
   }

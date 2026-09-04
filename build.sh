@@ -16,7 +16,7 @@ cp .htaccess       dist/
 cp sitemap.xml     dist/
 
 # Somente os assets referenciados pela página
-cp assets/logo-white.svg       dist/assets/
+# (logo-white.svg é o lockup completo: fica fora, serve de master dos recortes)
 cp assets/logo-school-white.svg dist/assets/
 cp assets/logo-psa-only-white.svg dist/assets/
 cp assets/favicon.svg          dist/assets/
