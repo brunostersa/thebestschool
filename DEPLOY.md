@@ -151,9 +151,29 @@ foram conferidos carregando na LP:
 Nada disso deve ser copiado tag por tag para cá: quem controla é o painel
 do GTM, e duplicar geraria conversão contada duas vezes.
 
+### Página de obrigado
+
+O envio bem-sucedido leva a **`/thebestschool/inscricao-confirmada/`**, que
+confirma o recebimento, explica os próximos passos e convida a conhecer a PSA.
+
+Ela está com `noindex,nofollow`: no buscador viraria porta de entrada e
+contaria conversão de quem nunca preencheu nada. Por isso também não entra no
+`sitemap.xml`.
+
+Para voltar a exibir a confirmação dentro da própria LP, sem sair da página,
+basta esvaziar `CONFIG.redirectUrl` — o código funciona nos dois modos.
+
 ### Conversão do formulário
 
-No envio bem-sucedido a página faz um push no `dataLayer`:
+A conversão é disparada **na página de obrigado**, não na LP. Um push feito no
+mesmo instante do redirecionamento corre o risco de ser cortado antes das tags
+saírem. As respostas viajam pelo `sessionStorage`, e não pela URL.
+
+O evento só dispara quando existe o registro do envio no `sessionStorage`.
+Recarregar a página de obrigado, voltar a ela pelo histórico ou abrir a URL
+recebida de alguém **não** conta conversão. Ambos os casos foram testados.
+
+O push tem esta forma:
 
 ```js
 {
@@ -167,7 +187,9 @@ No envio bem-sucedido a página faz um push no `dataLayer`:
 ```
 
 No GTM, crie um acionador de **evento personalizado** com o nome
-`lead_diagnostico` e ligue nele as conversões de Ads e Meta. As respostas
+`lead_diagnostico` e ligue nele as conversões de Ads e Meta. Use o evento, e
+não a URL da página de obrigado, como acionador — a URL dispararia também para
+quem chega nela sem ter preenchido nada. As respostas
 seguem no evento para permitir segmentar campanha por qualidade de lead —
 **nome, e-mail e telefone não vão**, de propósito.
 

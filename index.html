@@ -1548,7 +1548,7 @@ var CONFIG = {
   },
   // Para onde mandar depois do envio. Deixe vazio ('') para exibir a
   // mensagem de sucesso na própria página, sem redirecionar.
-  redirectUrl: '',   // ex.: '/obrigado.html'
+  redirectUrl: 'inscricao-confirmada/',
   // Dispara evento no dataLayer (GTM) quando o lead é enviado.
   dataLayerEvent: 'lead_diagnostico'
 };
@@ -2012,23 +2012,33 @@ var CONFIG = {
       }
 
       function success() {
-        // Evento para o GTM disparar as conversões (Ads, Meta, GA4).
-        // Vão as respostas do diagnóstico, que servem para segmentar
-        // campanha por qualidade de lead — nunca nome, e-mail ou telefone.
-        if (CONFIG.dataLayerEvent) {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: CONFIG.dataLayerEvent,
-            diagnostico_ja_atua:   data.get('ja_atua_como_palestrante') || '',
-            diagnostico_atuacao:   data.get('atuacao_atual') || '',
-            diagnostico_objetivo:  data.get('objetivo_de_carreira') || '',
-            diagnostico_urgencia:  data.get('urgencia') || '',
-            diagnostico_rede_social: social ? 'sim' : 'nao'
-          });
-        }
+        // As respostas do diagnóstico servem para segmentar campanha por
+        // qualidade de lead. Nome, e-mail e telefone nunca entram aqui.
+        var respostas = {
+          diagnostico_ja_atua:     data.get('ja_atua_como_palestrante') || '',
+          diagnostico_atuacao:     data.get('atuacao_atual') || '',
+          diagnostico_objetivo:    data.get('objetivo_de_carreira') || '',
+          diagnostico_urgencia:    data.get('urgencia') || '',
+          diagnostico_rede_social: social ? 'sim' : 'nao'
+        };
+
+        // Indo para a página de obrigado, a conversão é disparada lá: um
+        // push feito no mesmo instante do redirecionamento corre o risco
+        // de ser cortado antes das tags saírem. As respostas viajam pelo
+        // sessionStorage para não aparecerem na URL.
         if (CONFIG.redirectUrl) {
+          try {
+            sessionStorage.setItem('tbs_lead', JSON.stringify(respostas));
+          } catch (e) { /* modo privado: a página de obrigado dispara o evento simples */ }
           window.location.href = CONFIG.redirectUrl;
           return;
+        }
+
+        // Sem redirecionamento, a conversão é disparada aqui mesmo.
+        if (CONFIG.dataLayerEvent) {
+          window.dataLayer = window.dataLayer || [];
+          respostas.event = CONFIG.dataLayerEvent;
+          window.dataLayer.push(respostas);
         }
         form.classList.add('is-sent');
         form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });

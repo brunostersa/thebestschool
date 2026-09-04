@@ -7,11 +7,12 @@ set -e
 cd "$(dirname "$0")"
 
 rm -rf dist
-mkdir -p dist/assets/img
+mkdir -p dist/assets/img dist/inscricao-confirmada
 
 # Página e configuração de servidor
 # (sem robots.txt: em subdiretório ele é ignorado — vai na raiz do domínio)
 cp index.html      dist/
+cp inscricao-confirmada/index.html dist/inscricao-confirmada/
 cp .htaccess       dist/
 cp sitemap.xml     dist/
 
