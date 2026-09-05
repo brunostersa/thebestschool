@@ -710,7 +710,63 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   aspect-ratio:4/3;background-image:var(--hatch-light);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:10.5px;color:var(--gray);text-align:center;
+  position:relative;overflow:hidden;
 }
+.proof__media img{width:100%;height:100%;object-fit:cover;}
+
+/* Card de vídeo: a capa fica na página e o Reel só é carregado no clique,
+   para o Instagram não pesar no carregamento de quem nem vai assistir. */
+.proof__video{
+  border:0;padding:0;margin:0;font:inherit;text-align:left;cursor:pointer;
+  background:var(--white);border:1px solid var(--line-light);border-radius:20px;
+  overflow:hidden;display:flex;flex-direction:column;width:100%;
+  transition:transform .3s var(--ease),box-shadow .3s ease;
+}
+.proof__video:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(26,8,0,.5);}
+.proof__video .proof__media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(26,8,0,.55) 0%,rgba(26,8,0,.05) 60%);
+}
+.proof__play{
+  position:absolute;z-index:1;
+  width:54px;height:54px;border-radius:50%;
+  background:rgba(254,248,232,.94);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s var(--ease),background-color .3s ease;
+}
+.proof__video:hover .proof__play{transform:scale(1.08);background:var(--cream);}
+.proof__rede{
+  position:absolute;z-index:1;left:12px;bottom:12px;
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  color:var(--cream);
+}
+
+/* Modal do vídeo ------------------------------------------------------- */
+.modal-video{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(26,8,0,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;padding:var(--pad-x);
+  opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s;
+}
+.modal-video.is-open{opacity:1;visibility:visible;}
+.modal-video__caixa{
+  position:relative;width:min(400px,100%);max-height:92vh;
+  display:flex;flex-direction:column;
+}
+.modal-video__frame{
+  flex:1;min-height:0;border-radius:16px;overflow:hidden;background:var(--white);
+}
+.modal-video__frame iframe{width:100%;height:min(720px,84vh);border:0;display:block;}
+.modal-video__fechar{
+  align-self:flex-end;margin-bottom:10px;
+  width:40px;height:40px;border-radius:50%;cursor:pointer;
+  background:rgba(254,248,232,.14);border:1px solid var(--line-dark);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-video__fechar:hover{background:rgba(254,248,232,.26);}
+body.modal-aberto{overflow:hidden;}
+body.modal-aberto #hubspot-messages-iframe-container{display:none !important;}
 .proof__body{padding:18px;display:flex;flex-direction:column;gap:8px;}
 .proof__body p{font-size:13.5px;line-height:1.55;color:var(--muted-2);}
 .proof__author{font-family:var(--mono);font-size:10.5px;color:var(--gray);}
@@ -1437,27 +1493,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="proof">
-    <figure class="proof__card" style="margin:0">
-      <div class="proof__media">[ VÍDEO · DEPOIMENTO 01 ]</div>
-      <figcaption class="proof__body">
-        <p>“Saí da conversa sabendo exatamente qual era o meu próximo passo.”</p>
-        <span class="proof__author">Nome · atuação</span>
-      </figcaption>
-    </figure>
-    <figure class="proof__card" style="margin:0">
-      <div class="proof__media">[ VÍDEO · DEPOIMENTO 02 ]</div>
-      <figcaption class="proof__body">
-        <p>“Em seis meses passei de palestras gratuitas para agenda paga.”</p>
-        <span class="proof__author">Nome · atuação</span>
-      </figcaption>
-    </figure>
-    <figure class="proof__card" style="margin:0">
-      <div class="proof__media">[ VÍDEO · DEPOIMENTO 03 ]</div>
-      <figcaption class="proof__body">
-        <p>“A curadoria me deu método onde eu só tinha intuição.”</p>
-        <span class="proof__author">Nome · atuação</span>
-      </figcaption>
-    </figure>
+    <button type="button" class="proof__card proof__video" data-reel="DM5_W53Sm0U"
+            aria-label="Assistir o vídeo de @psa.talk no Instagram">
+      <span class="proof__media">
+        <img src="assets/img/depoimento-1.webp" alt="" width="700" height="525" loading="lazy" decoding="async">
+        <span class="proof__play"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
+        <span class="proof__rede"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg> @psa.talk</span>
+      </span>
+    </button>
+    <button type="button" class="proof__card proof__video" data-reel="DKsZkmUS3R5"
+            aria-label="Assistir o vídeo de @psa.talk no Instagram">
+      <span class="proof__media">
+        <img src="assets/img/depoimento-2.webp" alt="" width="700" height="525" loading="lazy" decoding="async">
+        <span class="proof__play"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></span>
+        <span class="proof__rede"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg> @psa.talk</span>
+      </span>
+    </button>
     <div class="proof__stat">
       <span class="proof__stat-kicker">Chancela PSA</span>
       <div class="stack" style="gap:6px">
@@ -1469,6 +1520,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 </main>
+
+<!-- Vídeos do Instagram: o iframe só entra aqui quando alguém clica -->
+<div class="modal-video" id="modal-video" role="dialog" aria-modal="true" aria-label="Vídeo do Instagram">
+  <div class="modal-video__caixa">
+    <button type="button" class="modal-video__fechar" aria-label="Fechar vídeo">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+    </button>
+    <div class="modal-video__frame" id="modal-video-frame"></div>
+  </div>
+</div>
 
 <!-- CTA flutuante: some sozinho onde já existe outro CTA na tela -->
 <div class="cta-flutuante" id="cta-flutuante">
@@ -1904,13 +1965,68 @@ var CONFIG = {
   }
 
   /* ========================================================================
-     8. TELEFONE — máscara BR simples
+     8. VÍDEOS DO INSTAGRAM — abrem em modal, carregados só no clique
      ======================================================================== */
+  function initVideos() {
+    var modal = document.getElementById('modal-video');
+    var frame = document.getElementById('modal-video-frame');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-reel]'));
+    if (!modal || !frame || !cards.length) return;
+
+    var fechar = modal.querySelector('.modal-video__fechar');
+    var ultimoFoco = null;
+
+    function abrir(code, origem) {
+      ultimoFoco = origem;
+      // O iframe é criado agora: antes disso o Instagram não carrega nada.
+      frame.innerHTML = '<iframe src="https://www.instagram.com/reel/' + code +
+        '/embed/" title="Vídeo no Instagram" allow="autoplay; encrypted-media; picture-in-picture" ' +
+        'allowfullscreen scrolling="no"></iframe>';
+      modal.classList.add('is-open');
+      document.body.classList.add('modal-aberto');
+      fechar.focus({ preventScroll: true });
+    }
+
+    function fecharModal() {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('modal-aberto');
+      frame.innerHTML = '';   // descarrega o vídeo e interrompe o som
+      if (ultimoFoco) ultimoFoco.focus({ preventScroll: true });
+    }
+
+    cards.forEach(function (c) {
+      c.addEventListener('click', function () { abrir(c.dataset.reel, c); });
+    });
+
+    fechar.addEventListener('click', fecharModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) fecharModal();
+    });
+  }
+
+  /* ========================================================================
+     9. TELEFONE — máscara BR simples
+     ======================================================================== */
+  /* Deixa só os dígitos e descarta o código do país quando ele vem junto.
+     O preenchimento automático do navegador entrega "+55 51 99391-7801";
+     sem esta limpeza o 55 seria lido como DDD, empurrando o número inteiro
+     e derrubando os dois últimos dígitos — o campo virava (55) 51993-9178,
+     um telefone que não existe.
+     O corte só vale acima de 11 dígitos, senão quebraria o DDD 55, que é
+     de Santa Maria e região. */
+  function digitosDoTelefone(valor) {
+    var d = String(valor || '').replace(/\D/g, '');
+    if (d.length > 11 && d.indexOf('55') === 0) d = d.slice(2);
+    return d.slice(0, 11);
+  }
+
   function initPhoneMask() {
     var input = document.getElementById('f-fone');
     if (!input) return;
-    input.addEventListener('input', function () {
-      var d = input.value.replace(/\D/g, '').slice(0, 11);
+
+    function formatar() {
+      var d = digitosDoTelefone(input.value);
       var out = d;
       if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
       if (d.length > 6) {
@@ -1918,11 +2034,17 @@ var CONFIG = {
         out = '(' + d.slice(0, 2) + ') ' + d.slice(2, split) + '-' + d.slice(split);
       }
       input.value = out;
+    }
+
+    // 'change' e 'blur' cobrem preenchimentos automáticos que, em alguns
+    // navegadores, não disparam 'input'.
+    ['input', 'change', 'blur'].forEach(function (evt) {
+      input.addEventListener(evt, formatar);
     });
   }
 
   /* ========================================================================
-     9. FORMULÁRIO → HubSpot Forms API
+    10. FORMULÁRIO → HubSpot Forms API
      ======================================================================== */
   function initForm() {
     var form = document.getElementById('form-diagnostico');
@@ -1958,13 +2080,20 @@ var CONFIG = {
 
       var data = new FormData(form);
 
+      // O CRM recebe +5551993917801: formato que o HubSpot valida e que o
+      // WhatsApp aceita. Na tela o campo segue com a máscara brasileira.
+      function telefoneInternacional(valor) {
+        var d = digitosDoTelefone(valor);
+        return d ? '+55' + d : '';
+      }
+
       // Campos padrão do HubSpot. Nome e sobrenome são obrigatórios lá, por isso
       // são dois campos no formulário em vez de um "nome completo" dividido aqui.
       var baseFields = [
         { name: 'firstname', value: (data.get('firstname') || '').trim() },
         { name: 'lastname',  value: (data.get('lastname') || '').trim() },
         { name: 'email',     value: data.get('email') || '' },
-        { name: 'phone',     value: data.get('phone') || '' }
+        { name: 'phone',     value: telefoneInternacional(data.get('phone')) }
       ];
 
       // Campos do diagnóstico — dependem das propriedades da conta (ver CONFIG.fieldMap).
@@ -2109,6 +2238,7 @@ var CONFIG = {
     initMenuMobile();
     initNav();
     initCtaFlutuante();
+    initVideos();
     initPhoneMask();
     initForm();
   }
