@@ -1153,14 +1153,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
+        <!-- ATENÇÃO: o "value" de cada opção abaixo é o texto exato cadastrado
+             na propriedade do HubSpot, e o conteúdo visível é o que a pessoa lê.
+             Eles divergem de propósito: pontuação, espaços em barras, acentos e,
+             em dois campos, o texto inteiro. Editar um "value" para "arrumar" a
+             escrita faz o HubSpot descartar a resposta em silêncio — o lead entra,
+             o campo fica vazio. Para alterar, mude primeiro no HubSpot e copie o
+             valor de lá. Ver DEPLOY.md. -->
         <div class="field">
           <label for="f-atua">Você já atua como palestrante?</label>
           <div class="select">
             <select id="f-atua" name="ja_atua_como_palestrante" required>
               <option value="">Selecione uma opção</option>
-              <option>Sim, já realizo palestras remuneradas</option>
-              <option>Sim, mas apenas de forma gratuita</option>
-              <option>Não, ainda não atuo como palestrante</option>
+              <option value="Sim, já realizo palestras remuneradas.">Sim, já realizo palestras remuneradas</option>
+              <option value="Sim, mas apenas de forma gratuita.">Sim, mas apenas de forma gratuita</option>
+              <option value="Não, ainda não atuo como palestrante.">Não, ainda não atuo como palestrante</option>
             </select>
             <span class="select__chevron" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
@@ -1173,12 +1180,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="select">
             <select id="f-atuacao" name="atuacao_atual" required>
               <option value="">Selecione uma opção</option>
-              <option>Palestrante profissional</option>
-              <option>Executivo (VP / Diretor / C-level)</option>
-              <option>Acadêmico (Mestre / Doutor)</option>
-              <option>Empreendedor (Founder / Cofounder)</option>
-              <option>Coach / Psicólogo / RH</option>
-              <option>Outra</option>
+              <option value="Palestrante profissional">Palestrante profissional</option>
+              <option value="Executivo (VP/Diretor/C-level)">Executivo (VP / Diretor / C-level)</option>
+              <option value="Acadêmico (Mestre/Doutor)">Acadêmico (Mestre / Doutor)</option>
+              <option value="Empreendedor (Founder/Cofounder)">Empreendedor (Founder / Cofounder)</option>
+              <option value="Coach/Psicologo/RH">Coach / Psicólogo / RH</option>
+              <option value="Outra">Outra</option>
             </select>
             <span class="select__chevron" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
@@ -1191,11 +1198,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="select">
             <select id="f-busca" name="objetivo_de_carreira" required>
               <option value="">Selecione uma opção</option>
-              <option>Apenas conhecer o mercado de palestras de forma gratuita</option>
-              <option>Ingressar profissionalmente no mercado (até 1k)</option>
-              <option>Consolidar minha carreira de palestrante (até 5k)</option>
-              <option>Gerar mais receita com as minhas palestras (até 15k)</option>
-              <option>Consolidar como palestrante de alto impacto (+20k)</option>
+              <option value="Apenas conhecer o mercado de palestras de forma gratuita.">Apenas conhecer o mercado de palestras de forma gratuita</option>
+              <option value="Ingressar profissionalmente no mercado (investimento de até 1k)">Ingressar profissionalmente no mercado (até R$ 1.000)</option>
+              <option value="Consolidar minha carreira de palestrante (investimento de até 5k)">Consolidar minha carreira de palestrante (até R$ 5.000)</option>
+              <option value="Gerar mais receita com as minhas palestras (investimento de até 15k)">Gerar mais receita com as minhas palestras (até R$ 15.000)</option>
+              <option value="Consolidar como palestrante de alto impacto (investimento de +20k)">Consolidar como palestrante de alto impacto (acima de R$ 20.000)</option>
             </select>
             <span class="select__chevron" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
@@ -1208,9 +1215,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="select">
             <select id="f-urgencia" name="urgencia" required>
               <option value="">Selecione uma opção</option>
-              <option>Tenho urgência, quero começar o quanto antes</option>
-              <option>Quero me desenvolver ainda esse ano, mas sem pressa</option>
-              <option>Não é uma prioridade no momento</option>
+              <option value="Sim, quero começar o quanto antes!">Tenho urgência, quero começar o quanto antes</option>
+              <option value="Sim, estou planejando investir ainda este ano">Quero me desenvolver ainda esse ano, mas sem pressa</option>
+              <option value="Não, ainda não estou pronto.">Não é uma prioridade no momento</option>
             </select>
             <span class="select__chevron" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>

@@ -101,7 +101,45 @@ e cache.
         data-portal-id="49656171"></div>
    ```
 
-4. **Dois pontos de atenção neste formulário:**
+4. **As opções dos selects têm de ser idênticas às do HubSpot.** Este é o
+   erro mais fácil de cometer e o mais difícil de perceber: quando um valor
+   não bate, o HubSpot **aceita o envio e descarta aquela resposta em
+   silêncio** — o lead entra no CRM com o campo do diagnóstico vazio, e o
+   aviso só aparece no registro do contato.
+
+   Por isso, em cada `<option>` do `index.html` o `value` é o texto exato
+   cadastrado no HubSpot e o conteúdo visível é o que a pessoa lê. Eles
+   divergem de propósito:
+
+   | Na tela | Valor enviado |
+   |---|---|
+   | Sim, já realizo palestras remuneradas | `Sim, já realizo palestras remuneradas.` |
+   | Executivo (VP / Diretor / C-level) | `Executivo (VP/Diretor/C-level)` |
+   | Coach / Psicólogo / RH | `Coach/Psicologo/RH` |
+   | Ingressar profissionalmente no mercado (até R$ 1.000) | `Ingressar profissionalmente no mercado (investimento de até 1k)` |
+   | Tenho urgência, quero começar o quanto antes | `Sim, quero começar o quanto antes!` |
+   | Não é uma prioridade no momento | `Não, ainda não estou pronto.` |
+
+   **Nunca edite um `value` para corrigir a escrita.** Se precisar mudar,
+   altere primeiro no HubSpot e copie o valor de lá.
+
+   O `./build.sh` confere isso a cada build e **interrompe** se algo divergir.
+   A lista de referência está em `validar-opcoes.py`.
+
+   Para obter os valores atuais quando o formulário mudar, carregue o embed
+   numa página em branco e leia a definição no console:
+
+   ```js
+   const sc=[...document.querySelectorAll('script')].find(s=>s.textContent.includes('dropdownSelect'));
+   let t=sc.textContent.split('\\u002F').join('/').split('\\"').join('"');
+   t.split('"type":"dropdownSelect"').slice(0,-1).forEach(b=>{
+     const p=(b.match(/"propertyReference":"0-1\/([a-z0-9_]+)"/g)||[]).pop();
+     const o=(b.match(/"options":\[[\s\S]*?\],"placeholder"/g)||[]).pop();
+     if(p&&o) console.log(p, [...o.matchAll(/"value":"((?:[^"\\]|\\.)*)"/g)].map(m=>m[1]));
+   });
+   ```
+
+5. **Dois pontos de atenção neste formulário:**
 
    - **O redirect aponta para outra campanha.** O formulário está configurado
      para redirecionar a `profissionaissa.com.br/the-best-weekend/inscricao-confirmada/`.
@@ -116,7 +154,7 @@ e cache.
      As respostas da LP foram aceitas pela API, mas confira no CRM se elas
      aparecem como opção válida — ou alinhe a pergunta com a propriedade.
 
-5. **HTTPS e www.** Não configure aqui — quem cuida disso é o `.htaccess` da
+6. **HTTPS e www.** Não configure aqui — quem cuida disso é o `.htaccess` da
    raiz de `profissionaissa.com.br`. Duplicar geraria redirecionamento em
    cadeia.
 

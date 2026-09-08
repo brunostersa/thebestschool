@@ -6,6 +6,16 @@
 set -e
 cd "$(dirname "$0")"
 
+# As opções dos selects precisam bater com as do HubSpot, senão o lead entra
+# com os campos do diagnóstico vazios. Avisa e interrompe se divergirem.
+echo "Conferindo o formulário:"
+python3 "$(dirname "$0")/validar-opcoes.py" || {
+  echo ""
+  echo "Build interrompido: acerte as opções antes de publicar."
+  exit 1
+}
+echo ""
+
 rm -rf dist
 mkdir -p dist/assets/img dist/inscricao-confirmada
 
