@@ -47,6 +47,22 @@ public_html/
 
 Não envie a pasta `dist` em si — envie o que está dentro dela.
 
+### Ou enviando a pasta do projeto inteira
+
+Funciona: o `index.html` e a `inscricao-confirmada/` na raiz do projeto são os
+mesmos que a `dist/` recebe. O `.htaccess` bloqueia com 403 o que é só de
+trabalho — `dist/`, `uploads/`, `.git/`, `.claude/`, os `.md`, `.sh`, `.py`, o
+`support.js` e o arquivo `.dc.html` do canvas. Testado com o Apache: os seis
+caminhos públicos respondem 200 e os doze bloqueados, 403.
+
+Duas ressalvas: são cerca de **40 MB** em vez de 850 KB (só o `.git` tem 17 MB
+e o `uploads/`, 16 MB), e o bloqueio depende de o servidor honrar o
+`.htaccess`. Se o cliente de FTP esconder arquivos com ponto e o `.htaccess`
+não subir, tudo isso fica exposto — inclusive uma segunda cópia da página em
+`/dist/`, que o Google poderia indexar como conteúdo duplicado.
+
+Por isso a `dist/` continua sendo o caminho recomendado.
+
 Confira que o cliente de FTP está enviando **arquivos ocultos** — o
 `.htaccess` começa com ponto e vários clientes o escondem por padrão.
 Ele é o que garante a barra final da URL (ver abaixo), além de compressão

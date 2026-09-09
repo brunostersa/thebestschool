@@ -60,3 +60,33 @@
 # --- Diretório ----------------------------------------------------------
 DirectoryIndex index.html
 Options -Indexes
+
+# --- Bloqueio do que é só de trabalho -----------------------------------
+# Vale quando a pasta do projeto é enviada inteira, em vez de apenas a dist/.
+# Sem isto ficariam acessíveis: uma segunda cópia da página em /dist/, o
+# arquivo de design do canvas (que abre quebrado e é indexável), 16 MB de
+# material de referência em /uploads/ e o histórico do Git.
+
+# Arquivos de projeto: documentação, scripts e o design do canvas
+<FilesMatch "(\.(md|py|sh|json|dc\.html)|^support\.js|^\.DS_Store)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Pastas de trabalho
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(dist|uploads|_fotos-psa|\.git|\.claude)(/|$) - [F,L]
+</IfModule>
+
+# Reforço: sem os módulos acima, ao menos não indexa
+<IfModule mod_headers.c>
+  <FilesMatch "\.(md|py|sh|dc\.html)$">
+    Header set X-Robots-Tag "noindex, nofollow"
+  </FilesMatch>
+</IfModule>
