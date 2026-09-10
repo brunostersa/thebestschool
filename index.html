@@ -436,25 +436,34 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .phase__meta{display:flex;flex-direction:column;gap:2px;}
 .phase__num{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);}
 .phase__name{font-weight:700;font-size:13px;}
-.phase--1{width:32%;z-index:1;margin-top:clamp(56px,7vw,96px);}
+/* Quatro fases em progressão. As larguras somam 100% descontando as três
+   sobreposições de -8%: 24+28+33+39-24 = 100. As alturas crescem junto,
+   porque é a escada que conta a evolução de carreira. */
+.phase--1{width:24%;z-index:1;margin-top:clamp(72px,9vw,124px);}
 .phase--1 .phase__box{
-  height:clamp(120px,15vw,200px);background-color:var(--peach);
+  height:clamp(96px,12vw,170px);background-color:var(--peach);
   background-image:var(--hatch-light);color:var(--peach-ink);
 }
-.phase--2{width:36%;z-index:2;margin-left:-6%;margin-top:clamp(28px,3.5vw,48px);}
+.phase--2{width:28%;z-index:2;margin-left:-8%;margin-top:clamp(48px,6vw,84px);}
 .phase--2 .phase__box{
-  height:clamp(160px,20vw,265px);box-shadow:-14px 0 30px -18px rgba(26,8,0,.45);
+  height:clamp(124px,15.5vw,222px);box-shadow:-14px 0 30px -18px rgba(26,8,0,.45);
   background-color:var(--orange-dark);
   background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.14) 0 10px,rgba(26,8,0,.03) 10px 20px),var(--grad-150);
   color:rgba(254,248,232,.95);
 }
-.phase--2 .phase__meta{padding-left:17%;}
-.phase--3{width:44%;z-index:3;margin-left:-6%;}
+.phase--3{width:33%;z-index:3;margin-left:-8%;margin-top:clamp(24px,3vw,42px);}
 .phase--3 .phase__box{
-  height:clamp(200px,26vw,340px);box-shadow:-16px 0 34px -18px rgba(26,8,0,.5);
+  height:clamp(160px,20vw,282px);box-shadow:-16px 0 34px -18px rgba(26,8,0,.5);
   background-color:var(--ink);background-image:var(--hatch-dark);color:var(--on-dark-75);
 }
-.phase--3 .phase__meta{padding-left:14%;}
+.phase--4{width:39%;z-index:4;margin-left:-8%;}
+.phase--4 .phase__box{
+  height:clamp(196px,25vw,340px);box-shadow:-18px 0 38px -18px rgba(26,8,0,.55);
+  background-color:var(--orange-deep);background-image:var(--hatch-dark);color:var(--on-dark-75);
+}
+.phase--2 .phase__meta{padding-left:14%;}
+.phase--3 .phase__meta{padding-left:12%;}
+.phase--4 .phase__meta{padding-left:10%;}
 .phase{position:relative;}
 
 /* Formulário */
@@ -589,10 +598,17 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
    PERFIS
    ========================================================================== */
 .profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px;}
+/* Com quatro perfis, 2x2 em vez de quatro colunas estreitas: os textos são
+   longos e em ~275px os títulos quebrariam em quatro linhas. */
+@media (min-width:768px){
+  .profiles{grid-template-columns:repeat(2,1fr);}
+}
 .profile{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;}
 .profile--dark{background:var(--ink);color:var(--cream);}
 .profile--grad{background:linear-gradient(160deg,#E23401 0%,#FD6501 55%,#FC8902 100%);color:var(--cream);}
 .profile--light{background:var(--white);border:1px solid var(--line-light);}
+/* PSA.First: o nível mais alto, no tom escuro da marca com borda cálida */
+.profile--first{background:var(--ink);color:var(--cream);border:1px solid rgba(255,100,15,.42);}
 .profile__media{
   aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-size:10.5px;text-align:center;padding:12px;
@@ -603,16 +619,19 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .profile--dark .profile__media{background-image:var(--hatch-dark);color:var(--on-dark-72);}
 .profile--grad .profile__media{background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.16) 0 10px,rgba(26,8,0,.04) 10px 20px);color:rgba(254,248,232,.9);}
 .profile--light .profile__media{background-image:var(--hatch-light);color:var(--gray);}
+.profile--first .profile__media{background-image:var(--hatch-dark);color:var(--on-dark-72);}
 .profile__body{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1;}
 .profile__kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;}
 .profile--dark .profile__kicker{color:var(--orange-light);}
 .profile--grad .profile__kicker{color:rgba(26,8,0,.72);}
 .profile--light .profile__kicker{color:var(--orange);}
+.profile--first .profile__kicker{color:var(--orange-light);}
 .profile h3{font-weight:500;text-transform:uppercase;font-size:22px;line-height:1.06;text-wrap:balance;}
 .profile p{font-size:13.5px;line-height:1.6;flex:1;}
 .profile--dark p{color:var(--on-dark-72);}
 .profile--grad p{color:rgba(254,248,232,.94);}
 .profile--light p{color:var(--muted-2);}
+.profile--first p{color:var(--on-dark-72);}
 .profile__cta{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   font-weight:400;font-size:11.5px;padding:6px 6px 6px 16px;border-radius:40px;
@@ -630,6 +649,9 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .profile--light .profile__cta{border:1px solid rgba(26,8,0,.2);color:var(--ink);}
 .profile--light .profile__cta:hover{background:var(--cream);color:var(--ink);}
 .profile--light .profile__cta .btn__icon{background:var(--ink);color:var(--cream);}
+.profile--first .profile__cta{background-image:var(--grad);color:var(--cream);}
+.profile--first .profile__cta:hover{color:var(--cream);filter:brightness(1.08);}
+.profile--first .profile__cta .btn__icon{background:var(--cream);color:var(--ink);}
 
 /* ==========================================================================
    TRANSPARÊNCIA
@@ -647,15 +669,31 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
    CTA INTERMEDIÁRIO
    ========================================================================== */
 .cta-mid{
+  position:relative;
   width:100%;margin-bottom:var(--section-y);
   background-color:var(--orange-mid);
-  background-image:linear-gradient(rgba(26,8,0,.35),rgba(26,8,0,.35)),url('assets/img/cta-bg.webp');
+  background-image:url('assets/img/cta-bg.webp');
   background-size:cover;background-position:center;
 }
 .cta-mid__inner{
+  position:relative;
   padding-block:clamp(48px,6vw,84px);
   display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;color:var(--cream);
 }
+/* Véu atrás do texto, para o creme não sumir no laranja claro (dava 2,4:1).
+   Cobre a seção inteira e o raio para em 46% da largura, de modo que o
+   gradiente já é transparente ao encontrar as bordas — um véu mais estreito
+   que a seção deixava um retângulo escuro visível sobre o fundo. */
+.cta-mid::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 46% 56% at 50% 30%,
+    rgba(26,8,0,.60) 0%,rgba(26,8,0,.34) 48%,rgba(26,8,0,0) 100%);
+}
+.cta-mid > *{position:relative;z-index:1;}
+/* Reforço de leitura, para o véu poder ser mais discreto */
+.cta-mid .eyebrow,
+.cta-mid h2,
+.cta-mid__inner > p{text-shadow:0 1px 10px rgba(26,8,0,.55),0 1px 2px rgba(26,8,0,.4);}
 .cta-mid h2{font-size:clamp(25px,3.6vw,47px);line-height:1.04;max-width:22ch;}
 .cta-mid p{font-size:clamp(15px,1.3vw,17px);line-height:1.6;max-width:50ch;}
 .cta-mid .eyebrow{color:var(--cream);}
@@ -905,7 +943,7 @@ body.modal-aberto #hubspot-messages-iframe-container{display:none !important;}
   }
 
   /* Fundo do CTA em versão leve (6 KB em vez de 44 KB) */
-  .cta-mid{background-image:linear-gradient(rgba(26,8,0,.35),rgba(26,8,0,.35)),url('assets/img/cta-bg-mobile.webp');}
+  .cta-mid{background-image:url('assets/img/cta-bg-mobile.webp');}
 
   /* Leque de 7 fotos vira 3 — 7 colunas em 360px é ilegível */
   .fan{gap:8px;-webkit-mask-image:none;mask-image:none;}
@@ -1114,6 +1152,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="phase__meta">
             <span class="phase__num">Fase 03</span>
             <span class="phase__name">Escala</span>
+          </div>
+        </div>
+        <div class="phase phase--4">
+          <div class="phase__box"><img src="assets/img/fase-4.webp" alt="" width="600" height="400" loading="lazy" decoding="async"></div>
+          <div class="phase__meta">
+            <span class="phase__num">Fase 04</span>
+            <span class="phase__name">PSA.First</span>
           </div>
         </div>
       </div>
@@ -1424,6 +1469,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Você já<br>vive disso</h3>
         <p>Ou está perto disso. Quer mais resultado, mais palco, mais reconhecimento, e uma estrutura à altura da carreira que está construindo. Aqui as soluções são desenhadas caso a caso, com escopo e acompanhamento definidos junto com você.</p>
         <a href="#diagnostico" class="profile__cta" data-cta="perfil-escala">
+          <span>Esse é meu momento! <b>Quero minha recomendação</b></span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+    </article>
+    <article class="profile profile--first">
+      <div class="profile__media"><img src="assets/img/perfil-first.webp" alt="Auditório cheio durante palestra em evento da PSA" width="800" height="500" loading="lazy" decoding="async"></div>
+      <div class="profile__body">
+        <span class="profile__kicker">PSA.First</span>
+        <h3>Você mira<br>o topo</h3>
+        <p>Você já está no mercado e quer aplicar as mesmas estratégias dos maiores nomes da PSA. Aqui você acessa os bastidores de posicionamento e estrutura dos talentos exclusivos escalados pela empresa, um conteúdo construído a partir dos feedbacks reais que o CEO da PSA aplica nas palestras desses profissionais e das respostas estratégicas de suas mentorias.</p>
+        <a href="#diagnostico" class="profile__cta" data-cta="perfil-first">
           <span>Esse é meu momento! <b>Quero minha recomendação</b></span>
           <span class="btn__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
