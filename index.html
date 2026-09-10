@@ -412,6 +412,8 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .diagnostico__grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
   gap:clamp(24px,4vw,56px);align-items:start;
+  /* referência para o @container dos rótulos das fases */
+  container-type:inline-size;
 }
 .diagnostico__copy{display:flex;flex-direction:column;gap:16px;min-width:0;}
 .diagnostico h2{max-width:18ch;}
@@ -424,7 +426,7 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 .note b{color:var(--ink);}
 
 /* Colagem de fases */
-.phases{display:flex;align-items:flex-start;margin-top:clamp(12px,2vw,24px);width:100%;}
+.phases{display:flex;align-items:flex-end;margin-top:clamp(12px,2vw,24px);width:100%;}
 .phase{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;min-width:0;}
 .phase__box{
   border-radius:14px;overflow:hidden;
@@ -433,25 +435,25 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
 }
 .phase__box:has(img){padding:0;}
 .phase__box img{width:100%;height:100%;object-fit:cover;}
-.phase__meta{display:flex;flex-direction:column;gap:2px;}
+.phase__meta{display:flex;flex-direction:column;gap:2px;min-height:3.1em;}
 .phase__num{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);}
 .phase__name{font-weight:700;font-size:13px;}
 /* Quatro fases em progressão. As larguras somam 100% descontando as três
    sobreposições de -8%: 24+28+33+39-24 = 100. As alturas crescem junto,
    porque é a escada que conta a evolução de carreira. */
-.phase--1{width:24%;z-index:1;margin-top:clamp(72px,9vw,124px);}
+.phase--1{width:24%;z-index:1;}
 .phase--1 .phase__box{
   height:clamp(96px,12vw,170px);background-color:var(--peach);
   background-image:var(--hatch-light);color:var(--peach-ink);
 }
-.phase--2{width:28%;z-index:2;margin-left:-8%;margin-top:clamp(48px,6vw,84px);}
+.phase--2{width:28%;z-index:2;margin-left:-8%;}
 .phase--2 .phase__box{
   height:clamp(124px,15.5vw,222px);box-shadow:-14px 0 30px -18px rgba(26,8,0,.45);
   background-color:var(--orange-dark);
   background-image:repeating-linear-gradient(135deg,rgba(26,8,0,.14) 0 10px,rgba(26,8,0,.03) 10px 20px),var(--grad-150);
   color:rgba(254,248,232,.95);
 }
-.phase--3{width:33%;z-index:3;margin-left:-8%;margin-top:clamp(24px,3vw,42px);}
+.phase--3{width:33%;z-index:3;margin-left:-8%;}
 .phase--3 .phase__box{
   height:clamp(160px,20vw,282px);box-shadow:-16px 0 34px -18px rgba(26,8,0,.5);
   background-color:var(--ink);background-image:var(--hatch-dark);color:var(--on-dark-75);
@@ -462,7 +464,9 @@ body.menu-aberto #hubspot-messages-iframe-container{display:none !important;}
   background-color:var(--orange-deep);background-image:var(--hatch-dark);color:var(--on-dark-75);
 }
 .phase--2 .phase__meta{padding-left:14%;}
-.phase--3 .phase__meta{padding-left:12%;}
+/* Recuo maior no terceiro rótulo: com quatro fases, "Profissionalize-se"
+   avança sobre onde "Escala" começava. */
+.phase--3 .phase__meta{padding-left:21%;}
 .phase--4 .phase__meta{padding-left:10%;}
 .phase{position:relative;}
 
@@ -854,6 +858,29 @@ body.modal-aberto #hubspot-messages-iframe-container{display:none !important;}
 }
 .cta-final__policy:hover{color:var(--cream);}
 
+
+/* Rótulos das fases em coluna estreita ------------------------------------
+   A escada se mantém, mas o vão de cada rótulo encolhe junto com a coluna.
+   Medido: com coluna de 452px os rótulos colidem, com 512px não — e a
+   coluna é ~48% deste grid. Por isso a régua é o container, não a janela:
+   em 768px a coluna já tem largura de celular, embora a tela não tenha. */
+@container (max-width:1040px){
+  .phases{margin-top:10px;}
+  .phase__num{font-size:8.5px;}
+  .phase__name{font-size:10px;line-height:1.2;}
+  .phase__meta{padding-right:4px;}
+  .phases .phase--1 .phase__meta{padding-left:0;max-width:66%;}
+  .phases .phase--2 .phase__meta{padding-left:0;max-width:74%;}
+  /* "Profissionalize-" é indivisível e ocupa mais que o vão disponível;
+     deslocar os dois rótulos seguintes abre espaço sem encolher a fonte. */
+  .phases .phase--3 .phase__meta{padding-left:24%;max-width:76%;}
+  .phases .phase--4 .phase__meta{padding-left:14%;max-width:86%;}
+  .phases .phase--1 .phase__box{height:clamp(104px,13vw,150px);}
+  .phases .phase--2 .phase__box{height:clamp(140px,17vw,200px);}
+  .phases .phase--3 .phase__box{height:clamp(176px,21vw,250px);}
+  .phases .phase--4 .phase__box{height:clamp(212px,26vw,300px);}
+}
+
 /* ==========================================================================
    RESPONSIVO — correções sobre o design de canvas
    ========================================================================== */
@@ -903,18 +930,6 @@ body.modal-aberto #hubspot-messages-iframe-container{display:none !important;}
   #form-diagnostico{order:4;}
   .diagnostico .note{order:5;margin-top:8px;}
   .diagnostico .phases{order:6;}
-
-  /* Colagem de fases: proporção maior para não virar tarja.
-     Sem recuo nos rótulos — em 375px o texto invadia o card seguinte. */
-  .phases{margin-top:8px;}
-  .phase--2 .phase__meta,
-  .phase--3 .phase__meta{padding-left:0;}
-  .phase__meta{padding-right:6px;}
-  .phase__num{font-size:9px;}
-  .phase__name{font-size:11px;line-height:1.25;}
-  .phase--1 .phase__box{height:clamp(96px,26vw,140px);}
-  .phase--2 .phase__box{height:clamp(120px,32vw,180px);}
-  .phase--3 .phase__box{height:clamp(146px,40vw,220px);}
 
   /* Etapas: uma embaixo da outra, altura livre */
   .step{min-height:0;flex:1 1 100%;}
