@@ -40,6 +40,7 @@ LP The Best School.dc.html    design original (Claude Design)
 build.sh                      monta a dist/ para o FTP
 .htaccess                     gzip, cache e barra final (Apache)
 DEPLOY.md                     guia de publicação
+aula-perspectiva-unica/       LP Perspectiva Única, embed para o Elementor (ver README próprio)
 ```
 
 ## Formulário

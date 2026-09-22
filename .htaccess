@@ -81,7 +81,7 @@ Options -Indexes
 # Pastas de trabalho
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^(dist|uploads|_fotos-psa|\.git|\.claude)(/|$) - [F,L]
+  RewriteRule ^(dist|uploads|_fotos-psa|aula-perspectiva-unica|\.git|\.claude)(/|$) - [F,L]
 </IfModule>
 
 # Reforço: sem os módulos acima, ao menos não indexa

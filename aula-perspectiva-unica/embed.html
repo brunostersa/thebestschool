@@ -1,0 +1,1136 @@
+<!-- ==========================================================================
+     LP PERSPECTIVA ÚNICA — embed para Elementor (widget HTML)
+     The Best School · PSA
+
+     Cole este arquivo INTEIRO num widget HTML do Elementor, numa página com
+     o template "Elementor Canvas" (sem header e footer do tema).
+     Passo a passo e cuidados: aula-perspectiva-unica/README.md
+
+     - Todo o CSS começa com #psa-pu: o tema e o Elementor não conseguem
+       sobrescrever, e nada daqui vaza para o resto do site.
+     - O GTM NÃO está aqui: o site já carrega o GTM-W8F8SBJ6. Repetir aqui
+       contaria cada conversão duas vezes.
+     - As imagens apontam para /wp-content/uploads/2026/09/. Se forem
+       enviadas em outro mês, troque esse caminho em todo o arquivo.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ==========================================================================
+   TOKENS — os mesmos da LP The Best School, presos ao #psa-pu
+   ========================================================================== */
+#psa-pu{
+  --ink:#1A0800;
+  --cream:#FEF8E8;
+  --white:#fff;
+  --orange:#FF640F;
+  --orange-deep:#AC2102;
+  --orange-dark:#E23401;
+  --orange-mid:#FD6501;
+  --peach:#FFD4C1;
+  --muted:#5b4c42;
+  --muted-2:#4a3a30;
+  --gray:#808080;
+  --on-dark-90:rgba(254,248,232,.9);
+  --on-dark-75:rgba(254,248,232,.75);
+  --on-dark-60:rgba(254,248,232,.6);
+  --line-dark:rgba(254,248,232,.22);
+  --line-light:rgba(26,8,0,.10);
+  --grad:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);
+  --grad-150:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);
+  --maxw:1160px;
+  --pad-x:clamp(16px,4vw,40px);
+  --section-y:clamp(48px,7vw,96px);
+  --font:'Satoshi',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ==========================================================================
+   BASE — neutraliza o que o tema aplica em elementos soltos
+   ========================================================================== */
+#psa-pu{
+  position:relative;width:100%;overflow:hidden;
+  background:var(--cream);color:var(--ink);
+  font-family:var(--font);font-size:16px;font-weight:400;line-height:1.5;
+  text-align:left;letter-spacing:normal;
+  -webkit-font-smoothing:antialiased;
+}
+#psa-pu *,#psa-pu *::before,#psa-pu *::after{box-sizing:border-box;}
+#psa-pu h1,#psa-pu h2,#psa-pu h3,#psa-pu p,#psa-pu figure{margin:0;padding:0;font-family:var(--font);color:inherit;letter-spacing:normal;}
+#psa-pu img,#psa-pu svg{display:block;max-width:100%;border:0;border-radius:0;box-shadow:none;}
+#psa-pu img{height:auto;}
+#psa-pu a{color:var(--orange);text-decoration:none;box-shadow:none;}
+#psa-pu a:hover{color:var(--orange-dark);}
+#psa-pu strong,#psa-pu b{font-weight:700;}
+#psa-pu fieldset{border:0;margin:0;padding:0;min-width:0;}
+#psa-pu legend{padding:0;float:left;width:100%;}
+#psa-pu legend + *{clear:both;}
+#psa-pu input,#psa-pu button{font-family:inherit;margin:0;}
+#psa-pu [hidden]{display:none !important;}
+#psa-pu :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+#psa-pu .pu-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+#psa-pu .pu-wrap{max-width:var(--maxw);margin:0 auto;width:100%;padding-inline:var(--pad-x);}
+#psa-pu .pu-stack{display:flex;flex-direction:column;}
+
+#psa-pu .pu-eyebrow{
+  font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;
+  color:var(--orange);display:flex;align-items:center;gap:10px;
+}
+#psa-pu .pu-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+#psa-pu .pu-h2{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(24px,3.05vw,40px);line-height:1.04;text-wrap:balance;
+}
+#psa-pu .pu-h2 em{font-style:normal;color:var(--orange);}
+
+/* Botões ------------------------------------------------------------------ */
+#psa-pu .pu-btn{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--font);font-weight:700;font-size:13.5px;line-height:1.2;text-transform:none;
+  padding:6px 6px 6px 20px;border-radius:40px;border:0;cursor:pointer;
+  width:fit-content;max-width:100%;min-height:42px;text-align:left;
+  box-shadow:none;text-decoration:none;
+  transition:background-color .25s var(--ease),transform .25s var(--ease),opacity .2s ease;
+}
+#psa-pu .pu-btn__icon{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+#psa-pu .pu-btn--cream{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-btn--cream:hover{background:var(--peach);color:var(--ink);}
+#psa-pu .pu-btn--cream .pu-btn__icon{background:var(--ink);color:var(--cream);}
+#psa-pu .pu-btn--grad{background-color:var(--orange-mid);background-image:var(--grad);color:var(--cream);}
+#psa-pu .pu-btn--grad:hover{color:var(--cream);transform:translateY(-2px);}
+#psa-pu .pu-btn--grad .pu-btn__icon{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-btn--lg{font-size:15px;padding:7px 7px 7px 24px;min-height:48px;}
+#psa-pu .pu-btn--lg .pu-btn__icon{width:34px;height:34px;}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+#psa-pu .pu-header{position:absolute;top:0;left:0;right:0;z-index:5;padding-inline:var(--pad-x);}
+#psa-pu .pu-header__inner{
+  max-width:var(--maxw);margin:0 auto;padding-block:clamp(18px,2.2vw,28px);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+#psa-pu .pu-brand{display:flex;align-items:center;gap:clamp(10px,1.1vw,16px);min-width:0;color:var(--cream);}
+#psa-pu .pu-brand__school{height:clamp(14px,1.4vw,18px);width:auto;}
+#psa-pu .pu-powered{
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+  padding-left:clamp(10px,1.1vw,16px);border-left:1px solid var(--line-dark);
+}
+#psa-pu .pu-powered__text{font-size:clamp(9.5px,.72vw,10.5px);font-weight:500;letter-spacing:.02em;color:rgba(254,248,232,.62);}
+#psa-pu .pu-powered svg{height:clamp(11px,.95vw,13px);width:auto;opacity:.9;}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+#psa-pu .pu-hero{
+  position:relative;overflow:hidden;background-color:var(--ink);color:var(--cream);
+  padding:clamp(112px,10vw,140px) var(--pad-x) clamp(48px,6vw,80px);
+}
+#psa-pu .pu-hero__bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
+#psa-pu .pu-hero__bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:60% center;}
+/* Escurece o lado do texto: a luz do palco fica atrás da copy */
+#psa-pu .pu-hero__bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(26,8,0,.94) 0%,rgba(26,8,0,.78) 42%,rgba(26,8,0,.25) 100%);
+}
+#psa-pu .pu-hero__grid{
+  position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;width:100%;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);
+  gap:clamp(24px,4vw,56px);align-items:center;
+}
+#psa-pu .pu-hero__copy{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:40rem;}
+#psa-pu .pu-hero__tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;
+  border:1px solid rgba(254,248,232,.5);border-radius:20px;padding:5px 12px;width:fit-content;
+}
+#psa-pu .pu-hero h1{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(28px,3.6vw,48px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance;
+}
+#psa-pu .pu-hero h1 em{font-style:normal;color:var(--orange-mid);}
+#psa-pu .pu-hero__sub{font-size:clamp(15px,1.15vw,17px);line-height:1.6;color:var(--on-dark-90);max-width:36rem;text-wrap:pretty;}
+#psa-pu .pu-hero__sub strong{color:var(--cream);}
+#psa-pu .pu-hero__copy .pu-btn{margin-top:6px;}
+
+/* Card da aula: a "capa" do vídeo que o formulário libera */
+#psa-pu .pu-aula{
+  background:var(--cream);color:var(--ink);border-radius:18px;padding:16px;
+  display:flex;flex-direction:column;gap:12px;width:min(300px,100%);
+}
+#psa-pu .pu-aula__label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;
+  color:var(--orange);display:flex;align-items:center;gap:7px;
+}
+#psa-pu .pu-aula__label::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+#psa-pu .pu-aula__capa{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--ink);}
+#psa-pu .pu-aula__capa img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 30%;}
+#psa-pu .pu-aula__capa::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(26,8,0,0) 45%,rgba(26,8,0,.7) 100%);
+}
+#psa-pu .pu-aula__play{
+  position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(254,248,232,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(254,248,232,.4);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+}
+#psa-pu .pu-aula__lock{
+  position:absolute;z-index:1;left:12px;bottom:12px;right:12px;
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--cream);
+}
+#psa-pu .pu-aula__nome{font-weight:700;font-size:14px;line-height:1.3;}
+#psa-pu .pu-aula__cargo{font-size:12px;line-height:1.45;color:var(--muted);}
+
+/* ==========================================================================
+   FORMULÁRIO
+   ========================================================================== */
+#psa-pu .pu-form-section{padding-block:var(--section-y);scroll-margin-top:24px;}
+#psa-pu .pu-form-grid{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(24px,4vw,64px);align-items:start;
+}
+#psa-pu .pu-form-copy{display:flex;flex-direction:column;gap:16px;min-width:0;position:sticky;top:32px;}
+#psa-pu .pu-form-copy .pu-h2{max-width:16ch;}
+#psa-pu .pu-form-copy__txt{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:44ch;text-wrap:pretty;}
+#psa-pu .pu-form-copy__txt strong{color:var(--ink);}
+#psa-pu .pu-pilares{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+#psa-pu .pu-pilares span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;
+  border:1px solid rgba(26,8,0,.18);border-radius:20px;padding:6px 12px;color:var(--muted-2);
+}
+#psa-pu .pu-note{
+  border-left:3px solid var(--orange);background:rgba(255,100,15,.07);
+  border-radius:0 12px 12px 0;padding:16px 20px;max-width:44ch;
+  font-size:14px;line-height:1.6;color:var(--muted-2);
+}
+#psa-pu .pu-note b{color:var(--ink);}
+
+#psa-pu .pu-card{
+  background:var(--white);border:1px solid var(--line-light);border-radius:24px;
+  padding:clamp(20px,2.8vw,36px);min-width:0;
+  box-shadow:0 24px 60px -30px rgba(26,8,0,.35);
+  container-type:inline-size;
+  scroll-margin-top:24px;
+}
+#psa-pu .pu-progress{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+#psa-pu .pu-progress__top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;}
+#psa-pu .pu-progress__label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);}
+#psa-pu .pu-progress__tempo{font-size:12px;color:var(--gray);}
+#psa-pu .pu-progress__bar{height:6px;border-radius:99px;background:rgba(26,8,0,.08);overflow:hidden;}
+#psa-pu .pu-progress__fill{height:100%;width:0;border-radius:99px;background-image:var(--grad);transition:width .35s var(--ease);}
+
+#psa-pu .pu-step{display:flex;flex-direction:column;gap:24px;animation:pu-entra .35s var(--ease);}
+@keyframes pu-entra{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+#psa-pu .pu-step__titulo{font-weight:700;font-size:clamp(17px,1.6vw,20px);line-height:1.3;outline:none;}
+#psa-pu .pu-q{display:flex;flex-direction:column;gap:12px;}
+#psa-pu .pu-q legend{font-weight:700;font-size:clamp(16px,1.5vw,19px);line-height:1.35;margin-bottom:12px;color:var(--ink);}
+
+/* Campos de texto */
+#psa-pu .pu-fields{display:flex;flex-direction:column;gap:12px;}
+#psa-pu .pu-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@container (max-width:420px){#psa-pu .pu-row{grid-template-columns:1fr;}}
+#psa-pu .pu-field{display:flex;flex-direction:column;gap:6px;min-width:0;}
+#psa-pu .pu-field label{display:block;font-weight:700;font-size:13px;line-height:1.3;color:var(--ink);}
+#psa-pu .pu-input{
+  display:block;width:100%;height:auto;min-height:0;
+  border:1px solid rgba(26,8,0,.16);border-radius:12px;box-shadow:none;
+  padding:14px 16px;font-size:16px;line-height:1.3;color:var(--ink);background:var(--cream);
+  outline:none;transition:border-color .2s var(--ease),background-color .2s var(--ease);
+}
+#psa-pu .pu-input::placeholder{color:#9a8c82;opacity:1;}
+#psa-pu .pu-input:focus{border-color:var(--orange);background:var(--white);}
+
+/* Opções em cartão: um radio de verdade por baixo, para teclado e leitor de tela */
+#psa-pu .pu-opts{display:grid;grid-template-columns:1fr;gap:10px;}
+#psa-pu .pu-opts--2{grid-template-columns:1fr 1fr;}
+@container (max-width:460px){#psa-pu .pu-opts--2{grid-template-columns:1fr;}}
+#psa-pu .pu-opt{
+  position:relative;display:flex;align-items:center;gap:14px;
+  padding:14px 16px;border-radius:12px;cursor:pointer;
+  border:1.5px solid rgba(26,8,0,.14);background:var(--cream);
+  font-size:15px;font-weight:500;line-height:1.35;color:var(--ink);
+  vertical-align:baseline;
+  transition:border-color .2s var(--ease),background-color .2s var(--ease);
+}
+#psa-pu .pu-opt:hover{border-color:rgba(255,100,15,.55);}
+#psa-pu .pu-opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;}
+#psa-pu .pu-opt__dot{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  border:2px solid rgba(26,8,0,.3);background:var(--white);
+  transition:border-color .2s var(--ease),box-shadow .2s var(--ease);
+}
+#psa-pu .pu-opt:has(input:checked){border-color:var(--orange);background:rgba(255,100,15,.08);}
+#psa-pu .pu-opt:has(input:checked) .pu-opt__dot{border-color:var(--orange);box-shadow:inset 0 0 0 4px var(--white);background:var(--orange);}
+#psa-pu .pu-opt:has(input:focus-visible){outline:2px solid var(--orange);outline-offset:2px;}
+
+#psa-pu .pu-aviso{font-size:13px;line-height:1.5;color:var(--orange-dark);font-weight:500;}
+#psa-pu .pu-erro{font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--orange-dark);margin-top:16px;}
+
+#psa-pu .pu-nav{display:flex;gap:10px;margin-top:28px;align-items:stretch;}
+#psa-pu .pu-voltar{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:0 18px;min-height:46px;border-radius:40px;cursor:pointer;
+  border:1px solid rgba(26,8,0,.18);background:transparent;color:var(--muted-2);
+  font-family:var(--font);font-weight:700;font-size:14px;line-height:1;box-shadow:none;text-transform:none;
+  transition:border-color .2s var(--ease),color .2s var(--ease),background-color .2s var(--ease);
+}
+#psa-pu .pu-voltar:hover{border-color:var(--ink);color:var(--ink);background:transparent;}
+#psa-pu .pu-avancar{flex:1 1 auto;justify-content:space-between;font-size:14.5px;min-height:46px;}
+#psa-pu .pu-avancar[disabled]{opacity:.65;cursor:progress;transform:none;}
+#psa-pu .pu-legal{font-size:11.5px;line-height:1.55;color:var(--gray);margin-top:16px;}
+#psa-pu .pu-legal a{text-decoration:underline;text-underline-offset:2px;}
+
+/* Estado final, usado só se o HubSpot não devolver redirecionamento */
+#psa-pu .pu-sucesso{display:flex;flex-direction:column;gap:12px;padding-block:8px;}
+#psa-pu .pu-sucesso h3{font-weight:500;text-transform:uppercase;font-size:clamp(20px,2vw,24px);line-height:1.12;}
+#psa-pu .pu-sucesso p{font-size:15px;line-height:1.6;color:var(--muted-2);}
+
+/* ==========================================================================
+   MÁRCIO SPAGNOLO
+   ========================================================================== */
+#psa-pu .pu-bio{padding-bottom:var(--section-y);}
+#psa-pu .pu-bio__panel{
+  background:var(--ink);color:var(--cream);border-radius:28px;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:stretch;
+}
+#psa-pu .pu-bio__foto{position:relative;min-height:340px;background:#2a1a10;}
+#psa-pu .pu-bio__foto img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 25%;}
+#psa-pu .pu-bio__txt{padding:clamp(28px,4.5vw,64px);display:flex;flex-direction:column;justify-content:center;gap:16px;}
+#psa-pu .pu-bio__txt p{font-size:clamp(15px,1.2vw,16.5px);line-height:1.65;color:var(--on-dark-75);max-width:52ch;text-wrap:pretty;}
+#psa-pu .pu-bio__txt .pu-h2{color:var(--cream);}
+
+/* ==========================================================================
+   THE BEST SCHOOL
+   ========================================================================== */
+#psa-pu .pu-tbs{
+  position:relative;background:var(--ink);color:var(--cream);overflow:hidden;
+  padding-block:var(--section-y);
+}
+/* Brilho laranja por trás das métricas, como no briefing */
+#psa-pu .pu-tbs::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 0%,rgba(253,101,1,.38),transparent 70%),
+    radial-gradient(ellipse 40% 40% at 90% 100%,rgba(226,52,1,.22),transparent 70%);
+}
+#psa-pu .pu-tbs .pu-wrap{position:relative;}
+#psa-pu .pu-tbs__head{display:flex;flex-direction:column;gap:16px;max-width:40rem;margin-bottom:clamp(28px,4vw,48px);}
+#psa-pu .pu-tbs__head p{font-size:clamp(15px,1.2vw,16.5px);line-height:1.65;color:var(--on-dark-75);text-wrap:pretty;}
+#psa-pu .pu-tbs__head .pu-btn{margin-top:6px;}
+
+#psa-pu .pu-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+#psa-pu .pu-metric{
+  border-radius:14px;padding:18px;min-height:150px;min-width:0;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+}
+#psa-pu .pu-metric--light{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-metric--grad{background-color:var(--orange-mid);background-image:var(--grad-150);color:var(--cream);}
+#psa-pu .pu-metric__icon{
+  width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto;
+}
+#psa-pu .pu-metric__value{font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;}
+#psa-pu .pu-metric__label{font-size:14px;line-height:1.45;color:var(--muted);margin-top:6px;}
+#psa-pu .pu-metric--grad .pu-metric__label{color:rgba(254,248,232,.92);}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+#psa-pu .pu-footer{background:var(--ink);color:var(--cream);border-top:1px solid rgba(254,248,232,.1);}
+#psa-pu .pu-footer__inner{
+  padding-block:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+}
+#psa-pu .pu-footer .pu-brand__school{height:clamp(15px,1.5vw,19px);}
+#psa-pu .pu-footer__legal{font-family:var(--mono);font-size:11px;line-height:1.7;color:rgba(254,248,232,.55);max-width:44ch;}
+#psa-pu .pu-footer__dir{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+#psa-pu .pu-social{display:flex;align-items:center;gap:10px;}
+#psa-pu .pu-social a{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line-dark);
+  color:var(--cream);display:flex;align-items:center;justify-content:center;
+  transition:background-color .2s var(--ease);
+}
+#psa-pu .pu-social a:hover{background:rgba(254,248,232,.12);color:var(--cream);}
+#psa-pu .pu-footer__policy{font-family:var(--mono);font-size:11px;color:rgba(254,248,232,.55);text-decoration:underline;text-underline-offset:3px;}
+#psa-pu .pu-footer__policy:hover{color:var(--cream);}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width:1024px){
+  #psa-pu .pu-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:900px){
+  #psa-pu .pu-hero__grid{grid-template-columns:1fr;}
+  #psa-pu .pu-form-grid{grid-template-columns:1fr;}
+  #psa-pu .pu-form-copy{position:static;}
+  #psa-pu .pu-bio__panel{grid-template-columns:1fr;}
+  #psa-pu .pu-bio__foto{min-height:0;aspect-ratio:4/3;}
+}
+@media (max-width:767px){
+  #psa-pu{--section-y:clamp(40px,10vw,64px);}
+  #psa-pu .pu-hero{padding-top:96px;}
+  #psa-pu .pu-hero__bg img{object-position:62% center;}
+  #psa-pu .pu-hero__bg::after{background:linear-gradient(180deg,rgba(26,8,0,.7) 0%,rgba(26,8,0,.88) 55%,rgba(26,8,0,.96) 100%);}
+  /* No celular o card da aula vira uma faixa horizontal: foto + nome */
+  #psa-pu .pu-aula{width:100%;display:grid;grid-template-columns:96px 1fr;align-items:center;gap:6px 14px;}
+  #psa-pu .pu-aula__label{grid-column:1 / -1;}
+  #psa-pu .pu-aula__capa{grid-row:span 2;}
+  #psa-pu .pu-aula__nome{align-self:end;}
+  #psa-pu .pu-aula__cargo{align-self:start;}
+  #psa-pu .pu-aula__play{width:36px;height:36px;}
+  #psa-pu .pu-aula__play svg{width:14px;height:14px;}
+  #psa-pu .pu-aula__lock{display:none;}
+  #psa-pu .pu-footer__dir{align-items:flex-start;}
+  #psa-pu .pu-metric{min-height:0;}
+}
+@media (max-width:380px){
+  #psa-pu .pu-hero h1{font-size:25px;}
+  #psa-pu .pu-metrics{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  #psa-pu *,#psa-pu *::before,#psa-pu *::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+</style>
+
+<div id="psa-pu">
+
+  <!-- HEADER ================================================================ -->
+  <header class="pu-header">
+    <div class="pu-header__inner">
+      <div class="pu-brand">
+        <span class="pu-sr">The Best School, powered by PSA</span>
+        <!--LOGO_SCHOOL-->
+        <span class="pu-powered" aria-hidden="true">
+          <span class="pu-powered__text">Powered by</span>
+          <!--LOGO_PSA-->
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO ================================================================== -->
+  <section class="pu-hero" aria-labelledby="pu-titulo">
+    <div class="pu-hero__bg" aria-hidden="true">
+      <picture>
+        <source srcset="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-hero-bg-mobile.webp" media="(max-width:767px)">
+        <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-hero-bg.webp" alt="" width="1920" height="1280" fetchpriority="high" decoding="async" data-no-lazy="1">
+      </picture>
+    </div>
+
+    <div class="pu-hero__grid">
+      <div class="pu-hero__copy">
+        <span class="pu-hero__tag">Aula exclusiva e gratuita</span>
+        <h1 id="pu-titulo">Aprenda a construir uma <em>Perspectiva Única</em> e pare de ser comparado por preço</h1>
+        <p class="pu-hero__sub">Com o avanço da Inteligência Artificial, ter diplomas ou um bom curso de oratória não garante mais contratos corporativos. O mercado B2B mudou e passou a contratar especialistas por <strong>contexto, autoridade e profundidade</strong>.</p>
+        <a href="#pu-formulario" class="pu-btn pu-btn--cream pu-btn--lg" data-cta="hero">
+          <span>Quero assistir à aula agora</span>
+          <span class="pu-btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+          </span>
+        </a>
+      </div>
+
+      <a href="#pu-formulario" class="pu-aula" data-cta="hero-card" aria-label="Liberar a aula de Márcio Spagnolo">
+        <span class="pu-aula__label">Aula exclusiva · vídeo</span>
+        <span class="pu-aula__capa">
+          <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-marcio-spagnolo.webp" alt="" width="640" height="638" decoding="async" data-no-lazy="1">
+          <span class="pu-aula__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5.5v13L19 12z"></path></svg>
+          </span>
+          <span class="pu-aula__lock" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            Liberado ao responder
+          </span>
+        </span>
+        <span class="pu-aula__nome">Márcio Spagnolo</span>
+        <span class="pu-aula__cargo">Fundador e CEO da PSA</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO ============================================================ -->
+  <section id="pu-formulario" class="pu-form-section" aria-labelledby="pu-form-titulo">
+    <div class="pu-wrap pu-form-grid">
+
+      <div class="pu-form-copy">
+        <span class="pu-eyebrow">Aula exclusiva</span>
+        <h2 class="pu-h2" id="pu-form-titulo">O posicionamento <em>genérico</em> não paga mais suas contas</h2>
+        <p class="pu-form-copy__txt">Nesta aula exclusiva, <strong>Márcio Spagnolo (CEO da PSA)</strong> revela como fugir do posicionamento genérico e construir uma marca autêntica e altamente demandada pelas empresas.</p>
+        <div class="pu-pilares" aria-label="O que o mercado B2B contrata">
+          <span>Contexto</span><span>Autoridade</span><span>Profundidade</span>
+        </div>
+        <p class="pu-note"><b>Responda a estas breves perguntas abaixo para liberar o seu vídeo agora.</b> Leva menos de 2 minutos.</p>
+      </div>
+
+      <form id="pu-form" class="pu-card" novalidate aria-describedby="pu-progress-label">
+
+        <div class="pu-progress">
+          <div class="pu-progress__top">
+            <span class="pu-progress__label" id="pu-progress-label" aria-live="polite">Etapa 1</span>
+            <span class="pu-progress__tempo">menos de 2 min</span>
+          </div>
+          <div class="pu-progress__bar" aria-hidden="true"><div class="pu-progress__fill"></div></div>
+        </div>
+
+        <!-- ATENÇÃO — como as perguntas se ligam ao HubSpot
+             · data-hubspot: nome INTERNO da propriedade no formulário 634374b1-….
+               Vazio = pergunta desligada: não aparece e não é enviada.
+             · value de cada opção: o texto EXATO cadastrado no HubSpot. Ele
+               diverge do texto na tela de propósito. "Arrumar" a escrita de um
+               value faz o HubSpot descartar a resposta em silêncio: o lead
+               entra e o campo fica vazio. O montar.py confere antes de publicar.
+             · data-evento: nome da variável enviada ao dataLayer (GTM).  -->
+
+        <!-- ETAPA: contato -->
+        <div class="pu-step" data-step data-contato>
+          <h3 class="pu-step__titulo" tabindex="-1">Vamos começar. Quem é você?</h3>
+          <div class="pu-fields">
+            <!-- Nome e sobrenome são obrigatórios e separados no HubSpot -->
+            <div class="pu-row">
+              <div class="pu-field">
+                <label for="pu-nome">Nome</label>
+                <input class="pu-input" id="pu-nome" name="firstname" type="text" placeholder="Seu nome" autocomplete="given-name" required>
+              </div>
+              <div class="pu-field">
+                <label for="pu-sobrenome">Sobrenome</label>
+                <input class="pu-input" id="pu-sobrenome" name="lastname" type="text" placeholder="Seu sobrenome" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="pu-field">
+              <label for="pu-email">E-mail</label>
+              <input class="pu-input" id="pu-email" name="email" type="email" placeholder="voce@empresa.com" autocomplete="email" inputmode="email" required>
+            </div>
+            <div class="pu-field">
+              <label for="pu-fone">WhatsApp</label>
+              <input class="pu-input" id="pu-fone" name="phone" type="tel" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- ETAPA: gênero + atuação -->
+        <div class="pu-step" data-step hidden>
+          <!-- DESLIGADA: não existe no formulário do HubSpot. Para ligar, crie a
+               propriedade, inclua no formulário, preencha data-hubspot e troque
+               cada value pelo texto cadastrado lá. -->
+          <fieldset class="pu-q" data-hubspot="" data-evento="diagnostico_genero">
+            <legend>Gênero</legend>
+            <div class="pu-opts pu-opts--2">
+              <label class="pu-opt"><input type="radio" name="pu_genero" value="Feminino" required><span class="pu-opt__dot"></span><span>Feminino</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_genero" value="Masculino"><span class="pu-opt__dot"></span><span>Masculino</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_genero" value="Prefiro não informar"><span class="pu-opt__dot"></span><span>Prefiro não informar</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="pu-q" data-hubspot="qual_a_sua_atuacao_hoje___new_campaign_" data-evento="diagnostico_atuacao">
+            <legend>Qual a sua atuação hoje?</legend>
+            <div class="pu-opts pu-opts--2">
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Executivo (VP/Diretor/C-level)" required><span class="pu-opt__dot"></span><span>Executivo (VP / Diretor / C-level)</span></label>
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Empreendedor (Founder/Cofounder)"><span class="pu-opt__dot"></span><span>Empreendedor (Founder / Cofounder)</span></label>
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Acadêmico (Mestre/Doutor)"><span class="pu-opt__dot"></span><span>Acadêmico (Mestre / Doutor)</span></label>
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Palestrante profissional"><span class="pu-opt__dot"></span><span>Palestrante profissional</span></label>
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Coach/Psicologo/RH"><span class="pu-opt__dot"></span><span>Coach / Psicólogo / RH</span></label>
+              <label class="pu-opt"><input type="radio" name="qual_a_sua_atuacao_hoje___new_campaign_" value="Outra"><span class="pu-opt__dot"></span><span>Outra</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: já palestra -->
+        <div class="pu-step" data-step hidden>
+          <fieldset class="pu-q" data-hubspot="voce_ja_atua_como_palestrante_" data-evento="diagnostico_ja_atua">
+            <legend>Você já atua como palestrante?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="voce_ja_atua_como_palestrante_" value="Sim, já realizo palestras remuneradas." required><span class="pu-opt__dot"></span><span>Sim, faço palestras remuneradas</span></label>
+              <label class="pu-opt"><input type="radio" name="voce_ja_atua_como_palestrante_" value="Sim, mas apenas de forma gratuita."><span class="pu-opt__dot"></span><span>Sim, apenas gratuitas</span></label>
+              <label class="pu-opt"><input type="radio" name="voce_ja_atua_como_palestrante_" value="Não, ainda não atuo como palestrante."><span class="pu-opt__dot"></span><span>Ainda não realizo palestras</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: tempo de palestra — só para quem já palestra -->
+        <div class="pu-step" data-step hidden>
+          <!-- DESLIGADA: não existe no formulário do HubSpot (ver nota do gênero). -->
+          <fieldset class="pu-q" data-hubspot="" data-evento="diagnostico_tempo"
+                    data-pular-se-nome="voce_ja_atua_como_palestrante_"
+                    data-pular-se-valor="Não, ainda não atuo como palestrante.">
+            <legend>Há quanto tempo você faz palestras?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="pu_tempo" value="Mais de 5 anos" required><span class="pu-opt__dot"></span><span>Mais de 5 anos</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_tempo" value="Entre 1 e 5 anos"><span class="pu-opt__dot"></span><span>Entre 1 e 5 anos</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_tempo" value="Menos de 1 ano"><span class="pu-opt__dot"></span><span>Menos de 1 ano</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: objetivo e investimento -->
+        <div class="pu-step" data-step hidden>
+          <fieldset class="pu-q" data-hubspot="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" data-evento="diagnostico_objetivo">
+            <legend>Temos programas para diversos estágios da carreira de palestrante. O que você está buscando e quanto deseja investir?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" value="Apenas conhecer o mercado de palestras de forma gratuita." required><span class="pu-opt__dot"></span><span>Apenas conhecer o mercado de forma gratuita</span></label>
+              <label class="pu-opt"><input type="radio" name="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" value="Ingressar profissionalmente no mercado (investimento de até 1k)"><span class="pu-opt__dot"></span><span>Ingressar profissionalmente no mercado (até R$ 1.000)</span></label>
+              <label class="pu-opt"><input type="radio" name="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" value="Consolidar minha carreira de palestrante (investimento de até 5k)"><span class="pu-opt__dot"></span><span>Consolidar minha carreira de palestrante (até R$ 5.000)</span></label>
+              <label class="pu-opt"><input type="radio" name="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" value="Gerar mais receita com as minhas palestras (investimento de até 15k)"><span class="pu-opt__dot"></span><span>Gerar mais receita com as minhas palestras (até R$ 15.000)</span></label>
+              <label class="pu-opt"><input type="radio" name="temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new" value="Consolidar como palestrante de alto impacto (investimento de +20k)"><span class="pu-opt__dot"></span><span>Consolidar como palestrante de alto impacto (acima de R$ 20.000)</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: urgência -->
+        <div class="pu-step" data-step hidden>
+          <fieldset class="pu-q" data-hubspot="voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_" data-evento="diagnostico_urgencia">
+            <legend>Qual sua urgência em se desenvolver como palestrante?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_" value="Sim, quero começar o quanto antes!" required><span class="pu-opt__dot"></span><span>Tenho urgência, quero começar o quanto antes</span></label>
+              <label class="pu-opt"><input type="radio" name="voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_" value="Sim, estou planejando investir ainda este ano"><span class="pu-opt__dot"></span><span>Quero me desenvolver ainda este ano, mas sem pressa</span></label>
+              <label class="pu-opt"><input type="radio" name="voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_" value="Não, ainda não estou pronto."><span class="pu-opt__dot"></span><span>Não é prioridade no momento</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: obstáculo -->
+        <div class="pu-step" data-step hidden>
+          <!-- DESLIGADA: não existe no formulário do HubSpot (ver nota do gênero). -->
+          <fieldset class="pu-q" data-hubspot="" data-evento="diagnostico_obstaculo">
+            <legend>Qual o principal motivo que hoje te impede de alavancar sua carreira como palestrante?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="pu_obstaculo" value="Falta de uma marca pessoal clara e posicionamento digital alinhado" required><span class="pu-opt__dot"></span><span>Falta de uma marca pessoal clara e posicionamento digital alinhado</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_obstaculo" value="Insegurança técnica na construção e entrega de uma palestra marcante"><span class="pu-opt__dot"></span><span>Insegurança técnica na construção e entrega de uma palestra marcante</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_obstaculo" value="Ausência de um processo comercial ativo (prospecção, proposta e negociação)"><span class="pu-opt__dot"></span><span>Ausência de um processo comercial ativo (prospecção, proposta e negociação)</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_obstaculo" value="Já possuo produto e posicionamento, necessitando de escala, demanda e aceleração de vendas"><span class="pu-opt__dot"></span><span>Já possuo produto e posicionamento, necessitando de escala, demanda e aceleração de vendas</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ETAPA: pagamento -->
+        <div class="pu-step" data-step hidden>
+          <!-- DESLIGADA: não existe no formulário do HubSpot (ver nota do gênero). -->
+          <fieldset class="pu-q" data-hubspot="" data-evento="diagnostico_pagamento">
+            <legend>Em relação ao investimento na sua carreira como palestrante, como você pretende viabilizar?</legend>
+            <div class="pu-opts">
+              <label class="pu-opt"><input type="radio" name="pu_pagamento" value="Minha empresa irá pagar ou reembolsar" required><span class="pu-opt__dot"></span><span>Minha empresa irá pagar ou reembolsar</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_pagamento" value="Vou investir com recursos próprios"><span class="pu-opt__dot"></span><span>Vou investir com recursos próprios</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_pagamento" value="Preciso de uma condição de pagamento que caiba no meu orçamento"><span class="pu-opt__dot"></span><span>Preciso de uma condição de pagamento que caiba no meu orçamento</span></label>
+              <label class="pu-opt"><input type="radio" name="pu_pagamento" value="Ainda não sei / preciso entender melhor"><span class="pu-opt__dot"></span><span>Ainda não sei / preciso entender melhor</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Final: só aparece se o HubSpot não devolver redirecionamento -->
+        <div class="pu-sucesso" role="status" hidden>
+          <span class="pu-eyebrow">Recebido</span>
+          <h3>Tudo certo<span data-pu-nome></span>!</h3>
+          <p>Recebemos suas respostas. Em instantes você recebe o acesso à aula exclusiva de Márcio Spagnolo.</p>
+        </div>
+
+        <!-- Honeypot anti-spam: invisível para pessoas, preenchido por bots -->
+        <input type="text" name="empresa_website" tabindex="-1" autocomplete="off" aria-hidden="true"
+               style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
+        <p class="pu-aviso" role="alert" hidden></p>
+
+        <div class="pu-nav">
+          <button type="button" class="pu-voltar" hidden>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+            Voltar
+          </button>
+          <button type="submit" class="pu-btn pu-btn--grad pu-avancar">
+            <span class="pu-avancar__label">Avançar</span>
+            <span class="pu-btn__icon" aria-hidden="true" style="width:32px;height:32px">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </span>
+          </button>
+        </div>
+
+        <p class="pu-erro" role="alert" hidden></p>
+        <p class="pu-legal">Seus dados são usados apenas para o contato da PSA. Veja a <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer">política de privacidade</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- MÁRCIO SPAGNOLO ======================================================= -->
+  <section class="pu-bio" aria-labelledby="pu-bio-titulo">
+    <div class="pu-wrap">
+      <div class="pu-bio__panel">
+        <div class="pu-bio__foto">
+          <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-marcio-spagnolo.webp" alt="Márcio Spagnolo, fundador e CEO da PSA" width="640" height="638" loading="lazy" decoding="async">
+        </div>
+        <div class="pu-bio__txt">
+          <span class="pu-eyebrow">Fundador e CEO da PSA</span>
+          <h2 class="pu-h2" id="pu-bio-titulo">Márcio Spagnolo</h2>
+          <p>Com mais de 20 anos de experiência no mercado de palestras, Márcio Spagnolo transformou a PSA na maior e mais relevante curadoria de palestrantes do Brasil.</p>
+          <p>Sob sua liderança visionária, a PSA já impactou milhares de eventos, conectando empresas a palestrantes que inspiram, transformam e geram resultados.</p>
+          <p>Além de mentor e estrategista, Márcio Spagnolo é conhecido por sua habilidade única de transformar potenciais em sucesso real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE BEST SCHOOL ======================================================= -->
+  <section class="pu-tbs" aria-labelledby="pu-tbs-titulo">
+    <div class="pu-wrap">
+      <div class="pu-tbs__head">
+        <span class="pu-eyebrow">The Best School</span>
+        <h2 class="pu-h2" id="pu-tbs-titulo">A escola de palestrantes fundada pela <em>PSA</em></h2>
+        <p>Com 14 anos de experiência como a maior curadoria de palestras do país, a PSA identificou uma grande informalidade no setor. Para transformar essa realidade, criou iniciativas para orientar palestrantes, em qualquer fase da carreira, sobre o real funcionamento do segmento e os caminhos para a profissionalização. Assim nasceu a The Best School, a escola de palestrantes fundada pela PSA.</p>
+        <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-btn--lg" data-cta="the-best-school">
+          <span>Quero minha Perspectiva Única</span>
+          <span class="pu-btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="pu-metrics">
+        <div class="pu-metric pu-metric--light">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><circle cx="12" cy="14" r="8"></circle><path d="M12 11v3l2 1"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">14 anos</div><div class="pu-metric__label">de pioneirismo no mercado de palestras</div></div>
+        </div>
+        <div class="pu-metric pu-metric--grad">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H7"></path><path d="M12 3v18"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+R$5 bi</div><div class="pu-metric__label">movimentados por ano no mercado de palestras</div></div>
+        </div>
+        <div class="pu-metric pu-metric--light">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"></path><rect x="9" y="12" width="6" height="9" rx="3"></rect><path d="M4 10a8 8 0 0 1 16 0"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+8.000</div><div class="pu-metric__label">eventos realizados com chancela PSA</div></div>
+        </div>
+        <div class="pu-metric pu-metric--grad">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"></path><path d="M14 8h6v6"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+100 mi</div><div class="pu-metric__label">em palestras vendidas por ano</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ ================================================================ -->
+  <footer class="pu-footer">
+    <div class="pu-wrap pu-footer__inner">
+      <div class="pu-stack" style="gap:12px">
+        <div class="pu-brand">
+          <span class="pu-sr">The Best School, powered by PSA</span>
+          <!--LOGO_SCHOOL-->
+          <span class="pu-powered" aria-hidden="true">
+            <span class="pu-powered__text">Powered by</span>
+            <!--LOGO_PSA-->
+          </span>
+        </div>
+        <p class="pu-footer__legal">Uma experiência PSA. 14 anos como a maior curadoria de palestras do país.</p>
+      </div>
+      <div class="pu-footer__dir">
+        <div class="pu-social">
+          <a href="https://www.instagram.com/psa.talk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
+          </a>
+          <a href="https://br.linkedin.com/company/profissionais-sa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 10v7"></path><path d="M8 7.2v.1"></path><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"></path></svg>
+          </a>
+          <a href="https://www.youtube.com/profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="YouTube da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.2 9.6l5 2.4-5 2.4z"></path></svg>
+          </a>
+          <a href="https://www.facebook.com/PSA.profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="Facebook da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="M14.8 8.2h-1.3a2.2 2.2 0 0 0-2.2 2.2v8.4"></path><path d="M9.2 12.6h4.6"></path></svg>
+          </a>
+        </div>
+        <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer" class="pu-footer__policy">Política de privacidade e termos de uso</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- data-no-optimize: impede o LiteSpeed Cache de adiar este script até o
+     primeiro toque na tela, o que deixaria o formulário travado. -->
+<script data-no-optimize="1">
+/* ==========================================================================
+   CONFIGURAÇÃO — edite só este bloco
+   ========================================================================== */
+var PU_CONFIG = {
+  // Mesmo formulário da LP The Best School.
+  hubspot: {
+    portalId: '49656171',
+    formGuid: '634374b1-5a70-470e-a975-4a1e2d433b87',
+    region:   'na1'
+  },
+  // O destino depois do envio vem do próprio formulário no HubSpot
+  // (Opções > Após o envio > Redirecionar). Este é o reserva, usado só se
+  // o HubSpot não devolver nenhum. Vazio = mostra a confirmação na página.
+  redirectReserva: '',
+  // Evento no dataLayer do GTM do site. As respostas usam os mesmos nomes
+  // de variável da LP The Best School (diagnostico_*).
+  dataLayerEvent: 'lead_perspectiva_unica',
+  // Carrega o tracking do HubSpot (cookie hubspotutk, que liga o lead à
+  // origem da visita) se o site ainda não o carregar.
+  trackingHubspot: true
+};
+
+(function () {
+  'use strict';
+
+  var raiz = document.getElementById('psa-pu');
+  // O editor do Elementor pode rodar o script mais de uma vez
+  if (!raiz || raiz.getAttribute('data-pu-pronto')) return;
+  raiz.setAttribute('data-pu-pronto', '1');
+
+  var form = raiz.querySelector('#pu-form');
+  var passos = [].slice.call(form.querySelectorAll('[data-step]'));
+  var perguntas = [].slice.call(form.querySelectorAll('.pu-q'));
+  var sucesso = form.querySelector('.pu-sucesso');
+  var aviso = form.querySelector('.pu-aviso');
+  var erro = form.querySelector('.pu-erro');
+  var nav = form.querySelector('.pu-nav');
+  var btnVoltar = form.querySelector('.pu-voltar');
+  var btnAvancar = form.querySelector('.pu-avancar');
+  var btnLabel = form.querySelector('.pu-avancar__label');
+  var rotulo = form.querySelector('.pu-progress__label');
+  var barra = form.querySelector('.pu-progress__fill');
+  var honeypot = form.querySelector('[name="empresa_website"]');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var atual = passos[0];
+  var enviando = false;
+
+  /* ------------------------------------------------------------------------
+     1. Perguntas: desliga as que não têm propriedade no HubSpot
+     ------------------------------------------------------------------------ */
+  perguntas.forEach(function (q) {
+    if (!q.getAttribute('data-hubspot')) {
+      q.setAttribute('data-desligada', '');
+      q.disabled = true;
+      q.hidden = true;
+    }
+  });
+
+  // "Há quanto tempo palestra" some para quem ainda não palestra
+  function aplicarCondicoes() {
+    perguntas.forEach(function (q) {
+      var nome = q.getAttribute('data-pular-se-nome');
+      if (!nome || q.hasAttribute('data-desligada')) return;
+      var marcado = form.querySelector('input[name="' + nome + '"]:checked');
+      var pular = !!marcado && marcado.value === q.getAttribute('data-pular-se-valor');
+      q.disabled = pular;
+      q.hidden = pular;
+    });
+  }
+
+  function passosAtivos() {
+    aplicarCondicoes();
+    return passos.filter(function (p) {
+      return p.hasAttribute('data-contato') || p.querySelector('.pu-q:not([disabled])');
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     2. Navegação entre etapas
+     ------------------------------------------------------------------------ */
+  function mostrar(passo, focar) {
+    passos.forEach(function (p) { p.hidden = p !== passo; });
+    atual = passo;
+    esconderAviso();
+
+    var lista = passosAtivos();
+    var pos = lista.indexOf(passo);
+    mostrarContagem(lista, pos);
+    btnVoltar.hidden = pos === 0;
+
+    if (focar) {
+      // No celular a etapa nova pode começar acima da tela
+      if (form.getBoundingClientRect().top < 0) {
+        form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+      // Contato: foco no título, para não abrir o teclado sozinho.
+      // Opções: foco no grupo, sem marcar nada.
+      var foco = passo.hasAttribute('data-contato')
+        ? passo.querySelector('.pu-step__titulo')
+        : passo.querySelector('.pu-q:not([disabled]) input');
+      if (foco) foco.focus({ preventScroll: true });
+    }
+  }
+
+  function mostrarContagem(lista, pos) {
+    rotulo.textContent = 'Etapa ' + (pos + 1) + ' de ' + lista.length;
+    barra.style.width = Math.round(((pos + 1) / lista.length) * 100) + '%';
+    btnLabel.textContent = pos === lista.length - 1 ? 'Liberar meu vídeo' : 'Avançar';
+  }
+
+  function esconderAviso() { aviso.hidden = true; aviso.textContent = ''; }
+  function avisar(msg) { aviso.textContent = msg; aviso.hidden = false; }
+
+  function validar(passo) {
+    var campos = passo.querySelectorAll('input');
+    for (var i = 0; i < campos.length; i++) {
+      var c = campos[i];
+      if (c.checkValidity()) continue;
+      if (c.type === 'radio') {
+        avisar('Escolha uma opção para continuar.');
+        c.focus({ preventScroll: true });
+      } else {
+        c.reportValidity();
+      }
+      return false;
+    }
+    return true;
+  }
+
+  function proximo() {
+    var lista = passosAtivos();
+    var pos = lista.indexOf(atual);
+    if (!validar(atual)) return;
+    if (pos < lista.length - 1) {
+      mostrar(lista[pos + 1], true);
+    } else {
+      enviar();
+    }
+  }
+
+  btnVoltar.addEventListener('click', function () {
+    var lista = passosAtivos();
+    var pos = lista.indexOf(atual);
+    if (pos > 0) mostrar(lista[pos - 1], true);
+  });
+
+  // O botão principal cai aqui
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (enviando) return;
+    proximo();
+  });
+
+  // Enter num campo de texto avança a etapa. Tratado à mão porque o envio
+  // implícito do navegador não é confiável dentro de páginas do Elementor.
+  form.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || e.target.tagName !== 'INPUT' || e.target.type === 'radio') return;
+    e.preventDefault();
+    if (!enviando) proximo();
+  });
+
+  // Etapa de uma pergunta só avança sozinha ao clicar numa opção.
+  // Só com clique: com as setas do teclado, a pessoa ainda está escolhendo.
+  var ultimoClique = 0;
+  form.addEventListener('pointerdown', function () { ultimoClique = Date.now(); });
+  form.addEventListener('change', function (e) {
+    if (e.target.type !== 'radio') return;
+    esconderAviso();
+    var lista = passosAtivos();
+    var pos = lista.indexOf(atual);
+    // Responder "já palestra" muda quantas etapas existem
+    mostrarContagem(lista, pos);
+    var ativasNoPasso = atual.querySelectorAll('.pu-q:not([disabled])').length;
+    if (Date.now() - ultimoClique < 800 && ativasNoPasso === 1 && pos < lista.length - 1) {
+      setTimeout(function () { if (!enviando) proximo(); }, 260);
+    }
+  });
+
+  /* ------------------------------------------------------------------------
+     3. Telefone — mesma máscara da LP The Best School
+     ------------------------------------------------------------------------ */
+  // Descarta o +55 que o preenchimento automático traz; sem isso o 55 viraria
+  // DDD. O corte só vale acima de 11 dígitos, para não quebrar o DDD 55.
+  function digitosDoTelefone(valor) {
+    var d = String(valor || '').replace(/\D/g, '');
+    if (d.length > 11 && d.indexOf('55') === 0) d = d.slice(2);
+    return d.slice(0, 11);
+  }
+  var fone = form.querySelector('#pu-fone');
+  function formatarFone() {
+    var d = digitosDoTelefone(fone.value);
+    var out = d;
+    if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length > 6) {
+      var corte = d.length > 10 ? 7 : 6;
+      out = '(' + d.slice(0, 2) + ') ' + d.slice(2, corte) + '-' + d.slice(corte);
+    }
+    fone.value = out;
+    fone.setCustomValidity(d.length && d.length < 10 ? 'Informe o WhatsApp com DDD.' : '');
+  }
+  ['input', 'change', 'blur'].forEach(function (evt) { fone.addEventListener(evt, formatarFone); });
+
+  /* ------------------------------------------------------------------------
+     4. Envio → HubSpot Forms API
+     ------------------------------------------------------------------------ */
+  function getCookie(nome) {
+    var m = document.cookie.match(new RegExp('(^|;)\\s*' + nome + '\\s*=\\s*([^;]+)'));
+    return m ? m.pop() : '';
+  }
+
+  function valor(nome) {
+    var el = form.querySelector('[name="' + nome + '"]');
+    return el ? String(el.value || '').trim() : '';
+  }
+
+  function respostas() {
+    // Só as perguntas ligadas e visíveis nesta jornada
+    return perguntas.filter(function (q) { return !q.disabled; }).map(function (q) {
+      var marcado = q.querySelector('input:checked');
+      return {
+        prop: q.getAttribute('data-hubspot'),
+        evento: q.getAttribute('data-evento'),
+        valor: marcado ? marcado.value : ''
+      };
+    });
+  }
+
+  function travar(texto) {
+    enviando = true;
+    btnAvancar.disabled = true;
+    btnVoltar.disabled = true;
+    btnLabel.textContent = texto;
+  }
+  function destravar() {
+    enviando = false;
+    btnAvancar.disabled = false;
+    btnVoltar.disabled = false;
+    btnLabel.textContent = 'Liberar meu vídeo';
+  }
+
+  function enviar() {
+    erro.hidden = true;
+    if (honeypot && honeypot.value) return;           // bot: aborta em silêncio
+
+    // Rede de segurança: volta para a primeira etapa com resposta faltando
+    var pendente = passosAtivos().filter(function (p) {
+      return [].some.call(p.querySelectorAll('input'), function (c) { return !c.checkValidity(); });
+    })[0];
+    if (pendente) {
+      mostrar(pendente, true);
+      validar(pendente);
+      return;
+    }
+
+    var resp = respostas();
+    var digitos = digitosDoTelefone(valor('phone'));
+    var baseFields = [
+      { name: 'firstname', value: valor('firstname') },
+      { name: 'lastname',  value: valor('lastname') },
+      { name: 'email',     value: valor('email') },
+      // +5551993917801: formato que o HubSpot valida e o WhatsApp aceita
+      { name: 'phone',     value: digitos ? '+55' + digitos : '' }
+    ];
+    var extraFields = resp.map(function (r) { return { name: r.prop, value: r.valor }; });
+    var params = new URLSearchParams(window.location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+      if (params.get(k)) extraFields.push({ name: k, value: params.get(k) });
+    });
+
+    var cfg = PU_CONFIG.hubspot;
+    var host = cfg.region === 'eu1' ? 'https://api-eu1.hsforms.com' : 'https://api.hsforms.com';
+    var endpoint = host + '/submissions/v3/integration/submit/' + cfg.portalId + '/' + cfg.formGuid;
+
+    travar('Enviando…');
+
+    function send(fields) {
+      return fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: fields,
+          context: {
+            hutk: getCookie('hubspotutk') || undefined,
+            pageUri: window.location.href,
+            pageName: document.title
+          }
+        })
+      }).then(function (res) {
+        if (res.ok) return res.json().catch(function () { return {}; });
+        return res.json().catch(function () { return {}; }).then(function (b) {
+          var e = new Error(b.message || String(res.status));
+          e.body = b;
+          throw e;
+        });
+      });
+    }
+
+    function sucessoEnvio(retorno) {
+      var destino = (retorno && retorno.redirectUri) || PU_CONFIG.redirectReserva;
+      var seguiu = false;
+
+      function seguir() {
+        if (seguiu) return;
+        seguiu = true;
+        if (destino) {
+          window.location.href = destino;
+          return;
+        }
+        passos.forEach(function (p) { p.hidden = true; });
+        nav.hidden = true;
+        rotulo.textContent = 'Concluído';
+        barra.style.width = '100%';
+        var nome = valor('firstname');
+        sucesso.querySelector('[data-pu-nome]').textContent = nome ? ', ' + nome : '';
+        sucesso.hidden = false;
+        form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      }
+
+      if (destino) btnLabel.textContent = 'Liberando o vídeo…';
+
+      // A conversão sai antes do redirecionamento: o GTM chama o eventCallback
+      // quando as tags terminam. Se o GTM não estiver na página (bloqueador),
+      // o setTimeout garante que a pessoa siga mesmo assim.
+      // Nome, e-mail e telefone não vão para o dataLayer, de propósito.
+      if (PU_CONFIG.dataLayerEvent) {
+        var dados = { event: PU_CONFIG.dataLayerEvent, lead_origem: 'perspectiva-unica' };
+        resp.forEach(function (r) { if (r.evento) dados[r.evento] = r.valor; });
+        dados.eventCallback = seguir;
+        dados.eventTimeout = 1800;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(dados);
+      }
+      setTimeout(seguir, 2000);
+    }
+
+    function falhou(err) {
+      var body = (err && err.body) || {};
+      console.error('[LP Perspectiva Única] Falha no envio:', err && err.message, body.errors || body);
+      erro.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+      erro.hidden = false;
+      destravar();
+    }
+
+    send(baseFields.concat(extraFields))
+      .then(sucessoEnvio)
+      .catch(function (err) {
+        var body = err.body || {};
+        var nomeErrado = (body.errors || []).some(function (e) {
+          return /PROPERTY|FIELD/i.test(e.errorType || '');
+        });
+        // Algum data-hubspot não bate com o formulário. Se as perguntas forem
+        // opcionais lá, o reenvio salva pelo menos o contato; se forem
+        // obrigatórias, este reenvio também falha e cai no falhou().
+        if (nomeErrado) {
+          console.error('[LP Perspectiva Única] O HubSpot recusou campos. Confira os data-hubspot:', body.errors);
+          return send(baseFields).then(sucessoEnvio).catch(falhou);
+        }
+        falhou(err);
+      });
+  }
+
+  /* ------------------------------------------------------------------------
+     5. Tracking do HubSpot, se o site ainda não carrega
+     ------------------------------------------------------------------------ */
+  if (PU_CONFIG.trackingHubspot && !document.getElementById('hs-script-loader') && !window._hsq) {
+    var s = document.createElement('script');
+    s.id = 'hs-script-loader';
+    s.async = true;
+    s.defer = true;
+    s.src = 'https://js.hs-scripts.com/' + PU_CONFIG.hubspot.portalId + '.js';
+    document.body.appendChild(s);
+  }
+
+  mostrar(passos[0], false);
+})();
+</script>
