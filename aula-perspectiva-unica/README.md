@@ -44,7 +44,7 @@ vai para o FTP não mudam.
 
 ## Publicar no WordPress
 
-1. **Imagens.** Suba os três arquivos de `dist/imagens/` em *Mídia > Adicionar*.
+1. **Imagens.** Suba os dois arquivos de `dist/imagens/` em *Mídia > Adicionar*.
    O embed espera `https://profissionaissa.com.br/wp-content/uploads/2026/09/`.
    O WordPress guarda por mês de envio: subindo em outro mês, troque esse
    caminho no `embed.html` (e na constante `URL_UPLOADS` do `montar.py`) e
@@ -57,8 +57,8 @@ vai para o FTP não mudam.
    inteiro de `dist/embed-elementor.html`.
 4. **Cache.** Publique e limpe o cache do LiteSpeed (*LiteSpeed Cache > Purgar
    tudo*). O script já vem com `data-no-optimize="1"`, que impede o LiteSpeed
-   de adiá-lo até o primeiro toque na tela; o fundo e a foto do topo vêm com
-   `data-no-lazy="1"`, porque são o primeiro conteúdo visível.
+   de adiá-lo até o primeiro toque na tela; a foto do topo vem com
+   `data-no-lazy="1"`, porque é o primeiro conteúdo visível.
 5. **Teste real.** Envie o formulário uma vez com um e-mail seu e confira o
    contato no HubSpot com as quatro respostas preenchidas.
 

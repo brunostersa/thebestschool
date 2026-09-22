@@ -61,8 +61,7 @@ OFICIAL = {
 # O prefixo pu- evita colidir com arquivos que já existem na Biblioteca de
 # Mídia: o WordPress renomearia para -1.webp e a URL do embed quebraria.
 IMAGENS = {
-    'assets/img/hero-bg.webp':         'pu-hero-bg.webp',
-    'assets/img/hero-bg-mobile.webp':  'pu-hero-bg-mobile.webp',
+    'assets/img/marcio-palco.webp':    'pu-hero-marcio.webp',
     'assets/img/marcio-spagnolo.webp': 'pu-marcio-spagnolo.webp',
 }
 
@@ -142,9 +141,10 @@ window.fetch = function (url, opts) {
 
 
 AVISO_PREVIA = """
-<div style="position:fixed;left:12px;bottom:12px;z-index:9999;background:#1A0800;color:#FEF8E8;
-font:500 11px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.04em;text-transform:uppercase;
-padding:8px 12px;border-radius:20px;box-shadow:0 8px 24px -8px rgba(0,0,0,.6);pointer-events:none">
+<div style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
+writing-mode:vertical-rl;background:#1A0800;color:#FEF8E8;
+font:500 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;
+padding:12px 5px;border-radius:0 10px 10px 0;box-shadow:0 8px 24px -8px rgba(0,0,0,.6);pointer-events:none">
 Prévia · o envio não vai ao HubSpot</div>
 """
 

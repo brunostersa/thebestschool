@@ -114,9 +114,27 @@
 /* ==========================================================================
    HEADER
    ========================================================================== */
-#psa-pu .pu-header{position:absolute;top:0;left:0;right:0;z-index:5;padding-inline:var(--pad-x);}
+#psa-pu .pu-header{
+  position:fixed;top:0;left:0;right:0;z-index:60;padding-inline:var(--pad-x);
+  transition:transform .38s var(--ease),background-color .3s ease,box-shadow .3s ease;
+}
+/* Com o login no WordPress, a barra de administração ocupa o topo */
+body.admin-bar #psa-pu .pu-header{top:32px;}
+@media (max-width:782px){body.admin-bar #psa-pu .pu-header{top:46px;}}
+/* Destacado: ganha fundo quando a página sai do hero */
+#psa-pu .pu-header.is-stuck{
+  background:rgba(26,8,0,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(254,248,232,.10),0 18px 40px -30px rgba(0,0,0,.9);
+}
+#psa-pu .pu-header.is-stuck .pu-header__inner{padding-block:clamp(10px,1.2vw,14px);}
+/* Recolhido: sai de cena enquanto o visitante desce (só no celular) */
+#psa-pu .pu-header.is-hidden{transform:translateY(-100%);}
+#psa-pu .pu-header__cta{font-size:13px;min-height:38px;padding:4px 4px 4px 16px;gap:10px;white-space:nowrap;}
+#psa-pu .pu-header__cta .pu-btn__icon{width:28px;height:28px;}
 #psa-pu .pu-header__inner{
   max-width:var(--maxw);margin:0 auto;padding-block:clamp(18px,2.2vw,28px);
+  transition:padding .3s var(--ease);
   display:flex;align-items:center;justify-content:space-between;gap:14px;
 }
 #psa-pu .pu-brand{display:flex;align-items:center;gap:clamp(10px,1.1vw,16px);min-width:0;color:var(--cream);}
@@ -134,20 +152,30 @@
 #psa-pu .pu-hero{
   position:relative;overflow:hidden;background-color:var(--ink);color:var(--cream);
   padding:clamp(112px,10vw,140px) var(--pad-x) clamp(48px,6vw,80px);
+  min-height:min(86vh,760px);display:flex;align-items:center;
 }
-#psa-pu .pu-hero__bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
-#psa-pu .pu-hero__bg img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:60% center;}
-/* Escurece o lado do texto: a luz do palco fica atrás da copy */
-#psa-pu .pu-hero__bg::after{
+/* Márcio no palco, à direita. A foto é vertical: ocupa uma coluna em vez do
+   fundo inteiro, senão o corte comeria o rosto. As bordas se dissolvem no
+   escuro para a foto não parecer um retângulo colado. */
+#psa-pu .pu-hero__foto{
+  position:absolute;top:0;bottom:0;z-index:0;pointer-events:none;
+  right:max(0px,calc((100% - 1320px) / 2));width:min(56%,660px);
+}
+#psa-pu .pu-hero__foto img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 12%;}
+#psa-pu .pu-hero__foto::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(26,8,0,.94) 0%,rgba(26,8,0,.78) 42%,rgba(26,8,0,.25) 100%);
+  background:
+    linear-gradient(90deg,var(--ink) 0%,rgba(26,8,0,.6) 28%,rgba(26,8,0,0) 58%),
+    linear-gradient(270deg,rgba(26,8,0,.85) 0%,rgba(26,8,0,0) 22%),
+    linear-gradient(0deg,var(--ink) 0%,rgba(26,8,0,0) 32%),
+    linear-gradient(180deg,rgba(26,8,0,.55) 0%,rgba(26,8,0,0) 22%);
 }
 #psa-pu .pu-hero__grid{
   position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;width:100%;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);
-  gap:clamp(24px,4vw,56px);align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(24px,4vw,56px);align-items:end;
 }
-#psa-pu .pu-hero__copy{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:40rem;}
+#psa-pu .pu-hero__copy{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:36rem;}
 #psa-pu .pu-hero__tag{
   font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;
   border:1px solid rgba(254,248,232,.5);border-radius:20px;padding:5px 12px;width:fit-content;
@@ -157,50 +185,31 @@
   font-size:clamp(28px,3.6vw,48px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance;
 }
 #psa-pu .pu-hero h1 em{font-style:normal;color:var(--orange-mid);}
-#psa-pu .pu-hero__sub{font-size:clamp(15px,1.15vw,17px);line-height:1.6;color:var(--on-dark-90);max-width:36rem;text-wrap:pretty;}
+#psa-pu .pu-hero__sub{font-size:clamp(15px,1.15vw,17px);line-height:1.6;color:var(--on-dark-90);max-width:34rem;text-wrap:pretty;}
 #psa-pu .pu-hero__sub strong{color:var(--cream);}
-#psa-pu .pu-hero__copy .pu-btn{margin-top:6px;}
-
-/* Card da aula: a "capa" do vídeo que o formulário libera */
-#psa-pu .pu-aula{
-  background:var(--cream);color:var(--ink);border-radius:18px;padding:16px;
-  display:flex;flex-direction:column;gap:12px;width:min(300px,100%);
-}
-#psa-pu .pu-aula__label{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;
-  color:var(--orange);display:flex;align-items:center;gap:7px;
-}
-#psa-pu .pu-aula__label::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
-#psa-pu .pu-aula__capa{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:var(--ink);}
-#psa-pu .pu-aula__capa img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 30%;}
-#psa-pu .pu-aula__capa::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(26,8,0,0) 45%,rgba(26,8,0,.7) 100%);
-}
-#psa-pu .pu-aula__play{
-  position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(254,248,232,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border:1px solid rgba(254,248,232,.4);color:var(--cream);
-  display:flex;align-items:center;justify-content:center;
-}
-#psa-pu .pu-aula__lock{
-  position:absolute;z-index:1;left:12px;bottom:12px;right:12px;
+#psa-pu .pu-hero__acao{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:6px;}
+#psa-pu .pu-hero__lock{
   display:flex;align-items:center;gap:7px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--cream);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;line-height:1.4;
+  color:var(--on-dark-75);
 }
-#psa-pu .pu-aula__nome{font-weight:700;font-size:14px;line-height:1.3;}
-#psa-pu .pu-aula__cargo{font-size:12px;line-height:1.45;color:var(--muted);}
+/* Legenda da foto */
+#psa-pu .pu-hero__legenda{
+  display:flex;flex-direction:column;gap:2px;text-align:right;
+  padding-right:12px;border-right:2px solid var(--orange-mid);
+}
+#psa-pu .pu-hero__legenda b{font-size:15px;font-weight:700;line-height:1.3;}
+#psa-pu .pu-hero__legenda span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--on-dark-75);}
 
 /* ==========================================================================
    FORMULÁRIO
    ========================================================================== */
-#psa-pu .pu-form-section{padding-block:var(--section-y);scroll-margin-top:24px;}
+#psa-pu .pu-form-section{padding-block:var(--section-y);scroll-margin-top:72px;}
 #psa-pu .pu-form-grid{
   display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
   gap:clamp(24px,4vw,64px);align-items:start;
 }
-#psa-pu .pu-form-copy{display:flex;flex-direction:column;gap:16px;min-width:0;position:sticky;top:32px;}
+#psa-pu .pu-form-copy{display:flex;flex-direction:column;gap:16px;min-width:0;position:sticky;top:104px;}
 #psa-pu .pu-form-copy .pu-h2{max-width:16ch;}
 #psa-pu .pu-form-copy__txt{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:44ch;text-wrap:pretty;}
 #psa-pu .pu-form-copy__txt strong{color:var(--ink);}
@@ -221,7 +230,7 @@
   padding:clamp(20px,2.8vw,36px);min-width:0;
   box-shadow:0 24px 60px -30px rgba(26,8,0,.35);
   container-type:inline-size;
-  scroll-margin-top:24px;
+  scroll-margin-top:88px;
 }
 #psa-pu .pu-progress{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
 #psa-pu .pu-progress__top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;}
@@ -365,13 +374,41 @@
 #psa-pu .pu-footer__policy:hover{color:var(--cream);}
 
 /* ==========================================================================
+   CTA FLUTUANTE
+   Só aparece fora do hero, do formulário e do rodapé: nos dois primeiros já
+   existe um botão, e dois iguais na tela competem entre si.
+   ========================================================================== */
+#psa-pu .pu-flutuante{
+  position:fixed;left:50%;bottom:clamp(14px,2.2vw,24px);z-index:55;
+  transform:translate(-50%,150%);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .45s var(--ease),opacity .3s ease,visibility .3s;
+  max-width:calc(100% - 2 * var(--pad-x));
+}
+#psa-pu .pu-flutuante.is-visible{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;}
+#psa-pu .pu-flutuante .pu-btn{box-shadow:0 16px 36px -12px rgba(26,8,0,.75),0 0 0 1px rgba(254,248,232,.12);white-space:nowrap;}
+#psa-pu .pu-flutuante__curto{display:none;}
+
+/* ==========================================================================
    RESPONSIVO
    ========================================================================== */
 @media (max-width:1024px){
   #psa-pu .pu-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media (max-width:900px){
+  #psa-pu .pu-hero{display:block;min-height:0;padding-top:calc(min(118vw,620px) - 150px);}
+  #psa-pu .pu-hero__foto{left:0;right:0;bottom:auto;width:100%;height:min(118vw,620px);}
+  #psa-pu .pu-hero__foto img{object-position:50% 8%;}
+  #psa-pu .pu-hero__foto::after{
+    inset:0 0 -2px 0;
+    background:linear-gradient(180deg,rgba(26,8,0,.55) 0%,rgba(26,8,0,0) 22%,rgba(26,8,0,0) 42%,rgba(26,8,0,.85) 72%,var(--ink) 92%);
+  }
   #psa-pu .pu-hero__grid{grid-template-columns:1fr;}
+  /* Nome e cargo seguem o texto, abaixo do botão */
+  #psa-pu .pu-hero__legenda{
+    text-align:left;border-right:0;padding-right:0;
+    border-left:2px solid var(--orange-mid);padding-left:12px;margin-top:4px;
+  }
   #psa-pu .pu-form-grid{grid-template-columns:1fr;}
   #psa-pu .pu-form-copy{position:static;}
   #psa-pu .pu-bio__panel{grid-template-columns:1fr;}
@@ -379,20 +416,19 @@
 }
 @media (max-width:767px){
   #psa-pu{--section-y:clamp(40px,10vw,64px);}
-  #psa-pu .pu-hero{padding-top:96px;}
-  #psa-pu .pu-hero__bg img{object-position:62% center;}
-  #psa-pu .pu-hero__bg::after{background:linear-gradient(180deg,rgba(26,8,0,.7) 0%,rgba(26,8,0,.88) 55%,rgba(26,8,0,.96) 100%);}
-  /* No celular o card da aula vira uma faixa horizontal: foto + nome */
-  #psa-pu .pu-aula{width:100%;display:grid;grid-template-columns:96px 1fr;align-items:center;gap:6px 14px;}
-  #psa-pu .pu-aula__label{grid-column:1 / -1;}
-  #psa-pu .pu-aula__capa{grid-row:span 2;}
-  #psa-pu .pu-aula__nome{align-self:end;}
-  #psa-pu .pu-aula__cargo{align-self:start;}
-  #psa-pu .pu-aula__play{width:36px;height:36px;}
-  #psa-pu .pu-aula__play svg{width:14px;height:14px;}
-  #psa-pu .pu-aula__lock{display:none;}
   #psa-pu .pu-footer__dir{align-items:flex-start;}
   #psa-pu .pu-metric{min-height:0;}
+}
+@media (max-width:767px){
+  #psa-pu .pu-flutuante{bottom:18px;}
+  #psa-pu .pu-flutuante .pu-btn{font-size:13px;padding-left:18px;gap:10px;}
+  #psa-pu .pu-flutuante__longo{display:none;}
+  #psa-pu .pu-flutuante__curto{display:inline;}
+  body:has(#psa-pu .pu-flutuante.is-visible) #hubspot-messages-iframe-container{bottom:76px !important;}
+}
+/* Logo + assinatura + botão não cabem juntos em telas estreitas */
+@media (max-width:480px){
+  #psa-pu .pu-header .pu-powered{display:none;}
 }
 @media (max-width:380px){
   #psa-pu .pu-hero h1{font-size:25px;}
@@ -416,16 +452,19 @@
           <!--LOGO_PSA-->
         </span>
       </div>
+      <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-header__cta" data-cta="header">
+        <span>Liberar a aula</span>
+        <span class="pu-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+        </span>
+      </a>
     </div>
   </header>
 
   <!-- HERO ================================================================== -->
   <section class="pu-hero" aria-labelledby="pu-titulo">
-    <div class="pu-hero__bg" aria-hidden="true">
-      <picture>
-        <source srcset="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-hero-bg-mobile.webp" media="(max-width:767px)">
-        <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-hero-bg.webp" alt="" width="1920" height="1280" fetchpriority="high" decoding="async" data-no-lazy="1">
-      </picture>
+    <div class="pu-hero__foto" aria-hidden="true">
+      <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-hero-marcio.webp" alt="" width="853" height="1280" fetchpriority="high" decoding="async" data-no-lazy="1">
     </div>
 
     <div class="pu-hero__grid">
@@ -433,29 +472,24 @@
         <span class="pu-hero__tag">Aula exclusiva e gratuita</span>
         <h1 id="pu-titulo">Aprenda a construir uma <em>Perspectiva Única</em> e pare de ser comparado por preço</h1>
         <p class="pu-hero__sub">Com o avanço da Inteligência Artificial, ter diplomas ou um bom curso de oratória não garante mais contratos corporativos. O mercado B2B mudou e passou a contratar especialistas por <strong>contexto, autoridade e profundidade</strong>.</p>
-        <a href="#pu-formulario" class="pu-btn pu-btn--cream pu-btn--lg" data-cta="hero">
-          <span>Quero assistir à aula agora</span>
-          <span class="pu-btn__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+        <div class="pu-hero__acao">
+          <a href="#pu-formulario" class="pu-btn pu-btn--cream pu-btn--lg" data-cta="hero">
+            <span>Quero assistir à aula agora</span>
+            <span class="pu-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+            </span>
+          </a>
+          <span class="pu-hero__lock">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            Vídeo liberado ao responder
           </span>
-        </a>
+        </div>
       </div>
 
-      <a href="#pu-formulario" class="pu-aula" data-cta="hero-card" aria-label="Liberar a aula de Márcio Spagnolo">
-        <span class="pu-aula__label">Aula exclusiva · vídeo</span>
-        <span class="pu-aula__capa">
-          <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-marcio-spagnolo.webp" alt="" width="640" height="638" decoding="async" data-no-lazy="1">
-          <span class="pu-aula__play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5.5v13L19 12z"></path></svg>
-          </span>
-          <span class="pu-aula__lock" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
-            Liberado ao responder
-          </span>
-        </span>
-        <span class="pu-aula__nome">Márcio Spagnolo</span>
-        <span class="pu-aula__cargo">Fundador e CEO da PSA</span>
-      </a>
+      <p class="pu-hero__legenda">
+        <b>Márcio Spagnolo</b>
+        <span>Fundador e CEO da PSA</span>
+      </p>
     </div>
   </section>
 
@@ -753,6 +787,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- CTA FLUTUANTE ========================================================= -->
+  <div class="pu-flutuante">
+    <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-btn--lg" data-cta="flutuante">
+      <span class="pu-flutuante__longo">Quero assistir à aula agora</span>
+      <span class="pu-flutuante__curto">Liberar a aula</span>
+      <span class="pu-btn__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+      </span>
+    </a>
+  </div>
 </div>
 
 <!-- data-no-optimize: impede o LiteSpeed Cache de adiar este script até o
@@ -1129,6 +1174,47 @@ var PU_CONFIG = {
     s.defer = true;
     s.src = 'https://js.hs-scripts.com/' + PU_CONFIG.hubspot.portalId + '.js';
     document.body.appendChild(s);
+  }
+
+  /* ------------------------------------------------------------------------
+     6. Header fixo e CTA flutuante
+     ------------------------------------------------------------------------ */
+  var header = raiz.querySelector('.pu-header');
+  var flutuante = raiz.querySelector('.pu-flutuante');
+  var hero = raiz.querySelector('.pu-hero');
+  var celular = window.matchMedia('(max-width:767px)');
+  var LIMITE = 80;              // px de rolagem até o header ganhar fundo
+  var ultimoY = window.pageYOffset;
+  var agendado = false;
+
+  function aoRolar() {
+    agendado = false;
+    var y = window.pageYOffset;
+    // Mede pelo hero, não pelo topo da página: no WordPress a LP pode não
+    // começar no pixel zero.
+    header.classList.toggle('is-stuck', hero.getBoundingClientRect().top < -LIMITE);
+    if (celular.matches && Math.abs(y - ultimoY) > 6) {
+      header.classList.toggle('is-hidden', y > ultimoY && y > 200);
+    } else if (!celular.matches) {
+      header.classList.remove('is-hidden');
+    }
+    ultimoY = y;
+  }
+  window.addEventListener('scroll', function () {
+    if (!agendado) { agendado = true; requestAnimationFrame(aoRolar); }
+  }, { passive: true });
+  aoRolar();
+
+  if ('IntersectionObserver' in window) {
+    // Some onde já há um botão na tela (hero, formulário) e no rodapé,
+    // onde cobriria os links.
+    var alvos = [hero, form, raiz.querySelector('.pu-footer')];
+    var naTela = [true, false, false];
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { naTela[alvos.indexOf(e.target)] = e.isIntersecting; });
+      flutuante.classList.toggle('is-visible', naTela.indexOf(true) === -1);
+    });
+    alvos.forEach(function (el) { observador.observe(el); });
   }
 
   mostrar(passos[0], false);
