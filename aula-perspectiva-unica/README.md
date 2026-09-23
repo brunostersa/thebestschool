@@ -1,13 +1,14 @@
-# LP Perspectiva Única — embed para o WordPress
+# LP Aula Perspectiva Única
 
 Aula exclusiva de Márcio Spagnolo. Usa a identidade visual e o formulário do
-HubSpot da LP The Best School, mas é publicada como **widget HTML do Elementor**
-em profissionaissa.com.br, e não por FTP.
+HubSpot da LP The Best School, e pode ser publicada de dois jeitos: por **FTP**, como pasta própria em
+profissionaissa.com.br/aula-perspectiva-unica/, ou como **widget HTML do Elementor**.
 
 ```
 embed.html     fonte: página inteira (CSS, HTML e JS), presa ao #psa-pu
 montar.py      confere as opções com o HubSpot e gera a dist/
 dist/          gerada, não versionada
+  ftp/                   página completa para subir por FTP
   embed-elementor.html   o que se cola no Elementor
   imagens/pu-*.webp      o que se sobe na Biblioteca de Mídia
   preview.html           prévia local, com envio interceptado
@@ -42,6 +43,39 @@ e com o envio interceptado:
 O `gh-pages` é gerado e cada publicação substitui a anterior. A `main` e o que
 vai para o FTP não mudam.
 
+## Publicar por FTP
+
+`montar.py` gera `dist/ftp/`, com a página completa: GTM, tracking do HubSpot,
+meta tags, imagem de compartilhamento, favicon, `.htaccess` e `sitemap.xml`,
+as mesmas coisas da LP The Best School. As imagens ficam na própria pasta, então
+não é preciso subir nada na Biblioteca de Mídia.
+
+Envie o **conteúdo** de `dist/ftp/` para `public_html/aula-perspectiva-unica/`:
+
+```
+public_html/
+└── aula-perspectiva-unica/     ← o conteúdo de dist/ftp/ vai aqui
+    ├── index.html              a LP
+    ├── conteudo-liberado/      a página do vídeo, depois do envio
+    ├── .htaccess               ← arquivo oculto: confira se o FTP enviou
+    ├── sitemap.xml
+    └── assets/
+```
+
+O `.htaccess` desliga a listagem de diretório (a pasta vazia no servidor hoje
+mostra "Index of") e garante a barra final: sem ela, as imagens em
+`assets/` dariam 404. Divulgue sempre com a barra:
+`https://profissionaissa.com.br/aula-perspectiva-unica/`.
+
+Não crie uma página no WordPress com o slug `aula-perspectiva-unica`: a pasta
+física ganha, e a página ficaria inacessível sem explicação aparente.
+
+Para indexar, adicione ao `robots.txt` da raiz do domínio:
+
+```
+Sitemap: https://profissionaissa.com.br/aula-perspectiva-unica/sitemap.xml
+```
+
 ## Publicar no WordPress
 
 1. **Imagens.** Suba os dois arquivos de `dist/imagens/` em *Mídia > Adicionar*.
@@ -69,15 +103,21 @@ contaria cada conversão duas vezes.
 
 Mesmo formulário da LP The Best School — portal `49656171`, form `634374b1-…`.
 
-**Redirecionamento.** Depois do envio, a LP vai para o endereço que a API do
-HubSpot devolve (`redirectUri`), ou seja, o configurado no formulário em
-*Opções > Após o envio*. Hoje esse formulário redireciona para
-`the-best-weekend/inscricao-confirmada/`, herança do The Best Weekend: **troque
-pela página do vídeo antes de divulgar**. A LP The Best School não é afetada,
-porque ignora esse redirect e usa a própria página de obrigado.
+**Redirecionamento.** Depois do envio, a LP vai para `conteudo-liberado/`
+(`PU_CONFIG.redirectUrl`), a página com o vídeo da aula
+(YouTube `Y8hzAleMXyY`, sem cookies de rastreio do YouTube até o play). Ela
+cumprimenta pelo primeiro nome, que a LP guarda no `sessionStorage`, e não
+indexa, para não virar atalho para o vídeo sem o formulário. A fonte é
+`conteudo-liberado.html`, que usa o mesmo CSS da LP.
 
-Se o HubSpot não devolver nenhum, vale `PU_CONFIG.redirectReserva`; vazio, a
-confirmação aparece no próprio formulário.
+O redirect configurado no formulário do HubSpot é ignorado: o formulário é o
+mesmo da The Best School e hoje aponta para `the-best-weekend/inscricao-confirmada/`.
+Com `redirectUrl` vazio, a LP passa a usar o do HubSpot e, sem nenhum, mostra a
+confirmação no próprio formulário.
+
+Na versão do Elementor o caminho é relativo à página: ela precisa ter uma
+subpágina `conteudo-liberado/` com o vídeo, ou `redirectUrl` precisa do
+endereço completo.
 
 Como os dois LPs usam o mesmo formulário, os leads chegam juntos. Para separar,
 use a página de conversão do contato no HubSpot ou o `lead_origem` no GTM.

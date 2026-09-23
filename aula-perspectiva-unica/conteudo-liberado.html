@@ -1,0 +1,153 @@
+<!-- ==========================================================================
+     CONTEÚDO LIBERADO — página do vídeo, para onde a LP leva depois do envio
+     Fonte: o montar.py injeta o CSS da LP (marcador CSS_BASE) e os logos, e
+     gera dist/ftp/conteudo-liberado/ e dist/previa/conteudo-liberado/.
+     Não indexa: no buscador viraria atalho para o vídeo sem o formulário.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+<!--CSS_BASE-->
+
+/* ==========================================================================
+   PÁGINA DO VÍDEO
+   ========================================================================== */
+/* Aqui o header não acompanha a rolagem: não há botão de conversão nele */
+#psa-pu .pu-header--estatico{position:absolute;}
+
+#psa-pu .pu-liberada{
+  position:relative;overflow:hidden;background:var(--ink);color:var(--cream);
+  padding:clamp(104px,10vw,136px) var(--pad-x) var(--section-y);
+}
+#psa-pu .pu-liberada::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 50% at 50% 0%,rgba(253,101,1,.32),transparent 70%),
+    radial-gradient(ellipse 35% 35% at 100% 100%,rgba(226,52,1,.18),transparent 70%);
+}
+#psa-pu .pu-liberada__inner{position:relative;max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:18px;}
+#psa-pu .pu-liberada h1{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(26px,3.4vw,44px);line-height:1.05;letter-spacing:-.01em;text-wrap:balance;
+}
+#psa-pu .pu-liberada h1 em{font-style:normal;color:var(--orange-mid);}
+#psa-pu .pu-liberada__sub{font-size:clamp(15px,1.2vw,17px);line-height:1.6;color:var(--on-dark-75);max-width:46ch;text-wrap:pretty;}
+
+#psa-pu .pu-video{
+  position:relative;width:100%;aspect-ratio:16/9;margin-top:clamp(8px,1.5vw,16px);
+  border-radius:clamp(14px,1.8vw,22px);overflow:hidden;background:#000;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(254,248,232,.10);
+}
+#psa-pu .pu-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+#psa-pu .pu-video__legenda{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--on-dark-60);
+}
+#psa-pu .pu-video__legenda b{color:var(--cream);font-family:var(--font);font-size:14px;letter-spacing:0;text-transform:none;}
+
+/* Próximo passo */
+#psa-pu .pu-proximo{padding-block:var(--section-y);}
+#psa-pu .pu-proximo__card{
+  background:var(--white);border:1px solid var(--line-light);border-radius:24px;
+  box-shadow:0 24px 60px -30px rgba(26,8,0,.35);
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:stretch;overflow:hidden;
+}
+#psa-pu .pu-proximo__txt{padding:clamp(24px,4vw,52px);display:flex;flex-direction:column;gap:16px;}
+#psa-pu .pu-proximo__txt p{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:48ch;text-wrap:pretty;}
+#psa-pu .pu-proximo__txt .pu-btn{margin-top:6px;}
+#psa-pu .pu-proximo__foto{position:relative;min-height:260px;background:#2a1a10;}
+#psa-pu .pu-proximo__foto img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 25%;}
+
+@media (max-width:767px){
+  #psa-pu .pu-liberada{padding-top:92px;}
+  #psa-pu .pu-proximo__card{grid-template-columns:1fr;}
+  #psa-pu .pu-proximo__foto{min-height:0;aspect-ratio:16/10;order:-1;}
+}
+</style>
+
+<div id="psa-pu">
+
+  <header class="pu-header pu-header--estatico">
+    <div class="pu-header__inner">
+      <div class="pu-brand">
+        <span class="pu-sr">The Best School, powered by PSA</span>
+        <!--LOGO_SCHOOL-->
+        <span class="pu-powered" aria-hidden="true">
+          <span class="pu-powered__text">Powered by</span>
+          <!--LOGO_PSA-->
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <section class="pu-liberada" aria-labelledby="pu-liberada-titulo">
+    <div class="pu-liberada__inner">
+      <span class="pu-eyebrow">Conteúdo liberado</span>
+      <h1 id="pu-liberada-titulo">Seu vídeo foi liberado<span data-pu-nome></span>!</h1>
+      <p class="pu-liberada__sub">Assista agora à aula exclusiva de Márcio Spagnolo sobre como construir sua <strong>Perspectiva Única</strong>.</p>
+
+      <div class="pu-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/Y8hzAleMXyY?rel=0&amp;modestbranding=1"
+                title="Aula Perspectiva Única — Márcio Spagnolo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="pu-video__legenda"><b>Perspectiva Única</b> Márcio Spagnolo · Fundador e CEO da PSA</p>
+    </div>
+  </section>
+
+  <section class="pu-proximo" aria-labelledby="pu-proximo-titulo">
+    <div class="pu-wrap">
+      <div class="pu-proximo__card">
+        <div class="pu-proximo__txt">
+          <span class="pu-eyebrow">The Best School</span>
+          <h2 class="pu-h2" id="pu-proximo-titulo">A escola de palestrantes fundada pela <em>PSA</em></h2>
+          <p>Com 14 anos de experiência como a maior curadoria de palestras do país, a PSA criou a The Best School para orientar palestrantes, em qualquer fase da carreira, sobre o real funcionamento do segmento e os caminhos para a profissionalização.</p>
+          <a href="https://profissionaissa.com.br/thebestschool/" class="pu-btn pu-btn--grad pu-btn--lg" data-cta="conteudo-liberado-tbs">
+            <span>Conhecer a The Best School</span>
+            <span class="pu-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </span>
+          </a>
+        </div>
+        <div class="pu-proximo__foto">
+          <img src="https://profissionaissa.com.br/wp-content/uploads/2026/09/pu-marcio-spagnolo.webp" alt="Márcio Spagnolo, fundador e CEO da PSA" width="640" height="638" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pu-footer">
+    <div class="pu-wrap pu-footer__inner">
+      <div class="pu-stack" style="gap:12px">
+        <div class="pu-brand">
+          <span class="pu-sr">The Best School, powered by PSA</span>
+          <!--LOGO_SCHOOL-->
+          <span class="pu-powered" aria-hidden="true">
+            <span class="pu-powered__text">Powered by</span>
+            <!--LOGO_PSA-->
+          </span>
+        </div>
+        <p class="pu-footer__legal">Uma experiência PSA. 14 anos como a maior curadoria de palestras do país.</p>
+      </div>
+      <div class="pu-footer__dir">
+        <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer" class="pu-footer__policy">Política de privacidade e termos de uso</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script data-no-optimize="1">
+(function () {
+  // Cumprimenta pelo primeiro nome que a LP guardou ao enviar o formulário
+  try {
+    var nome = sessionStorage.getItem('pu_nome');
+    var alvo = document.querySelector('#psa-pu [data-pu-nome]');
+    if (nome && alvo) alvo.textContent = ', ' + nome;
+  } catch (e) { /* modo privado: fica sem o nome */ }
+})();
+</script>

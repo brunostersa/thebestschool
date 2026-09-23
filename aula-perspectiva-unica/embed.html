@@ -813,10 +813,11 @@ var PU_CONFIG = {
     formGuid: '634374b1-5a70-470e-a975-4a1e2d433b87',
     region:   'na1'
   },
-  // O destino depois do envio vem do próprio formulário no HubSpot
-  // (Opções > Após o envio > Redirecionar). Este é o reserva, usado só se
-  // o HubSpot não devolver nenhum. Vazio = mostra a confirmação na página.
-  redirectReserva: '',
+  // Página do vídeo, relativa à LP. Tem prioridade sobre o redirect do
+  // formulário no HubSpot: o formulário é o mesmo da The Best School e o
+  // redirect dele aponta para outra campanha. Vazio = usa o do HubSpot e,
+  // sem nenhum, mostra a confirmação na própria página.
+  redirectUrl: 'conteudo-liberado/',
   // Evento no dataLayer do GTM do site. As respostas usam os mesmos nomes
   // de variável da LP The Best School (diagnostico_*).
   dataLayerEvent: 'lead_perspectiva_unica',
@@ -1101,13 +1102,15 @@ var PU_CONFIG = {
     }
 
     function sucessoEnvio(retorno) {
-      var destino = (retorno && retorno.redirectUri) || PU_CONFIG.redirectReserva;
+      var destino = PU_CONFIG.redirectUrl || (retorno && retorno.redirectUri) || '';
       var seguiu = false;
 
       function seguir() {
         if (seguiu) return;
         seguiu = true;
         if (destino) {
+          // Só o primeiro nome, para a página do vídeo cumprimentar a pessoa
+          try { sessionStorage.setItem('pu_nome', valor('firstname')); } catch (e) {}
           window.location.href = destino;
           return;
         }
