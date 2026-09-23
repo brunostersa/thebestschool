@@ -231,12 +231,17 @@ body.admin-bar #psa-pu .pu-header{top:32px;}
    daqui só controlamos o cartão em volta. */
 #psa-pu .pu-card{
   background:var(--white);border:1px solid var(--line-light);border-radius:24px;
-  padding:clamp(16px,2.4vw,32px);min-width:0;
+  /* O formulário do HubSpot traz margem própria dentro do iframe (~28px nas
+     laterais, ~36px no topo). O cartão não soma margem e ainda esconde parte
+     da do HubSpot:
+     o iframe fica mais largo que o cartão (margem negativa) e o excesso,
+     que é só espaço vazio, é cortado pelo overflow. */
+  padding:0;min-width:0;overflow:hidden;
   box-shadow:0 24px 60px -30px rgba(26,8,0,.35);
   scroll-margin-top:88px;
 }
 /* Reserva altura enquanto o HubSpot carrega, para a página não pular */
-#psa-pu .pu-card .hs-form-frame{min-height:480px;}
+#psa-pu .pu-card .hs-form-frame{min-height:480px;margin:-18px -14px -12px;}
 
 /* ==========================================================================
    MÁRCIO SPAGNOLO
