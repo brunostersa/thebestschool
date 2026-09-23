@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Prévia · Perspectiva Única</title>
+<style>body{margin:0;background:#FEF8E8;}</style>
+</head>
+<body>
+<!-- ==========================================================================
+     LP PERSPECTIVA ÚNICA — embed para Elementor (widget HTML)
+     The Best School · PSA
+
+     Cole este arquivo INTEIRO num widget HTML do Elementor, numa página com
+     o template "Elementor Canvas" (sem header e footer do tema).
+     Passo a passo e cuidados: aula-perspectiva-unica/README.md
+
+     - Todo o CSS começa com #psa-pu: o tema e o Elementor não conseguem
+       sobrescrever, e nada daqui vaza para o resto do site.
+     - O GTM NÃO está aqui: o site já carrega o GTM-W8F8SBJ6. Repetir aqui
+       contaria cada conversão duas vezes.
+     - As imagens apontam para /wp-content/uploads/2026/09/. Se forem
+       enviadas em outro mês, troque esse caminho em todo o arquivo.
+     ========================================================================== -->
+
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ==========================================================================
+   TOKENS — os mesmos da LP The Best School, presos ao #psa-pu
+   ========================================================================== */
+#psa-pu{
+  --ink:#1A0800;
+  --cream:#FEF8E8;
+  --white:#fff;
+  --orange:#FF640F;
+  --orange-deep:#AC2102;
+  --orange-dark:#E23401;
+  --orange-mid:#FD6501;
+  --peach:#FFD4C1;
+  --muted:#5b4c42;
+  --muted-2:#4a3a30;
+  --gray:#808080;
+  --on-dark-90:rgba(254,248,232,.9);
+  --on-dark-75:rgba(254,248,232,.75);
+  --on-dark-60:rgba(254,248,232,.6);
+  --line-dark:rgba(254,248,232,.22);
+  --line-light:rgba(26,8,0,.10);
+  --grad:linear-gradient(120deg,#E23401 0%,#FD6501 55%,#FC8902 100%);
+  --grad-150:linear-gradient(150deg,#E23401 0%,#FD6501 60%,#FC8902 100%);
+  --maxw:1160px;
+  --pad-x:clamp(16px,4vw,40px);
+  --section-y:clamp(48px,7vw,96px);
+  --font:'Satoshi',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ==========================================================================
+   BASE — neutraliza o que o tema aplica em elementos soltos
+   ========================================================================== */
+#psa-pu{
+  /* clip corta como o hidden, mas sem virar área de rolagem: com hidden,
+     o texto ao lado do formulário deixava de acompanhar a rolagem (sticky) */
+  position:relative;width:100%;overflow:hidden;overflow:clip;
+  background:var(--cream);color:var(--ink);
+  font-family:var(--font);font-size:16px;font-weight:400;line-height:1.5;
+  text-align:left;letter-spacing:normal;
+  -webkit-font-smoothing:antialiased;
+}
+#psa-pu *,#psa-pu *::before,#psa-pu *::after{box-sizing:border-box;}
+#psa-pu h1,#psa-pu h2,#psa-pu h3,#psa-pu p,#psa-pu figure{margin:0;padding:0;font-family:var(--font);color:inherit;letter-spacing:normal;}
+#psa-pu img,#psa-pu svg{display:block;max-width:100%;border:0;border-radius:0;box-shadow:none;}
+#psa-pu img{height:auto;}
+#psa-pu a{color:var(--orange);text-decoration:none;box-shadow:none;}
+#psa-pu a:hover{color:var(--orange-dark);}
+#psa-pu strong,#psa-pu b{font-weight:700;}
+#psa-pu fieldset{border:0;margin:0;padding:0;min-width:0;}
+#psa-pu legend{padding:0;float:left;width:100%;}
+#psa-pu legend + *{clear:both;}
+#psa-pu input,#psa-pu button{font-family:inherit;margin:0;}
+#psa-pu [hidden]{display:none !important;}
+#psa-pu :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+#psa-pu .pu-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+#psa-pu .pu-wrap{max-width:var(--maxw);margin:0 auto;width:100%;padding-inline:var(--pad-x);}
+#psa-pu .pu-stack{display:flex;flex-direction:column;}
+
+#psa-pu .pu-eyebrow{
+  font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.3;
+  color:var(--orange);display:flex;align-items:center;gap:10px;
+}
+#psa-pu .pu-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+#psa-pu .pu-h2{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(24px,3.05vw,40px);line-height:1.04;text-wrap:balance;
+}
+#psa-pu .pu-h2 em{font-style:normal;color:var(--orange);}
+
+/* Botões ------------------------------------------------------------------ */
+#psa-pu .pu-btn{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--font);font-weight:700;font-size:13.5px;line-height:1.2;text-transform:none;
+  padding:6px 6px 6px 20px;border-radius:40px;border:0;cursor:pointer;
+  width:fit-content;max-width:100%;min-height:42px;text-align:left;
+  box-shadow:none;text-decoration:none;
+  transition:background-color .25s var(--ease),transform .25s var(--ease),opacity .2s ease;
+}
+#psa-pu .pu-btn__icon{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+#psa-pu .pu-btn--cream{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-btn--cream:hover{background:var(--peach);color:var(--ink);}
+#psa-pu .pu-btn--cream .pu-btn__icon{background:var(--ink);color:var(--cream);}
+#psa-pu .pu-btn--grad{background-color:var(--orange-mid);background-image:var(--grad);color:var(--cream);}
+#psa-pu .pu-btn--grad:hover{color:var(--cream);transform:translateY(-2px);}
+#psa-pu .pu-btn--grad .pu-btn__icon{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-btn--lg{font-size:15px;padding:7px 7px 7px 24px;min-height:48px;}
+#psa-pu .pu-btn--lg .pu-btn__icon{width:34px;height:34px;}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+#psa-pu .pu-header{
+  position:fixed;top:0;left:0;right:0;z-index:60;padding-inline:var(--pad-x);
+  transition:transform .38s var(--ease),background-color .3s ease,box-shadow .3s ease;
+}
+/* Com o login no WordPress, a barra de administração ocupa o topo */
+body.admin-bar #psa-pu .pu-header{top:32px;}
+@media (max-width:782px){body.admin-bar #psa-pu .pu-header{top:46px;}}
+/* Destacado: ganha fundo quando a página sai do hero */
+#psa-pu .pu-header.is-stuck{
+  background:rgba(26,8,0,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(254,248,232,.10),0 18px 40px -30px rgba(0,0,0,.9);
+}
+#psa-pu .pu-header.is-stuck .pu-header__inner{padding-block:clamp(10px,1.2vw,14px);}
+/* Recolhido: sai de cena enquanto o visitante desce (só no celular) */
+#psa-pu .pu-header.is-hidden{transform:translateY(-100%);}
+#psa-pu .pu-header__cta{font-size:13px;min-height:38px;padding:4px 4px 4px 16px;gap:10px;white-space:nowrap;}
+#psa-pu .pu-header__cta .pu-btn__icon{width:28px;height:28px;}
+#psa-pu .pu-header__inner{
+  max-width:var(--maxw);margin:0 auto;padding-block:clamp(18px,2.2vw,28px);
+  transition:padding .3s var(--ease);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+}
+#psa-pu .pu-brand{display:flex;align-items:center;gap:clamp(10px,1.1vw,16px);min-width:0;color:var(--cream);}
+#psa-pu .pu-brand__school{height:clamp(14px,1.4vw,18px);width:auto;}
+#psa-pu .pu-powered{
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+  padding-left:clamp(10px,1.1vw,16px);border-left:1px solid var(--line-dark);
+}
+#psa-pu .pu-powered__text{font-size:clamp(9.5px,.72vw,10.5px);font-weight:500;letter-spacing:.02em;color:rgba(254,248,232,.62);}
+#psa-pu .pu-powered svg{height:clamp(11px,.95vw,13px);width:auto;opacity:.9;}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+#psa-pu .pu-hero{
+  position:relative;overflow:hidden;background-color:var(--ink);color:var(--cream);
+  padding:clamp(112px,10vw,140px) var(--pad-x) clamp(48px,6vw,80px);
+  min-height:min(86vh,760px);display:flex;align-items:center;
+}
+/* Márcio no palco, à direita. A foto é vertical: ocupa uma coluna em vez do
+   fundo inteiro, senão o corte comeria o rosto. As bordas se dissolvem no
+   escuro para a foto não parecer um retângulo colado. */
+#psa-pu .pu-hero__foto{
+  position:absolute;top:0;bottom:0;z-index:0;pointer-events:none;
+  right:max(0px,calc((100% - 1320px) / 2));width:min(56%,660px);
+}
+#psa-pu .pu-hero__foto img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 12%;}
+#psa-pu .pu-hero__foto::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,var(--ink) 0%,rgba(26,8,0,.6) 28%,rgba(26,8,0,0) 58%),
+    linear-gradient(270deg,rgba(26,8,0,.85) 0%,rgba(26,8,0,0) 22%),
+    linear-gradient(0deg,var(--ink) 0%,rgba(26,8,0,0) 32%),
+    linear-gradient(180deg,rgba(26,8,0,.55) 0%,rgba(26,8,0,0) 22%);
+}
+#psa-pu .pu-hero__grid{
+  position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;width:100%;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(24px,4vw,56px);align-items:end;
+}
+#psa-pu .pu-hero__copy{display:flex;flex-direction:column;gap:18px;min-width:0;max-width:36rem;}
+#psa-pu .pu-hero__tag{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;
+  border:1px solid rgba(254,248,232,.5);border-radius:20px;padding:5px 12px;width:fit-content;
+}
+#psa-pu .pu-hero h1{
+  font-weight:500;text-transform:uppercase;
+  font-size:clamp(28px,3.6vw,48px);line-height:1.04;letter-spacing:-.01em;text-wrap:balance;
+}
+#psa-pu .pu-hero h1 em{font-style:normal;color:var(--orange-mid);}
+#psa-pu .pu-hero__sub{font-size:clamp(15px,1.15vw,17px);line-height:1.6;color:var(--on-dark-90);max-width:34rem;text-wrap:pretty;}
+#psa-pu .pu-hero__sub strong{color:var(--cream);}
+#psa-pu .pu-hero__acao{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:6px;}
+#psa-pu .pu-hero__lock{
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;line-height:1.4;
+  color:var(--on-dark-75);
+}
+/* Legenda da foto */
+#psa-pu .pu-hero__legenda{
+  display:flex;flex-direction:column;gap:2px;text-align:right;
+  padding-right:12px;border-right:2px solid var(--orange-mid);
+}
+#psa-pu .pu-hero__legenda b{font-size:15px;font-weight:700;line-height:1.3;}
+#psa-pu .pu-hero__legenda span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--on-dark-75);}
+
+/* ==========================================================================
+   FORMULÁRIO
+   ========================================================================== */
+#psa-pu .pu-form-section{padding-block:var(--section-y);scroll-margin-top:72px;}
+#psa-pu .pu-form-grid{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(24px,4vw,64px);align-items:start;
+}
+#psa-pu .pu-form-copy{display:flex;flex-direction:column;gap:16px;min-width:0;position:sticky;top:104px;}
+#psa-pu .pu-form-copy .pu-h2{max-width:16ch;}
+#psa-pu .pu-form-copy__txt{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:44ch;text-wrap:pretty;}
+#psa-pu .pu-form-copy__txt strong{color:var(--ink);}
+#psa-pu .pu-pilares{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+#psa-pu .pu-pilares span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;
+  border:1px solid rgba(26,8,0,.18);border-radius:20px;padding:6px 12px;color:var(--muted-2);
+}
+#psa-pu .pu-note{
+  border-left:3px solid var(--orange);background:rgba(255,100,15,.07);
+  border-radius:0 12px 12px 0;padding:16px 20px;max-width:44ch;
+  font-size:14px;line-height:1.6;color:var(--muted-2);
+}
+#psa-pu .pu-note b{color:var(--ink);}
+
+/* Moldura do formulário nativo do HubSpot. O conteúdo é do HubSpot (iframe):
+   daqui só controlamos o cartão em volta. */
+#psa-pu .pu-card{
+  background:var(--white);border:1px solid var(--line-light);border-radius:24px;
+  /* O formulário do HubSpot traz margem própria dentro do iframe (~28px nas
+     laterais, ~36px no topo). O cartão não soma margem e ainda esconde parte
+     da do HubSpot:
+     o iframe fica mais largo que o cartão (margem negativa) e o excesso,
+     que é só espaço vazio, é cortado pelo overflow. */
+  padding:0;min-width:0;overflow:hidden;
+  box-shadow:0 24px 60px -30px rgba(26,8,0,.35);
+  scroll-margin-top:88px;
+}
+/* Reserva altura enquanto o HubSpot carrega, para a página não pular */
+#psa-pu .pu-card .hs-form-frame{min-height:480px;margin:-18px -14px -12px;}
+
+/* ==========================================================================
+   MÁRCIO SPAGNOLO
+   ========================================================================== */
+#psa-pu .pu-bio{padding-bottom:var(--section-y);}
+#psa-pu .pu-bio__panel{
+  background:var(--ink);color:var(--cream);border-radius:28px;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:stretch;
+}
+#psa-pu .pu-bio__foto{position:relative;min-height:340px;background:#2a1a10;}
+#psa-pu .pu-bio__foto img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 25%;}
+#psa-pu .pu-bio__txt{padding:clamp(28px,4.5vw,64px);display:flex;flex-direction:column;justify-content:center;gap:16px;}
+#psa-pu .pu-bio__txt p{font-size:clamp(15px,1.2vw,16.5px);line-height:1.65;color:var(--on-dark-75);max-width:52ch;text-wrap:pretty;}
+#psa-pu .pu-bio__txt .pu-h2{color:var(--cream);}
+
+/* ==========================================================================
+   THE BEST SCHOOL
+   ========================================================================== */
+#psa-pu .pu-tbs{
+  position:relative;background:var(--ink);color:var(--cream);overflow:hidden;
+  padding-block:var(--section-y);
+}
+/* Brilho laranja por trás das métricas, como no briefing */
+#psa-pu .pu-tbs::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 0%,rgba(253,101,1,.38),transparent 70%),
+    radial-gradient(ellipse 40% 40% at 90% 100%,rgba(226,52,1,.22),transparent 70%);
+}
+#psa-pu .pu-tbs .pu-wrap{position:relative;}
+#psa-pu .pu-tbs__head{display:flex;flex-direction:column;gap:16px;max-width:40rem;margin-bottom:clamp(28px,4vw,48px);}
+#psa-pu .pu-tbs__head p{font-size:clamp(15px,1.2vw,16.5px);line-height:1.65;color:var(--on-dark-75);text-wrap:pretty;}
+#psa-pu .pu-tbs__head .pu-btn{margin-top:6px;}
+
+#psa-pu .pu-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+#psa-pu .pu-metric{
+  border-radius:14px;padding:18px;min-height:150px;min-width:0;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+}
+#psa-pu .pu-metric--light{background:var(--cream);color:var(--ink);}
+#psa-pu .pu-metric--grad{background-color:var(--orange-mid);background-image:var(--grad-150);color:var(--cream);}
+#psa-pu .pu-metric__icon{
+  width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto;
+}
+#psa-pu .pu-metric__value{font-weight:500;font-size:clamp(24px,2.3vw,32px);line-height:1;}
+#psa-pu .pu-metric__label{font-size:14px;line-height:1.45;color:var(--muted);margin-top:6px;}
+#psa-pu .pu-metric--grad .pu-metric__label{color:rgba(254,248,232,.92);}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+#psa-pu .pu-footer{background:var(--ink);color:var(--cream);border-top:1px solid rgba(254,248,232,.1);}
+#psa-pu .pu-footer__inner{
+  padding-block:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+}
+#psa-pu .pu-footer .pu-brand__school{height:clamp(15px,1.5vw,19px);}
+#psa-pu .pu-footer__legal{font-family:var(--mono);font-size:11px;line-height:1.7;color:rgba(254,248,232,.55);max-width:44ch;}
+#psa-pu .pu-footer__dir{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+#psa-pu .pu-social{display:flex;align-items:center;gap:10px;}
+#psa-pu .pu-social a{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--line-dark);
+  color:var(--cream);display:flex;align-items:center;justify-content:center;
+  transition:background-color .2s var(--ease);
+}
+#psa-pu .pu-social a:hover{background:rgba(254,248,232,.12);color:var(--cream);}
+#psa-pu .pu-footer__policy{font-family:var(--mono);font-size:11px;color:rgba(254,248,232,.55);text-decoration:underline;text-underline-offset:3px;}
+#psa-pu .pu-footer__policy:hover{color:var(--cream);}
+
+/* ==========================================================================
+   CTA FLUTUANTE
+   Só aparece fora do hero, do formulário e do rodapé: nos dois primeiros já
+   existe um botão, e dois iguais na tela competem entre si.
+   ========================================================================== */
+#psa-pu .pu-flutuante{
+  position:fixed;left:50%;bottom:clamp(14px,2.2vw,24px);z-index:55;
+  transform:translate(-50%,150%);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .45s var(--ease),opacity .3s ease,visibility .3s;
+  max-width:calc(100% - 2 * var(--pad-x));
+}
+#psa-pu .pu-flutuante.is-visible{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;}
+#psa-pu .pu-flutuante .pu-btn{box-shadow:0 16px 36px -12px rgba(26,8,0,.75),0 0 0 1px rgba(254,248,232,.12);white-space:nowrap;}
+#psa-pu .pu-flutuante__curto{display:none;}
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+@media (max-width:1024px){
+  #psa-pu .pu-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:900px){
+  #psa-pu .pu-hero{display:block;min-height:0;padding-top:calc(min(118vw,620px) - 150px);}
+  #psa-pu .pu-hero__foto{left:0;right:0;bottom:auto;width:100%;height:min(118vw,620px);}
+  #psa-pu .pu-hero__foto img{object-position:50% 8%;}
+  #psa-pu .pu-hero__foto::after{
+    inset:0 0 -2px 0;
+    background:linear-gradient(180deg,rgba(26,8,0,.55) 0%,rgba(26,8,0,0) 22%,rgba(26,8,0,0) 42%,rgba(26,8,0,.85) 72%,var(--ink) 92%);
+  }
+  #psa-pu .pu-hero__grid{grid-template-columns:1fr;}
+  /* Nome e cargo seguem o texto, abaixo do botão */
+  #psa-pu .pu-hero__legenda{
+    text-align:left;border-right:0;padding-right:0;
+    border-left:2px solid var(--orange-mid);padding-left:12px;margin-top:4px;
+  }
+  #psa-pu .pu-form-grid{grid-template-columns:1fr;}
+  #psa-pu .pu-form-copy{position:static;}
+  #psa-pu .pu-bio__panel{grid-template-columns:1fr;}
+  #psa-pu .pu-bio__foto{min-height:0;aspect-ratio:4/3;}
+}
+@media (max-width:767px){
+  #psa-pu{--section-y:clamp(40px,10vw,64px);}
+  #psa-pu .pu-footer__dir{align-items:flex-start;}
+  #psa-pu .pu-metric{min-height:0;}
+}
+@media (max-width:767px){
+  #psa-pu .pu-flutuante{bottom:18px;}
+  #psa-pu .pu-flutuante .pu-btn{font-size:13px;padding-left:18px;gap:10px;}
+  #psa-pu .pu-flutuante__longo{display:none;}
+  #psa-pu .pu-flutuante__curto{display:inline;}
+  body:has(#psa-pu .pu-flutuante.is-visible) #hubspot-messages-iframe-container{bottom:76px !important;}
+}
+/* Logo + assinatura + botão não cabem juntos em telas estreitas */
+@media (max-width:480px){
+  #psa-pu .pu-header .pu-powered{display:none;}
+}
+@media (max-width:380px){
+  #psa-pu .pu-hero h1{font-size:25px;}
+  #psa-pu .pu-metrics{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  #psa-pu *,#psa-pu *::before,#psa-pu *::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+</style>
+
+<div id="psa-pu">
+
+  <!-- HEADER ================================================================ -->
+  <header class="pu-header">
+    <div class="pu-header__inner">
+      <div class="pu-brand">
+        <span class="pu-sr">The Best School, powered by PSA</span>
+        <svg class="pu-brand__school" aria-hidden="true" focusable="false" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125.7 10.13"><polygon fill="#FFFFFF" points="4.84 2.46 7.46 2.46 7.46 9.15 9.25 9.15 9.25 2.46 11.89 2.46 11.89 .97 4.84 .97 4.84 2.46"></polygon><polygon fill="#FFFFFF" points="18.62 4.21 14.99 4.21 14.99 .97 13.21 .97 13.21 9.15 14.99 9.15 14.99 5.72 18.62 5.72 18.62 9.15 20.39 9.15 20.39 .97 18.62 .97 18.62 4.21"></polygon><polygon fill="#FFFFFF" points="24.12 5.69 28.32 5.69 28.32 4.25 24.12 4.25 24.12 2.42 28.86 2.42 28.86 .97 22.33 .97 22.33 9.15 28.94 9.15 28.94 7.68 24.12 7.68 24.12 5.69"></polygon><path fill="#FFFFFF" d="M39.24,5.26c-.23-.17-.5-.29-.81-.36v-.05c.25-.08.48-.2.69-.37.2-.17.36-.38.48-.63.12-.25.18-.54.18-.87,0-.41-.1-.76-.3-1.06-.2-.3-.47-.54-.82-.7-.35-.17-.73-.25-1.16-.25h-4.68v8.18h4.69c.46,0,.88-.08,1.25-.25.37-.17.67-.42.9-.75.23-.33.34-.75.34-1.24,0-.37-.07-.7-.21-.97s-.33-.5-.56-.67ZM34.61,2.39h2.42c.28,0,.5.08.67.24.17.16.26.39.26.7,0,.18-.04.34-.11.48-.08.14-.19.25-.33.33-.15.08-.33.13-.54.13h-2.36v-1.89ZM37.89,7.44c-.19.17-.43.25-.72.25h-2.56v-2.04h2.48c.25,0,.45.04.61.13.16.08.28.2.36.35.08.15.12.33.12.54,0,.35-.09.61-.28.78Z"></path><polygon fill="#FFFFFF" points="43.35 5.69 47.55 5.69 47.55 4.25 43.35 4.25 43.35 2.42 48.1 2.42 48.1 .97 41.56 .97 41.56 9.15 48.17 9.15 48.17 7.68 43.35 7.68 43.35 5.69"></polygon><path fill="#FFFFFF" d="M55.72,5.08c-.24-.18-.51-.33-.81-.45-.3-.12-.61-.22-.93-.31-.32-.09-.63-.17-.93-.24s-.57-.15-.82-.24c-.24-.09-.43-.2-.57-.32-.14-.12-.21-.28-.21-.47,0-.17.06-.31.19-.44.12-.12.3-.22.54-.28.23-.06.52-.1.85-.1.31,0,.58.04.81.13s.41.21.54.36c.13.15.19.33.19.55v.1h1.73v-.14c0-.41-.09-.77-.26-1.07-.17-.3-.41-.55-.71-.75-.3-.2-.65-.34-1.05-.44-.4-.09-.82-.14-1.26-.14-.48,0-.92.05-1.32.14-.41.09-.76.23-1.07.42-.31.19-.55.43-.72.73-.17.29-.26.64-.26,1.05,0,.38.07.71.21.98s.33.49.57.67c.24.18.51.32.81.45.3.12.61.23.93.31s.63.17.93.24c.3.08.57.17.82.26.24.1.43.21.57.35.14.14.21.31.21.52,0,.12-.02.23-.07.32s-.11.18-.2.25c-.09.07-.21.13-.35.19-.14.05-.3.09-.48.12-.18.03-.38.04-.61.04-.36,0-.67-.04-.94-.13-.27-.09-.48-.22-.61-.39-.14-.17-.21-.39-.21-.64v-.11s0-.07.01-.1h-1.77s-.01.06-.01.1v.13c0,.46.09.85.28,1.18.19.32.45.59.78.8.33.21.71.36,1.14.46s.88.14,1.36.14c.68,0,1.28-.09,1.8-.26.52-.17.94-.45,1.24-.84s.45-.89.45-1.52c0-.37-.07-.68-.21-.94-.14-.26-.33-.48-.57-.66Z"></path><polygon fill="#FFFFFF" points="57.44 2.46 60.06 2.46 60.06 9.15 61.85 9.15 61.85 2.46 64.49 2.46 64.49 .97 57.44 .97 57.44 2.46"></polygon><path fill="#FFFFFF" d="M74.19,4.96c-.24-.18-.5-.33-.8-.44-.29-.12-.6-.21-.91-.29-.31-.08-.62-.15-.91-.21-.29-.07-.56-.14-.8-.22-.24-.08-.43-.17-.57-.29s-.21-.25-.21-.43c0-.14.05-.27.16-.37.11-.1.26-.18.47-.24.2-.06.45-.08.75-.08s.54.04.74.13c.2.08.35.19.45.33.1.14.15.3.15.48v.08h2.05v-.14c0-.43-.1-.8-.28-1.1-.18-.31-.43-.56-.75-.76-.32-.2-.68-.35-1.09-.45-.41-.1-.85-.14-1.32-.14s-.93.05-1.35.14c-.42.09-.79.24-1.12.44-.32.2-.57.46-.76.77-.18.31-.27.69-.27,1.12,0,.39.07.72.21,1,.14.27.33.5.56.69.23.18.5.33.79.45.29.12.6.22.92.3.32.08.62.16.92.23s.56.15.79.23c.23.08.42.18.56.3.14.12.21.27.21.45,0,.11-.02.21-.07.29-.04.08-.11.16-.2.21-.09.06-.2.11-.32.15s-.25.07-.41.08c-.15.02-.31.02-.49.02-.32,0-.6-.03-.83-.1-.24-.07-.42-.18-.55-.33-.13-.16-.2-.36-.2-.61,0-.02,0-.05,0-.09,0-.04,0-.07,0-.09h-2.06s-.01.06-.01.1v.11c0,.49.1.91.3,1.25.2.34.47.61.82.82.35.21.75.36,1.2.45.45.09.94.14,1.46.14.68,0,1.28-.09,1.82-.27.54-.18.96-.47,1.26-.87.31-.4.46-.92.46-1.57,0-.37-.07-.69-.21-.95-.14-.26-.33-.48-.57-.66Z"></path><path fill="#FFFFFF" d="M78.49,3.54c.14-.34.35-.6.63-.79.29-.18.65-.27,1.1-.27.36,0,.66.07.91.2.25.14.45.33.58.58s.21.55.21.9h2.09c0-.74-.16-1.36-.48-1.85-.32-.5-.77-.87-1.34-1.12-.57-.25-1.23-.38-1.97-.38-1.33,0-2.35.35-3.06,1.06-.71.7-1.07,1.76-1.07,3.18,0,.96.16,1.76.48,2.39.32.63.79,1.1,1.4,1.4.62.31,1.37.46,2.25.46.76,0,1.43-.12,2-.37s1.01-.62,1.32-1.11c.31-.49.47-1.11.47-1.85h-2.02c0,.35-.07.65-.21.9s-.34.44-.61.57c-.27.13-.59.19-.97.19-.45,0-.81-.09-1.09-.27-.28-.18-.49-.44-.63-.79-.14-.35-.2-.76-.2-1.25v-.54c0-.48.07-.9.2-1.24Z"></path><polygon fill="#FFFFFF" points="91.01 4.1 87.68 4.1 87.68 .95 85.54 .95 85.54 9.15 87.68 9.15 87.68 5.85 91.01 5.85 91.01 9.15 93.14 9.15 93.14 .95 91.01 .95 91.01 4.1"></polygon><path fill="#FFFFFF" d="M111.08,1.28c-.64-.31-1.41-.47-2.31-.47s-1.67.16-2.31.47c-.64.31-1.13.78-1.47,1.41-.34.62-.51,1.41-.51,2.36s.17,1.73.51,2.36.83,1.1,1.47,1.41c.64.31,1.41.47,2.31.47s1.67-.16,2.31-.47c.64-.31,1.13-.79,1.47-1.41.34-.63.51-1.42.51-2.36s-.17-1.73-.51-2.36c-.34-.62-.83-1.09-1.47-1.41ZM110.87,5.32c0,.36-.04.68-.13.97-.09.29-.22.53-.4.73-.18.2-.4.35-.66.45-.26.1-.56.16-.91.16s-.66-.05-.92-.16c-.26-.1-.48-.25-.66-.45-.18-.2-.31-.44-.39-.73-.09-.29-.13-.61-.13-.97v-.52c0-.37.04-.69.13-.98.09-.29.22-.53.39-.73.17-.2.39-.35.66-.45.26-.1.57-.16.92-.16s.64.05.91.16c.26.1.48.25.66.45.18.2.31.44.4.73.09.29.13.61.13.98v.52Z"></path><polygon fill="#FFFFFF" points="116.75 .95 114.62 .95 114.62 9.15 120.92 9.15 120.92 7.4 116.75 7.4 116.75 .95"></polygon><path fill="#FFFFFF" d="M102.67,2.71c-.03-.14-.1-.29-.18-.41-.12-.19-.26-.2-.39-.01-.06.08-.1.16-.12.26-.1.42-.18.84-.27,1.26-.01.07-.02.14-.03.2-.02,0-.03,0-.05,0-.01-.07-.02-.15-.03-.22-.06-.51-.07-1.03-.21-1.54-.09-.33-.16-.67-.35-.96-.17-.26-.36-.26-.51,0-.12.19-.21.41-.27.63-.2.68-.28,1.39-.31,2.1,0,.06-.02.13-.02.19-.05-.05-.06-.09-.06-.14-.07-.77-.11-1.54-.28-2.3-.09-.42-.19-.84-.41-1.22-.23-.39-.52-.39-.72,0-.13.25-.23.52-.31.8-.23.84-.33,1.7-.35,2.57,0,.1-.02.2-.02.3-.05-.04-.08-.08-.08-.12-.01-.11-.02-.22-.03-.33-.05-.72-.13-1.43-.37-2.11-.05-.15-.12-.3-.21-.42-.14-.21-.31-.2-.47,0-.05.07-.1.15-.13.23-.09.26-.19.52-.25.8-.1.48-.21.97-.21,1.46,0,.09.01.2-.08.3-.02-.06-.04-.09-.04-.12-.02-.19-.02-.38-.06-.57-.07-.32-.16-.63-.26-.94-.04-.12-.11-.25-.26-.25-.16,0-.21.15-.27.27-.16.32-.21.67-.25,1.01-.15,1.09-.15,2.17,0,3.26.05.34.11.68.25.99.06.14.14.27.34.32.46-.55.44-1.25.57-1.9.03.06.05.12.05.18.04.38.08.76.13,1.14.06.43.15.86.35,1.26.04.09.1.18.17.25.12.13.25.12.37,0,.04-.04.08-.1.11-.15.17-.3.28-.63.33-.97.08-.57.14-1.14.2-1.71,0-.07.02-.13.03-.2h.06c0,.08.02.17.02.25,0,.9.14,1.79.36,2.67.08.3.18.59.37.85.17.23.39.24.57.01.06-.08.11-.17.16-.27.16-.33.25-.69.33-1.04.14-.68.22-1.37.25-2.06,0-.13.02-.26.04-.39.02,0,.04,0,.06,0,0,.06.02.11.02.17.02.72.11,1.43.31,2.12.07.23.17.46.3.67.12.2.33.19.46-.01.09-.14.17-.29.22-.45.16-.5.28-1.01.31-1.54.01-.21.04-.43.06-.64,0-.05.03-.1.04-.15.04.06.05.12.05.18.06.47.12.95.3,1.39.06.15.14.26.28.32.14-.04.2-.15.25-.26.16-.33.24-.68.28-1.03.12-.93.16-1.87.05-2.81-.05-.4-.12-.8-.2-1.2Z"></path></svg>
+        <span class="pu-powered" aria-hidden="true">
+          <span class="pu-powered__text">Powered by</span>
+          <svg class="pu-brand__psa" aria-hidden="true" focusable="false" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="164.44 0.27 18.12 9.51"><path fill="#FFFFFF" d="M167.68.71h-2.94v8.6h2.05v-2.23h.84c1.9,0,2.26-1.88,2.26-3.34,0-1.82-.78-3.03-2.21-3.03ZM167.27,5.42h-.48v-3.02h.48c.37,0,.57.49.57,1.28,0,1.07,0,1.73-.57,1.73Z"></path><path fill="#FFFFFF" d="M172.43,2.45v-.21h.39v.79h2.09v-.56c0-1.19-.56-1.9-2.26-1.9-1.6,0-2.37.55-2.37,2.04,0,2.75,2.5,3.07,2.5,4.98v.22h-.39v-.8h-2.11v.56c0,1.33.78,1.91,2.33,1.91,1.66,0,2.36-.64,2.36-2.04,0-3-2.53-3.07-2.53-4.98Z"></path><path fill="#FFFFFF" d="M176.25.71l-.88,8.6h2.05l.06-1.15h.83l.06,1.15h2.1l-.92-8.6h-3.29ZM177.55,6.59l.21-4.22h.26l.21,4.22h-.68Z"></path><path fill="#FFFFFF" d="M182.21,8.31c-.06-.19-.22-.34-.4-.4-.64-.21-1.18.33-.96.97.06.19.22.34.41.4.64.2,1.16-.33.96-.96Z"></path></svg>
+        </span>
+      </div>
+      <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-header__cta" data-cta="header">
+        <span>Liberar a aula</span>
+        <span class="pu-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO ================================================================== -->
+  <section class="pu-hero" aria-labelledby="pu-titulo">
+    <div class="pu-hero__foto" aria-hidden="true">
+      <img src="imagens/pu-hero-marcio.webp" alt="" width="853" height="1280" fetchpriority="high" decoding="async" data-no-lazy="1">
+    </div>
+
+    <div class="pu-hero__grid">
+      <div class="pu-hero__copy">
+        <span class="pu-hero__tag">Aula exclusiva e gratuita</span>
+        <h1 id="pu-titulo">Aprenda a construir uma <em>Perspectiva Única</em> e pare de ser comparado por preço</h1>
+        <p class="pu-hero__sub">Com o avanço da Inteligência Artificial, ter diplomas ou um bom curso de oratória não garante mais contratos corporativos. O mercado B2B mudou e passou a contratar especialistas por <strong>contexto, autoridade e profundidade</strong>.</p>
+        <div class="pu-hero__acao">
+          <a href="#pu-formulario" class="pu-btn pu-btn--cream pu-btn--lg" data-cta="hero">
+            <span>Quero assistir à aula agora</span>
+            <span class="pu-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+            </span>
+          </a>
+          <span class="pu-hero__lock">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            Vídeo liberado ao responder
+          </span>
+        </div>
+      </div>
+
+      <p class="pu-hero__legenda">
+        <b>Márcio Spagnolo</b>
+        <span>Fundador e CEO da PSA</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO ============================================================ -->
+  <section id="pu-formulario" class="pu-form-section" aria-labelledby="pu-form-titulo">
+    <div class="pu-wrap pu-form-grid">
+
+      <div class="pu-form-copy">
+        <span class="pu-eyebrow">Aula exclusiva</span>
+        <h2 class="pu-h2" id="pu-form-titulo">O posicionamento <em>genérico</em> não paga mais suas contas</h2>
+        <p class="pu-form-copy__txt">Nesta aula exclusiva, <strong>Márcio Spagnolo (CEO da PSA)</strong> revela como fugir do posicionamento genérico e construir uma marca autêntica e altamente demandada pelas empresas.</p>
+        <div class="pu-pilares" aria-label="O que o mercado B2B contrata">
+          <span>Contexto</span><span>Autoridade</span><span>Profundidade</span>
+        </div>
+        <p class="pu-note"><b>Responda a estas breves perguntas abaixo para liberar o seu vídeo agora.</b> Leva menos de 2 minutos.</p>
+      </div>
+
+      <div id="pu-form" class="pu-card">
+        <!-- Formulário nativo do HubSpot (portal 49656171). O redirect depois
+             do envio é o configurado no formulário, lá no HubSpot. -->
+        <script src="https://js.hsforms.net/forms/embed/49656171.js" defer></script>
+        <div class="hs-form-frame" data-region="na1" data-form-id="edcd003f-7231-4a3c-8c7b-9bd8b9940c9b" data-portal-id="49656171"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁRCIO SPAGNOLO ======================================================= -->
+  <section class="pu-bio" aria-labelledby="pu-bio-titulo">
+    <div class="pu-wrap">
+      <div class="pu-bio__panel">
+        <div class="pu-bio__foto">
+          <img src="imagens/pu-marcio-spagnolo.webp" alt="Márcio Spagnolo, fundador e CEO da PSA" width="640" height="638" loading="lazy" decoding="async">
+        </div>
+        <div class="pu-bio__txt">
+          <span class="pu-eyebrow">Fundador e CEO da PSA</span>
+          <h2 class="pu-h2" id="pu-bio-titulo">Márcio Spagnolo</h2>
+          <p>Com mais de 20 anos de experiência no mercado de palestras, Márcio Spagnolo transformou a PSA na maior e mais relevante curadoria de palestrantes do Brasil.</p>
+          <p>Sob sua liderança visionária, a PSA já impactou milhares de eventos, conectando empresas a palestrantes que inspiram, transformam e geram resultados.</p>
+          <p>Além de mentor e estrategista, Márcio Spagnolo é conhecido por sua habilidade única de transformar potenciais em sucesso real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE BEST SCHOOL ======================================================= -->
+  <section class="pu-tbs" aria-labelledby="pu-tbs-titulo">
+    <div class="pu-wrap">
+      <div class="pu-tbs__head">
+        <span class="pu-eyebrow">The Best School</span>
+        <h2 class="pu-h2" id="pu-tbs-titulo">A escola de palestrantes fundada pela <em>PSA</em></h2>
+        <p>Com 14 anos de experiência como a maior curadoria de palestras do país, a PSA identificou uma grande informalidade no setor. Para transformar essa realidade, criou iniciativas para orientar palestrantes, em qualquer fase da carreira, sobre o real funcionamento do segmento e os caminhos para a profissionalização. Assim nasceu a The Best School, a escola de palestrantes fundada pela PSA.</p>
+        <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-btn--lg" data-cta="the-best-school">
+          <span>Quero minha Perspectiva Única</span>
+          <span class="pu-btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="pu-metrics">
+        <div class="pu-metric pu-metric--light">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><circle cx="12" cy="14" r="8"></circle><path d="M12 11v3l2 1"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">14 anos</div><div class="pu-metric__label">de pioneirismo no mercado de palestras</div></div>
+        </div>
+        <div class="pu-metric pu-metric--grad">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H7"></path><path d="M12 3v18"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+R$5 bi</div><div class="pu-metric__label">movimentados por ano no mercado de palestras</div></div>
+        </div>
+        <div class="pu-metric pu-metric--light">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9"></path><rect x="9" y="12" width="6" height="9" rx="3"></rect><path d="M4 10a8 8 0 0 1 16 0"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+8.000</div><div class="pu-metric__label">eventos realizados com chancela PSA</div></div>
+        </div>
+        <div class="pu-metric pu-metric--grad">
+          <span class="pu-metric__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"></path><path d="M14 8h6v6"></path></svg>
+          </span>
+          <div><div class="pu-metric__value">+100 mi</div><div class="pu-metric__label">em palestras vendidas por ano</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ ================================================================ -->
+  <footer class="pu-footer">
+    <div class="pu-wrap pu-footer__inner">
+      <div class="pu-stack" style="gap:12px">
+        <div class="pu-brand">
+          <span class="pu-sr">The Best School, powered by PSA</span>
+          <svg class="pu-brand__school" aria-hidden="true" focusable="false" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125.7 10.13"><polygon fill="#FFFFFF" points="4.84 2.46 7.46 2.46 7.46 9.15 9.25 9.15 9.25 2.46 11.89 2.46 11.89 .97 4.84 .97 4.84 2.46"></polygon><polygon fill="#FFFFFF" points="18.62 4.21 14.99 4.21 14.99 .97 13.21 .97 13.21 9.15 14.99 9.15 14.99 5.72 18.62 5.72 18.62 9.15 20.39 9.15 20.39 .97 18.62 .97 18.62 4.21"></polygon><polygon fill="#FFFFFF" points="24.12 5.69 28.32 5.69 28.32 4.25 24.12 4.25 24.12 2.42 28.86 2.42 28.86 .97 22.33 .97 22.33 9.15 28.94 9.15 28.94 7.68 24.12 7.68 24.12 5.69"></polygon><path fill="#FFFFFF" d="M39.24,5.26c-.23-.17-.5-.29-.81-.36v-.05c.25-.08.48-.2.69-.37.2-.17.36-.38.48-.63.12-.25.18-.54.18-.87,0-.41-.1-.76-.3-1.06-.2-.3-.47-.54-.82-.7-.35-.17-.73-.25-1.16-.25h-4.68v8.18h4.69c.46,0,.88-.08,1.25-.25.37-.17.67-.42.9-.75.23-.33.34-.75.34-1.24,0-.37-.07-.7-.21-.97s-.33-.5-.56-.67ZM34.61,2.39h2.42c.28,0,.5.08.67.24.17.16.26.39.26.7,0,.18-.04.34-.11.48-.08.14-.19.25-.33.33-.15.08-.33.13-.54.13h-2.36v-1.89ZM37.89,7.44c-.19.17-.43.25-.72.25h-2.56v-2.04h2.48c.25,0,.45.04.61.13.16.08.28.2.36.35.08.15.12.33.12.54,0,.35-.09.61-.28.78Z"></path><polygon fill="#FFFFFF" points="43.35 5.69 47.55 5.69 47.55 4.25 43.35 4.25 43.35 2.42 48.1 2.42 48.1 .97 41.56 .97 41.56 9.15 48.17 9.15 48.17 7.68 43.35 7.68 43.35 5.69"></polygon><path fill="#FFFFFF" d="M55.72,5.08c-.24-.18-.51-.33-.81-.45-.3-.12-.61-.22-.93-.31-.32-.09-.63-.17-.93-.24s-.57-.15-.82-.24c-.24-.09-.43-.2-.57-.32-.14-.12-.21-.28-.21-.47,0-.17.06-.31.19-.44.12-.12.3-.22.54-.28.23-.06.52-.1.85-.1.31,0,.58.04.81.13s.41.21.54.36c.13.15.19.33.19.55v.1h1.73v-.14c0-.41-.09-.77-.26-1.07-.17-.3-.41-.55-.71-.75-.3-.2-.65-.34-1.05-.44-.4-.09-.82-.14-1.26-.14-.48,0-.92.05-1.32.14-.41.09-.76.23-1.07.42-.31.19-.55.43-.72.73-.17.29-.26.64-.26,1.05,0,.38.07.71.21.98s.33.49.57.67c.24.18.51.32.81.45.3.12.61.23.93.31s.63.17.93.24c.3.08.57.17.82.26.24.1.43.21.57.35.14.14.21.31.21.52,0,.12-.02.23-.07.32s-.11.18-.2.25c-.09.07-.21.13-.35.19-.14.05-.3.09-.48.12-.18.03-.38.04-.61.04-.36,0-.67-.04-.94-.13-.27-.09-.48-.22-.61-.39-.14-.17-.21-.39-.21-.64v-.11s0-.07.01-.1h-1.77s-.01.06-.01.1v.13c0,.46.09.85.28,1.18.19.32.45.59.78.8.33.21.71.36,1.14.46s.88.14,1.36.14c.68,0,1.28-.09,1.8-.26.52-.17.94-.45,1.24-.84s.45-.89.45-1.52c0-.37-.07-.68-.21-.94-.14-.26-.33-.48-.57-.66Z"></path><polygon fill="#FFFFFF" points="57.44 2.46 60.06 2.46 60.06 9.15 61.85 9.15 61.85 2.46 64.49 2.46 64.49 .97 57.44 .97 57.44 2.46"></polygon><path fill="#FFFFFF" d="M74.19,4.96c-.24-.18-.5-.33-.8-.44-.29-.12-.6-.21-.91-.29-.31-.08-.62-.15-.91-.21-.29-.07-.56-.14-.8-.22-.24-.08-.43-.17-.57-.29s-.21-.25-.21-.43c0-.14.05-.27.16-.37.11-.1.26-.18.47-.24.2-.06.45-.08.75-.08s.54.04.74.13c.2.08.35.19.45.33.1.14.15.3.15.48v.08h2.05v-.14c0-.43-.1-.8-.28-1.1-.18-.31-.43-.56-.75-.76-.32-.2-.68-.35-1.09-.45-.41-.1-.85-.14-1.32-.14s-.93.05-1.35.14c-.42.09-.79.24-1.12.44-.32.2-.57.46-.76.77-.18.31-.27.69-.27,1.12,0,.39.07.72.21,1,.14.27.33.5.56.69.23.18.5.33.79.45.29.12.6.22.92.3.32.08.62.16.92.23s.56.15.79.23c.23.08.42.18.56.3.14.12.21.27.21.45,0,.11-.02.21-.07.29-.04.08-.11.16-.2.21-.09.06-.2.11-.32.15s-.25.07-.41.08c-.15.02-.31.02-.49.02-.32,0-.6-.03-.83-.1-.24-.07-.42-.18-.55-.33-.13-.16-.2-.36-.2-.61,0-.02,0-.05,0-.09,0-.04,0-.07,0-.09h-2.06s-.01.06-.01.1v.11c0,.49.1.91.3,1.25.2.34.47.61.82.82.35.21.75.36,1.2.45.45.09.94.14,1.46.14.68,0,1.28-.09,1.82-.27.54-.18.96-.47,1.26-.87.31-.4.46-.92.46-1.57,0-.37-.07-.69-.21-.95-.14-.26-.33-.48-.57-.66Z"></path><path fill="#FFFFFF" d="M78.49,3.54c.14-.34.35-.6.63-.79.29-.18.65-.27,1.1-.27.36,0,.66.07.91.2.25.14.45.33.58.58s.21.55.21.9h2.09c0-.74-.16-1.36-.48-1.85-.32-.5-.77-.87-1.34-1.12-.57-.25-1.23-.38-1.97-.38-1.33,0-2.35.35-3.06,1.06-.71.7-1.07,1.76-1.07,3.18,0,.96.16,1.76.48,2.39.32.63.79,1.1,1.4,1.4.62.31,1.37.46,2.25.46.76,0,1.43-.12,2-.37s1.01-.62,1.32-1.11c.31-.49.47-1.11.47-1.85h-2.02c0,.35-.07.65-.21.9s-.34.44-.61.57c-.27.13-.59.19-.97.19-.45,0-.81-.09-1.09-.27-.28-.18-.49-.44-.63-.79-.14-.35-.2-.76-.2-1.25v-.54c0-.48.07-.9.2-1.24Z"></path><polygon fill="#FFFFFF" points="91.01 4.1 87.68 4.1 87.68 .95 85.54 .95 85.54 9.15 87.68 9.15 87.68 5.85 91.01 5.85 91.01 9.15 93.14 9.15 93.14 .95 91.01 .95 91.01 4.1"></polygon><path fill="#FFFFFF" d="M111.08,1.28c-.64-.31-1.41-.47-2.31-.47s-1.67.16-2.31.47c-.64.31-1.13.78-1.47,1.41-.34.62-.51,1.41-.51,2.36s.17,1.73.51,2.36.83,1.1,1.47,1.41c.64.31,1.41.47,2.31.47s1.67-.16,2.31-.47c.64-.31,1.13-.79,1.47-1.41.34-.63.51-1.42.51-2.36s-.17-1.73-.51-2.36c-.34-.62-.83-1.09-1.47-1.41ZM110.87,5.32c0,.36-.04.68-.13.97-.09.29-.22.53-.4.73-.18.2-.4.35-.66.45-.26.1-.56.16-.91.16s-.66-.05-.92-.16c-.26-.1-.48-.25-.66-.45-.18-.2-.31-.44-.39-.73-.09-.29-.13-.61-.13-.97v-.52c0-.37.04-.69.13-.98.09-.29.22-.53.39-.73.17-.2.39-.35.66-.45.26-.1.57-.16.92-.16s.64.05.91.16c.26.1.48.25.66.45.18.2.31.44.4.73.09.29.13.61.13.98v.52Z"></path><polygon fill="#FFFFFF" points="116.75 .95 114.62 .95 114.62 9.15 120.92 9.15 120.92 7.4 116.75 7.4 116.75 .95"></polygon><path fill="#FFFFFF" d="M102.67,2.71c-.03-.14-.1-.29-.18-.41-.12-.19-.26-.2-.39-.01-.06.08-.1.16-.12.26-.1.42-.18.84-.27,1.26-.01.07-.02.14-.03.2-.02,0-.03,0-.05,0-.01-.07-.02-.15-.03-.22-.06-.51-.07-1.03-.21-1.54-.09-.33-.16-.67-.35-.96-.17-.26-.36-.26-.51,0-.12.19-.21.41-.27.63-.2.68-.28,1.39-.31,2.1,0,.06-.02.13-.02.19-.05-.05-.06-.09-.06-.14-.07-.77-.11-1.54-.28-2.3-.09-.42-.19-.84-.41-1.22-.23-.39-.52-.39-.72,0-.13.25-.23.52-.31.8-.23.84-.33,1.7-.35,2.57,0,.1-.02.2-.02.3-.05-.04-.08-.08-.08-.12-.01-.11-.02-.22-.03-.33-.05-.72-.13-1.43-.37-2.11-.05-.15-.12-.3-.21-.42-.14-.21-.31-.2-.47,0-.05.07-.1.15-.13.23-.09.26-.19.52-.25.8-.1.48-.21.97-.21,1.46,0,.09.01.2-.08.3-.02-.06-.04-.09-.04-.12-.02-.19-.02-.38-.06-.57-.07-.32-.16-.63-.26-.94-.04-.12-.11-.25-.26-.25-.16,0-.21.15-.27.27-.16.32-.21.67-.25,1.01-.15,1.09-.15,2.17,0,3.26.05.34.11.68.25.99.06.14.14.27.34.32.46-.55.44-1.25.57-1.9.03.06.05.12.05.18.04.38.08.76.13,1.14.06.43.15.86.35,1.26.04.09.1.18.17.25.12.13.25.12.37,0,.04-.04.08-.1.11-.15.17-.3.28-.63.33-.97.08-.57.14-1.14.2-1.71,0-.07.02-.13.03-.2h.06c0,.08.02.17.02.25,0,.9.14,1.79.36,2.67.08.3.18.59.37.85.17.23.39.24.57.01.06-.08.11-.17.16-.27.16-.33.25-.69.33-1.04.14-.68.22-1.37.25-2.06,0-.13.02-.26.04-.39.02,0,.04,0,.06,0,0,.06.02.11.02.17.02.72.11,1.43.31,2.12.07.23.17.46.3.67.12.2.33.19.46-.01.09-.14.17-.29.22-.45.16-.5.28-1.01.31-1.54.01-.21.04-.43.06-.64,0-.05.03-.1.04-.15.04.06.05.12.05.18.06.47.12.95.3,1.39.06.15.14.26.28.32.14-.04.2-.15.25-.26.16-.33.24-.68.28-1.03.12-.93.16-1.87.05-2.81-.05-.4-.12-.8-.2-1.2Z"></path></svg>
+          <span class="pu-powered" aria-hidden="true">
+            <span class="pu-powered__text">Powered by</span>
+            <svg class="pu-brand__psa" aria-hidden="true" focusable="false" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="164.44 0.27 18.12 9.51"><path fill="#FFFFFF" d="M167.68.71h-2.94v8.6h2.05v-2.23h.84c1.9,0,2.26-1.88,2.26-3.34,0-1.82-.78-3.03-2.21-3.03ZM167.27,5.42h-.48v-3.02h.48c.37,0,.57.49.57,1.28,0,1.07,0,1.73-.57,1.73Z"></path><path fill="#FFFFFF" d="M172.43,2.45v-.21h.39v.79h2.09v-.56c0-1.19-.56-1.9-2.26-1.9-1.6,0-2.37.55-2.37,2.04,0,2.75,2.5,3.07,2.5,4.98v.22h-.39v-.8h-2.11v.56c0,1.33.78,1.91,2.33,1.91,1.66,0,2.36-.64,2.36-2.04,0-3-2.53-3.07-2.53-4.98Z"></path><path fill="#FFFFFF" d="M176.25.71l-.88,8.6h2.05l.06-1.15h.83l.06,1.15h2.1l-.92-8.6h-3.29ZM177.55,6.59l.21-4.22h.26l.21,4.22h-.68Z"></path><path fill="#FFFFFF" d="M182.21,8.31c-.06-.19-.22-.34-.4-.4-.64-.21-1.18.33-.96.97.06.19.22.34.41.4.64.2,1.16-.33.96-.96Z"></path></svg>
+          </span>
+        </div>
+        <p class="pu-footer__legal">Uma experiência PSA. 14 anos como a maior curadoria de palestras do país.</p>
+      </div>
+      <div class="pu-footer__dir">
+        <div class="pu-social">
+          <a href="https://www.instagram.com/psa.talk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
+          </a>
+          <a href="https://br.linkedin.com/company/profissionais-sa" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M8 10v7"></path><path d="M8 7.2v.1"></path><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"></path></svg>
+          </a>
+          <a href="https://www.youtube.com/profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="YouTube da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.2 9.6l5 2.4-5 2.4z"></path></svg>
+          </a>
+          <a href="https://www.facebook.com/PSA.profissionaissa" target="_blank" rel="noopener noreferrer" aria-label="Facebook da PSA">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="M14.8 8.2h-1.3a2.2 2.2 0 0 0-2.2 2.2v8.4"></path><path d="M9.2 12.6h4.6"></path></svg>
+          </a>
+        </div>
+        <a href="https://psapublicfiles.blob.core.windows.net/psapublicfilescontainer/termos-de-uso/Pol%C3%ADtica%20de%20Privacidade%20e%20Termos%20de%20Uso%20de%20Dados-%20PSA.pdf" target="_blank" rel="noopener noreferrer" class="pu-footer__policy">Política de privacidade e termos de uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CTA FLUTUANTE ========================================================= -->
+  <div class="pu-flutuante">
+    <a href="#pu-formulario" class="pu-btn pu-btn--grad pu-btn--lg" data-cta="flutuante">
+      <span class="pu-flutuante__longo">Quero assistir à aula agora</span>
+      <span class="pu-flutuante__curto">Liberar a aula</span>
+      <span class="pu-btn__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- data-no-optimize: impede o LiteSpeed Cache de adiar este script até o
+     primeiro toque na tela. -->
+<script data-no-optimize="1">
+/* ==========================================================================
+   CONFIGURAÇÃO — edite só este bloco
+   ========================================================================== */
+var PU_CONFIG = {
+  formId: 'edcd003f-7231-4a3c-8c7b-9bd8b9940c9b',
+  // Página do vídeo, relativa à LP. O normal é o próprio HubSpot redirecionar
+  // para ela (Opções > Após o envio). Se ele mostrar só a mensagem de
+  // agradecimento, a LP leva para cá depois de um instante.
+  paginaDoVideo: 'conteudo-liberado/',
+  // Carrega o tracking do HubSpot (cookie hubspotutk, que liga o lead à
+  // origem da visita) se o site ainda não o carregar.
+  trackingHubspot: true
+};
+
+(function () {
+  'use strict';
+
+  var raiz = document.getElementById('psa-pu');
+  // O editor do Elementor pode rodar o script mais de uma vez
+  if (!raiz || raiz.getAttribute('data-pu-pronto')) return;
+  raiz.setAttribute('data-pu-pronto', '1');
+
+  /* ------------------------------------------------------------------------
+     1. Envio do formulário nativo
+     A conversão não dispara aqui: um push no mesmo instante do redirect pode
+     ser cortado antes das tags saírem. A LP só marca que o lead foi enviado,
+     e a página do vídeo dispara o evento ao encontrar a marca.
+     ------------------------------------------------------------------------ */
+  window.addEventListener('hs-form-event:on-submission:success', function (e) {
+    if (e.detail && e.detail.formId && e.detail.formId !== PU_CONFIG.formId) return;
+    try { sessionStorage.setItem('pu_lead', String(Date.now())); } catch (err) {}
+    setTimeout(function () {
+      if (PU_CONFIG.paginaDoVideo) window.location.href = PU_CONFIG.paginaDoVideo;
+    }, 1500);
+  });
+
+  /* ------------------------------------------------------------------------
+     2. Tracking do HubSpot, se o site ainda não carrega
+     ------------------------------------------------------------------------ */
+  if (PU_CONFIG.trackingHubspot && !document.getElementById('hs-script-loader') && !window._hsq) {
+    var s = document.createElement('script');
+    s.id = 'hs-script-loader';
+    s.async = true;
+    s.defer = true;
+    s.src = 'https://js.hs-scripts.com/49656171.js';
+    document.body.appendChild(s);
+  }
+
+  /* ------------------------------------------------------------------------
+     3. Header fixo e CTA flutuante
+     ------------------------------------------------------------------------ */
+  var header = raiz.querySelector('.pu-header');
+  var flutuante = raiz.querySelector('.pu-flutuante');
+  var hero = raiz.querySelector('.pu-hero');
+  var cardForm = raiz.querySelector('#pu-form');
+  var celular = window.matchMedia('(max-width:767px)');
+  var LIMITE = 80;              // px de rolagem até o header ganhar fundo
+  var ultimoY = window.pageYOffset;
+  var agendado = false;
+
+  function aoRolar() {
+    agendado = false;
+    var y = window.pageYOffset;
+    // Mede pelo hero, não pelo topo da página: no WordPress a LP pode não
+    // começar no pixel zero.
+    header.classList.toggle('is-stuck', hero.getBoundingClientRect().top < -LIMITE);
+    if (celular.matches && Math.abs(y - ultimoY) > 6) {
+      header.classList.toggle('is-hidden', y > ultimoY && y > 200);
+    } else if (!celular.matches) {
+      header.classList.remove('is-hidden');
+    }
+    ultimoY = y;
+  }
+  window.addEventListener('scroll', function () {
+    if (!agendado) { agendado = true; requestAnimationFrame(aoRolar); }
+  }, { passive: true });
+  aoRolar();
+
+  if ('IntersectionObserver' in window) {
+    // Some onde já há um botão na tela (hero, formulário) e no rodapé,
+    // onde cobriria os links.
+    var alvos = [hero, cardForm, raiz.querySelector('.pu-footer')];
+    var naTela = [true, false, false];
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { naTela[alvos.indexOf(e.target)] = e.isIntersecting; });
+      flutuante.classList.toggle('is-visible', naTela.indexOf(true) === -1);
+    });
+    alvos.forEach(function (el) { observador.observe(el); });
+  }
+})();
+</script>
+
+
+<div style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
+writing-mode:vertical-rl;background:#1A0800;color:#FEF8E8;
+font:500 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;
+padding:12px 5px;border-radius:0 10px 10px 0;box-shadow:0 8px 24px -8px rgba(0,0,0,.6);pointer-events:none">
+Prévia · o formulário é o real</div>
+
+</body>
+</html>
