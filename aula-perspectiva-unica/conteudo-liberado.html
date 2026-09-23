@@ -87,7 +87,7 @@
   <section class="pu-liberada" aria-labelledby="pu-liberada-titulo">
     <div class="pu-liberada__inner">
       <span class="pu-eyebrow">Conteúdo liberado</span>
-      <h1 id="pu-liberada-titulo">Seu vídeo foi liberado<span data-pu-nome></span>!</h1>
+      <h1 id="pu-liberada-titulo">Seu vídeo foi <em>liberado</em>!</h1>
       <p class="pu-liberada__sub">Assista agora à aula exclusiva de Márcio Spagnolo sobre como construir sua <strong>Perspectiva Única</strong>.</p>
 
       <div class="pu-video">
@@ -143,11 +143,14 @@
 
 <script data-no-optimize="1">
 (function () {
-  // Cumprimenta pelo primeiro nome que a LP guardou ao enviar o formulário
+  // Conversão: dispara só quando a LP marcou que o formulário foi enviado.
+  // Recarregar a página, voltar pelo histórico ou abrir o link recebido de
+  // alguém não conta. A marca é apagada depois do primeiro disparo.
   try {
-    var nome = sessionStorage.getItem('pu_nome');
-    var alvo = document.querySelector('#psa-pu [data-pu-nome]');
-    if (nome && alvo) alvo.textContent = ', ' + nome;
-  } catch (e) { /* modo privado: fica sem o nome */ }
+    if (!sessionStorage.getItem('pu_lead')) return;
+    sessionStorage.removeItem('pu_lead');
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'lead_perspectiva_unica', lead_origem: 'perspectiva-unica' });
+  } catch (e) { /* modo privado: sem sessionStorage, sem conversão aqui */ }
 })();
 </script>

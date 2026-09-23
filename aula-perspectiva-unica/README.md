@@ -1,17 +1,19 @@
 # LP Aula Perspectiva Única
 
-Aula exclusiva de Márcio Spagnolo. Usa a identidade visual e o formulário do
-HubSpot da LP The Best School, e pode ser publicada de dois jeitos: por **FTP**, como pasta própria em
-profissionaissa.com.br/aula-perspectiva-unica/, ou como **widget HTML do Elementor**.
+Aula exclusiva de Márcio Spagnolo. Usa a identidade visual da LP The Best School
+e o formulário nativo do HubSpot, e pode ser publicada de dois jeitos: por
+**FTP**, como pasta própria em profissionaissa.com.br/aula-perspectiva-unica/,
+ou como **widget HTML do Elementor**.
 
 ```
-embed.html     fonte: página inteira (CSS, HTML e JS), presa ao #psa-pu
-montar.py      confere as opções com o HubSpot e gera a dist/
+embed.html              fonte da LP (CSS, HTML e JS), presa ao #psa-pu
+conteudo-liberado.html  fonte da página do vídeo
+montar.py               gera a dist/
 dist/          gerada, não versionada
   ftp/                   página completa para subir por FTP
   embed-elementor.html   o que se cola no Elementor
   imagens/pu-*.webp      o que se sobe na Biblioteca de Mídia
-  preview.html           prévia local, com envio interceptado
+  preview.html           prévia local, com o CSS do tema simulado
 ```
 
 ## Gerar
@@ -20,13 +22,11 @@ dist/          gerada, não versionada
 python3 aula-perspectiva-unica/montar.py
 ```
 
-O script para se algum `value` de resposta divergir do HubSpot. Para a prévia,
-com o servidor da LP rodando (`python3 -m http.server 4173` na raiz), abra
-http://localhost:4173/aula-perspectiva-unica/dist/preview.html.
+Para a prévia, com o servidor da LP rodando (`python3 -m http.server 4173` na
+raiz), abra http://localhost:4173/aula-perspectiva-unica/dist/preview.html.
 
-A prévia simula o CSS do tema e **não envia nada ao HubSpot**: o envio é
-interceptado e devolve um redirect falso (`#video-liberado`). O que iria para o
-HubSpot fica em `window.__puEnvios` e a conversão em `window.dataLayer`.
+**Nas prévias o formulário é o nativo do HubSpot: um envio feito nelas é real**
+e cria contato. A página de conversão (`pageUri`) mostra de onde veio.
 
 ## Prévia online
 
@@ -34,8 +34,9 @@ HubSpot fica em `window.__puEnvios` e a conversão em `window.dataLayer`.
 ./publicar-previa.sh
 ```
 
-Publica no GitHub Pages, no branch `gh-pages`, as duas LPs lado a lado, sem GTM
-e com o envio interceptado:
+Publica no GitHub Pages, no branch `gh-pages`, as duas LPs lado a lado, sem GTM.
+Na The Best School o envio é interceptado; na Perspectiva Única o formulário é o
+nativo do HubSpot e envia de verdade:
 
 - https://brunostersa.github.io/thebestschool/thebestschool/
 - https://brunostersa.github.io/thebestschool/aula-perspectiva-unica/
@@ -101,65 +102,37 @@ contaria cada conversão duas vezes.
 
 ## Formulário
 
-Mesmo formulário da LP The Best School — portal `49656171`, form `634374b1-…`.
+Formulário **nativo do HubSpot**, embutido sem personalização — portal
+`49656171`, form `edcd003f-7231-4a3c-8c7b-9bd8b9940c9b`. Campos, opções,
+obrigatoriedade e consentimento LGPD são editados no próprio HubSpot; a LP só
+emoldura o formulário num cartão.
 
-**Redirecionamento.** Depois do envio, a LP vai para `conteudo-liberado/`
-(`PU_CONFIG.redirectUrl`), a página com o vídeo da aula
-(YouTube `Y8hzAleMXyY`, sem cookies de rastreio do YouTube até o play). Ela
-cumprimenta pelo primeiro nome, que a LP guarda no `sessionStorage`, e não
-indexa, para não virar atalho para o vídeo sem o formulário. A fonte é
-`conteudo-liberado.html`, que usa o mesmo CSS da LP.
+**Redirecionamento.** Configure no formulário, em *Opções > Após o envio >
+Redirecionar para outra página*:
+`https://profissionaissa.com.br/aula-perspectiva-unica/conteudo-liberado/`.
+Se ele ficar na mensagem de agradecimento, a LP leva para `conteudo-liberado/`
+1,5 s depois do envio (`PU_CONFIG.paginaDoVideo`).
 
-O redirect configurado no formulário do HubSpot é ignorado: o formulário é o
-mesmo da The Best School e hoje aponta para `the-best-weekend/inscricao-confirmada/`.
-Com `redirectUrl` vazio, a LP passa a usar o do HubSpot e, sem nenhum, mostra a
-confirmação no próprio formulário.
-
-Na versão do Elementor o caminho é relativo à página: ela precisa ter uma
-subpágina `conteudo-liberado/` com o vídeo, ou `redirectUrl` precisa do
-endereço completo.
-
-Como os dois LPs usam o mesmo formulário, os leads chegam juntos. Para separar,
-use a página de conversão do contato no HubSpot ou o `lead_origem` no GTM.
-
-**Perguntas ligadas** — as quatro que o formulário tem, todas obrigatórias lá:
-
-| Pergunta | Propriedade |
-|---|---|
-| Qual a sua atuação hoje? | `qual_a_sua_atuacao_hoje___new_campaign_` |
-| Você já atua como palestrante? | `voce_ja_atua_como_palestrante_` |
-| O que você está buscando e quanto deseja investir? | `temos_programas_…_o_que_voce_esta_buscando_new` |
-| Qual sua urgência…? | `voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_` |
-
-**Perguntas desligadas** — estão no design, mas o formulário não tem onde
-guardá-las: gênero, tempo de palestra, obstáculo e forma de pagamento. Ficam no
-HTML com `data-hubspot=""`, o que as esconde e as tira do envio. Para ligar uma:
-
-1. crie a propriedade no HubSpot e inclua no formulário;
-2. no `embed.html`, preencha `data-hubspot` com o nome interno e use o mesmo
-   nome no `name` de cada radio;
-3. troque cada `value` pelo texto exato cadastrado no HubSpot;
-4. acrescente a propriedade e os valores ao `OFICIAL` do `montar.py`.
-
-"Há quanto tempo você faz palestras?" só aparece para quem já palestra
-(`data-pular-se-*`), como no design.
+**Página do vídeo** (`conteudo-liberado/`): vídeo da aula (YouTube
+`Y8hzAleMXyY`, pelo `youtube-nocookie`) e convite para a The Best School. Não
+indexa, para não virar atalho para o vídeo sem o formulário.
 
 ## Conversão (GTM)
 
-Depois de o HubSpot aceitar o envio, a LP faz o push abaixo e só redireciona
-quando o GTM termina de disparar as tags (`eventCallback`), com limite de 2 s:
+Mesmo desenho da página de obrigado da LP The Best School. Ao ouvir o evento
+`hs-form-event:on-submission:success` do HubSpot, a LP grava uma marca
+(`pu_lead`) no `sessionStorage`; a página do vídeo, ao encontrá-la, faz o push
+e apaga a marca:
 
 ```js
-{
-  event: 'lead_perspectiva_unica',
-  lead_origem: 'perspectiva-unica',
-  diagnostico_atuacao:  '...',
-  diagnostico_ja_atua:  '...',
-  diagnostico_objetivo: '...',
-  diagnostico_urgencia: '...'
-}
+{ event: 'lead_perspectiva_unica', lead_origem: 'perspectiva-unica' }
 ```
 
-As variáveis `diagnostico_*` têm os mesmos nomes da LP The Best School. No GTM,
-crie um acionador de evento personalizado `lead_perspectiva_unica` e ligue nele
-as conversões de Ads e Meta. Nome, e-mail e telefone não vão para o dataLayer.
+Recarregar a página do vídeo, voltar pelo histórico ou abrir o link recebido de
+alguém não conta conversão. No GTM, crie um acionador de evento personalizado
+`lead_perspectiva_unica` e ligue nele as conversões de Ads e Meta — use o
+evento, e não a URL da página, como acionador.
+
+As respostas do formulário não vão para o dataLayer: o formulário nativo roda
+num iframe do HubSpot, e a LP não tem acesso a elas. Para segmentar por
+qualidade de lead, use as propriedades do contato no HubSpot.

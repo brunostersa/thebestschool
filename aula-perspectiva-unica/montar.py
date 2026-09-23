@@ -10,13 +10,11 @@ Gera em aula-perspectiva-unica/dist/:
   imagens/pu-*.webp      o que se sobe na Biblioteca de Mídia do WordPress
   ftp/                   página completa para subir por FTP em
                          public_html/aula-perspectiva-unica/ (com GTM)
-  preview.html           prévia local, com um tema "hostil" simulado e o
-                         envio ao HubSpot interceptado (não cria lead)
-  previa/                prévia para compartilhar, também sem envio real
+  preview.html           prévia local, com um tema "hostil" simulado
+  previa/                prévia para compartilhar
+Nas prévias o formulário é o nativo do HubSpot: um envio feito nelas é real.
 
-Antes de gerar, confere as opções: o "value" de cada resposta tem de ser o
-texto exato cadastrado no HubSpot. Quando não bate, o HubSpot aceita o envio e
-descarta a resposta em silêncio. Se algo divergir, o build é interrompido.
+Antes de gerar, confere se o embed do formulário nativo do HubSpot está na LP.
 """
 import html
 import pathlib
@@ -29,36 +27,9 @@ RAIZ = AQUI.parent
 DIST = AQUI / 'dist'
 URL_UPLOADS = 'https://profissionaissa.com.br/wp-content/uploads/2026/09/'
 
-# Valores aceitos pelo HubSpot — portal 49656171, form 634374b1-…
-# Conferidos contra o formulário publicado em 22/09/2026. Para atualizar,
-# leia a definição do formulário (passo a passo no DEPLOY.md da LP).
-OFICIAL = {
-    'voce_ja_atua_como_palestrante_': [
-        "Sim, já realizo palestras remuneradas.",
-        "Sim, mas apenas de forma gratuita.",
-        "Não, ainda não atuo como palestrante.",
-    ],
-    'qual_a_sua_atuacao_hoje___new_campaign_': [
-        "Palestrante profissional",
-        "Executivo (VP/Diretor/C-level)",
-        "Acadêmico (Mestre/Doutor)",
-        "Empreendedor (Founder/Cofounder)",
-        "Coach/Psicologo/RH",
-        "Outra",
-    ],
-    'temos_programas_para_diversos_estagios_da_carreira_de_palestrante_o_que_voce_esta_buscando_new': [
-        "Apenas conhecer o mercado de palestras de forma gratuita.",
-        "Ingressar profissionalmente no mercado (investimento de até 1k)",
-        "Consolidar minha carreira de palestrante (investimento de até 5k)",
-        "Gerar mais receita com as minhas palestras (investimento de até 15k)",
-        "Consolidar como palestrante de alto impacto (investimento de +20k)",
-    ],
-    'voce_ja_esta_pronto_para_investir_na_sua_carreira_como_palestrante_': [
-        "Sim, quero começar o quanto antes!",
-        "Sim, estou planejando investir ainda este ano",
-        "Não, ainda não estou pronto.",
-    ],
-}
+# Formulário nativo do HubSpot embutido na LP. Campos e opções são do próprio
+# HubSpot; o montar.py só confere se o embed está lá.
+FORM_ID = 'edcd003f-7231-4a3c-8c7b-9bd8b9940c9b'
 
 # Imagem de origem (LP The Best School) → nome no WordPress.
 # O prefixo pu- evita colidir com arquivos que já existem na Biblioteca de
@@ -181,34 +152,6 @@ def htaccess_ftp():
     return s
 
 
-def conferir(fonte):
-    problemas = []
-    blocos = re.findall(r'<fieldset class="pu-q"([^>]*)>(.*?)</fieldset>', fonte, re.S)
-    ligadas = 0
-    for attrs, corpo in blocos:
-        prop = re.search(r'data-hubspot="([^"]*)"', attrs).group(1)
-        if not prop:
-            continue
-        ligadas += 1
-        if prop not in OFICIAL:
-            problemas.append(f'{prop}: propriedade sem lista de referência no montar.py')
-            continue
-        vals = [html.unescape(v) for v in re.findall(r'<input type="radio"[^>]*value="([^"]*)"', corpo)]
-        nomes = set(re.findall(r'<input type="radio" name="([^"]*)"', corpo))
-        if nomes != {prop}:
-            problemas.append(f'{prop}: o name dos radios ({", ".join(sorted(nomes))}) difere do data-hubspot')
-        for e in OFICIAL[prop]:
-            if e not in vals:
-                problemas.append(f'{prop}: falta a opção {e!r}')
-        for v in vals:
-            if v not in OFICIAL[prop]:
-                problemas.append(f'{prop}: {v!r} não existe no HubSpot e seria descartado')
-    faltando = set(OFICIAL) - set(re.findall(r'data-hubspot="([^"]+)"', fonte))
-    for f in sorted(faltando):
-        problemas.append(f'{f}: obrigatória no HubSpot, mas não está ligada na LP — o envio seria recusado')
-    return ligadas, problemas
-
-
 def svg_inline(caminho, classe):
     s = (RAIZ / caminho).read_text(encoding='utf-8')
     s = re.sub(r'<\?xml[^>]*\?>', '', s)
@@ -232,8 +175,8 @@ fieldset{border:1px solid #666;margin:0 2px;padding:.35em .625em .75em;}
 img{height:auto;max-width:100%;border:4px solid red;}
 """
 
-# Na prévia o envio não sai daqui: devolve um redirect falso e registra o
-# que iria para o HubSpot e para o dataLayer.
+# Intercepta o envio via Forms API (fetch). Usado pelo publicar-previa.sh na
+# cópia da LP The Best School; o formulário nativo desta LP não passa por aqui.
 MOCK = """
 <script>
 window.__puEnvios = [];
@@ -255,6 +198,14 @@ window.fetch = function (url, opts) {
 """
 
 
+AVISO_PREVIA_REAL = """
+<div style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
+writing-mode:vertical-rl;background:#1A0800;color:#FEF8E8;
+font:500 10px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;
+padding:12px 5px;border-radius:0 10px 10px 0;box-shadow:0 8px 24px -8px rgba(0,0,0,.6);pointer-events:none">
+Prévia · o formulário é o real</div>
+"""
+
 AVISO_PREVIA = """
 <div style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:9999;
 writing-mode:vertical-rl;background:#1A0800;color:#FEF8E8;
@@ -267,16 +218,10 @@ Prévia · o envio não vai ao HubSpot</div>
 def main():
     fonte = (AQUI / 'embed.html').read_text(encoding='utf-8')
 
-    print('Conferindo o formulário:')
-    ligadas, problemas = conferir(fonte)
-    if problemas:
-        print('  opções fora de sincronia com o HubSpot:')
-        for p in problemas:
-            print(f'    - {p}')
-        print('\nBuild interrompido: acerte as opções antes de publicar.')
+    if f'data-form-id="{FORM_ID}"' not in fonte:
+        print(f'O embed do formulário {FORM_ID} não está no embed.html.')
         return 1
-    total = sum(len(v) for v in OFICIAL.values())
-    print(f'  {ligadas} perguntas ligadas, {total} opções idênticas ao HubSpot')
+    print(f'Formulário nativo do HubSpot: {FORM_ID}')
 
     embed = (fonte
              .replace('<!--LOGO_SCHOOL-->', svg_inline('assets/logo-school-white.svg', 'pu-brand__school'))
@@ -302,13 +247,13 @@ def main():
     preview = ('<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
                '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
                '<title>Prévia · Perspectiva Única</title>\n'
-               f'<style>{TEMA_HOSTIL}</style>\n{MOCK}\n</head>\n<body>\n'
+               f'<style>{TEMA_HOSTIL}</style>\n</head>\n<body>\n'
                + embed.replace(URL_UPLOADS, 'imagens/') +
                '\n</body>\n</html>\n')
     (DIST / 'preview.html').write_text(preview, encoding='utf-8')
 
-    # Prévia para compartilhar: sem o tema simulado, com o envio interceptado
-    # e um aviso de que nada vai ao HubSpot. Não indexa.
+    # Prévia para compartilhar: sem o tema simulado. O formulário é o nativo
+    # do HubSpot, então os envios feitos nela são reais. Não indexa.
     (DIST / 'previa').mkdir()
     shutil.copytree(DIST / 'imagens', DIST / 'previa' / 'imagens')
     previa = ('<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
@@ -316,8 +261,8 @@ def main():
               '<meta name="robots" content="noindex,nofollow">\n'
               '<title>Prévia · Perspectiva Única</title>\n'
               '<style>body{margin:0;background:#FEF8E8;}</style>\n'
-              f'{MOCK}\n</head>\n<body>\n'
-              + embed.replace(URL_UPLOADS, 'imagens/') + '\n' + AVISO_PREVIA +
+              '</head>\n<body>\n'
+              + embed.replace(URL_UPLOADS, 'imagens/') + '\n' + AVISO_PREVIA_REAL +
               '\n</body>\n</html>\n')
     (DIST / 'previa' / 'index.html').write_text(previa, encoding='utf-8')
 
